@@ -1,0 +1,182 @@
+/* See https://colorffy.com/dark-theme-generator?colors=2ec3be-121222 */
+
+:root {
+    /** Dark theme primary colors */
+    --clr-primary-a0: #20eaa5;
+    --clr-primary-a10: #53edaf;
+    --clr-primary-a20: #71f0b9;
+    --clr-primary-a30: #8af3c3;
+    --clr-primary-a40: #a1f5cd;
+    --clr-primary-a50: #b5f8d7;
+
+    /** Dark theme surface colors */
+    --clr-surface-a0: #121222;
+    --clr-surface-a10: #282837;
+    --clr-surface-a20: #3f3f4d;
+    --clr-surface-a30: #575764;
+    --clr-surface-a40: #71717c;
+    --clr-surface-a50: #8c8b95;
+
+    /** Dark theme tonal surface colors */
+    --clr-surface-tonal-a0: #1f373a;
+    --clr-surface-tonal-a10: #354a4d;
+    --clr-surface-tonal-a20: #4c5f61;
+    --clr-surface-tonal-a30: #637476;
+    --clr-surface-tonal-a40: #7c8a8b;
+    --clr-surface-tonal-a50: #95a0a1;
+
+    /** Breadcrumb **/
+    --bc-bg: var(--clr-surface-tonal-a20);
+    --bc-fg: white;
+    --bc-bg-last: var(--clr-surface-tonal-a30);
+    --bc-border: var(--clr-surface-tonal-a0);
+    --bc-hover: var(--clr-primary-a0);
+}
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100%;
+    font: 400 1em / 1.714 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, system-ui, "Helvetica Neue", sans-serif;
+    color: var(--clr-primary-a50);
+    background-color: var(--clr-surface-a10);
+    background-image: url(../img/backdrop-1.png);
+    background-repeat: repeat-x;
+
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--clr-primary-a30);
+}
+a {
+    color: var(--clr-primary-a0);
+    text-decoration: none;
+}
+a:visited {
+    color: var(--clr-primary-a50);
+}
+
+/** Main layout **/
+.ui-page-top {
+}
+.ui-page-header {
+    display: flex;
+    justify-content: center;
+}
+
+.ui-page-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    font-size: xx-small;
+    color: #777;
+}
+.ui-page-middle {
+    flex-grow: 3;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.ui-page-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    overflow: auto;
+}
+.ui-page-menu {
+    overflow: auto;
+    width: 120px;
+}
+
+.ui-flex-content {
+    width: 1024px;
+}
+
+/** Breadcrumb **/
+.ui-page-breadcrumb {
+    flex-direction: row;
+    border: 1px solid var(--bc-border);
+    border-radius: 0.3rem;
+    display: inline-flex;
+    overflow: hidden;
+    margin: 20px 10px;
+    /*padding: 20px 4px;*/
+}
+
+.ui-bc-item {
+    background: var(--bc-bg);
+    color: var(--bc-fg);
+    outline: none;
+    padding: 0.75em 0.75em 0.75em 1.25em;
+    position: relative;
+    text-decoration: none;
+    transition: background 0.2s linear;
+}
+.ui-page-breadcrumb a, .ui-page-breadcrumb a:visited {
+    color: var(--bc-fg);
+}
+
+.ui-bc-item:hover:after,
+.ui-bc-item:hover {
+    background: var(--bc-hover);
+}
+
+.ui-bc-item:focus:after,
+.ui-bc-item:focus,
+.ui-bc-item.is-active:focus {
+    background: #323f4a;
+    color: #fff;
+}
+
+.ui-bc-item:after,
+.ui-bc-item:before {
+    background: var(--bc-bg);
+    bottom: 0;
+    clip-path: polygon(50% 50%, -50% -50%, 0 100%);
+    content: "";
+    left: 100%;
+    position: absolute;
+    top: 0;
+    transition: background 0.2s linear;
+    width: 1em;
+    z-index: 1;
+}
+
+.ui-bc-item:before {
+    background: #cbd2d9;
+    margin-left: 1px;
+}
+
+.ui-bc-item:last-child {
+    border-right: none;
+}
+
+.ui-bc-item.ui-bc-last {
+    background: var(--bc-bg-last);
+}
+
+/** Menu **/
+.ui-menu-level {
+    padding-left: 10px;
+}
+.cl-true {
+    background: yellow;
+}
+
+
+
+
