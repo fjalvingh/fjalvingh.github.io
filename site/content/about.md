@@ -10,7 +10,7 @@ I currently work mostly with Java and Kotlin, SQL databases like Oracle and Post
 I am the principal author of a Java based UI framework called [DomUI](https://domui.atlassian.net/). This was open-sourced but did not become a success; to be useful you need to write documentation, lots of documentation... And currently people seem to prefer fragile solutions based on Javascript. I am writing *and maintaining* software for a living and for a long time; languages that are not strongly typed are a no-no for me, they are maintenance nightmares.
 
 # About where I live
-When in France I live in Saint Laurent d'Agny. This is a quiet rural village in the Monts Lyonnais. Our house is on top of a hill with a magnificient view:
+When in France I live in Saint Laurent d'Agny. This is a quiet rural village in the Monts Lyonnais. Our house is on top of a hill with a magnificent view:
 
 ![View from the garden](attachments/gardenview-1.png)
 
