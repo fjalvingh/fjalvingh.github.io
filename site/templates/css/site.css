@@ -106,6 +106,26 @@ a:visited {
     width: 1024px;
 }
 
+.ui-page-nav {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 10px;
+}
+.ui-page-nav-end {
+
+}
+.ui-nav-item {
+    display: flex;
+    padding: 0.75em 0.75em 0.75em 1.25em;
+    outline: none;
+    position: relative;
+    text-decoration: none;
+    background-color: var(--clr-surface-tonal-a50);
+}
+.ui-page-bc-cont {
+    width: 700px;
+}
+
 /** Breadcrumb **/
 .ui-page-breadcrumb {
     flex-direction: row;
@@ -113,8 +133,7 @@ a:visited {
     border-radius: 0.3rem;
     display: inline-flex;
     overflow: hidden;
-    margin: 20px 10px;
-    /*padding: 20px 4px;*/
+    /* margin: 20px 10px; */
 }
 
 .ui-bc-item {
@@ -161,7 +180,7 @@ a:visited {
     margin-left: 1px;
 }
 
-.ui-bc-item:last-child {
+.ui-bc-last {
     border-right: none;
 }
 
