@@ -63,3 +63,9 @@ I then measured the outputs of the LSI (9, 10, 11) and found each of them at aro
 With the 7406 removed the base of the transistors were at 24V, so they would be off.
 
 I would conclude that the large IC should have driven the phase outputs all LOW. It clearly does not do that; its outputs seem to be in high impedance mode. I see no way where that would be a reasonable thing as it will always put all stepper coils on power. This, to me, means that the chip is dead, and with that the drive is not salvageable - that chip is unobtanium.
+
+## Links to related content
+
+* Discussion about a very similar drive, containing what [looks like the same chip](https://stardot.org.uk/forums/viewtopic.php?t=16622)
+* EBay guy that [seems to have a similar chip](https://www.ebay.nl/itm/404088573995)
+* Manual of the [Basf 6104, using that same thing](http://www.bitsavers.org/pdf/basf/80307-048-BASF-6104-technical-manual.pdf)
