@@ -72,7 +72,6 @@ Not hindered by knowledge nor abilities :smile:, this is me playing with electro
 - [HP 1607A (Logic Analyzer, 1975)](index/the-hp-1607a-logic-analyzer.md)
 - [HP 16702A Logic Analyzer](index/hp-16702a-logic-analyzer.md)
 - HP 1662A Logic Analyzer (:latin_cross:)
- )
 
 ### Signature analyzer
 
