@@ -139,3 +139,11 @@ Running the test again:
 Next round is to try ZUACD0, but that is again bad luck:
 
 ![image-20241211-211514.png](./attachments/image-20241211-211514.png)
+
+The Unibone trace shows:
+![Bus Error image](delua-bus-error-1.png)
+
+Using my [Interactive Disassembler](../the-interactive-disassembler.md) we see the following code there:
+![Disassemblyafault](disassembly-62606.png)
+
+The address 177572~oct~ must be a special address.
