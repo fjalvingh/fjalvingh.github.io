@@ -77,11 +77,11 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--clr-primary-a30);
 }
 a {
-    color: var(--clr-primary-a0);
+    color: #b0bbfc;
     text-decoration: none;
 }
 a:visited {
-    color: var(--clr-primary-a50);
+    color: #b0bbfc;
 }
 
 /** Main layout **/
