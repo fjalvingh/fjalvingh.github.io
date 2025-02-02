@@ -56,6 +56,23 @@ body {
     margin: 0;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+table th {
+	padding: 3px;
+	border-left: 1px solid #aaaaaa;
+	text-align: left;
+	white-space: nowrap;
+    font-weight: bold;
+}
+table td {
+	padding: 1px 2px;
+	border-left: 1px solid #aaaaaa;
+	vertical-align: top;
+}
+
 h1, h2, h3, h4, h5, h6 {
     color: var(--clr-primary-a30);
 }

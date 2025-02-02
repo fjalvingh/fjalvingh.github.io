@@ -16,6 +16,7 @@ The code [can be found on Github](https://github.com/fjalvingh/idasm). Remember 
 
 | **When** | **What** |
 | --- | --- |
+| 20250202 | Added predefined addresses per disassembler + pdp-11 list of those |
 | 20250114 | Documentation updated |
 | 20250113 | Implemented line comments and block comments; added ILoadFormat to load from different input file formats |
 | 20250110 | Rewrite renderer to render into a Display model so that we can click on things :wink: |
