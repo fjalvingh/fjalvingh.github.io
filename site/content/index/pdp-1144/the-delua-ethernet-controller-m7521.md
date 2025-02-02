@@ -146,7 +146,7 @@ The Unibone trace shows:
 Using my [Interactive Disassembler](../the-interactive-disassembler.md) we see the following code there:
 ![Disassemblyafault](disassembly-62606.png)
 
-The address 177572~oct~ is the address of SR0, a register from the MMU. This is not present on the PDP 11/20, emulated by the UB, and hence the trap. Let's extend the disassembler to see that more clearly:
+The address 177572 ~oct~ is the address of SR0, a register from the MMU. This is not present on the PDP 11/20, emulated by the UB, and hence the trap. Let's extend the disassembler to see that more clearly:
 ![Updated disassembly](disassembly-fixed-2.png)
 
 It appears the test is switching off the MMU unit at that line (it writes a 0 into the enable bit), after which it updates two PAR registers and re-enables the MMU. No clue what it's doing there. But it is clear we cannot get this to work; the Unibone has no emulation for the MMU (yet).
