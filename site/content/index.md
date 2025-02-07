@@ -18,6 +18,7 @@ Not hindered by knowledge nor abilities :smile:, this is me playing with electro
 
 ### Peripherals
 
+- [Shugart SA801 8 inch floppy](index/the-shugart-801.md) (1980)
 - [BASF 6102 8 inch floppy drive](index/the-basf-6102-8-inch-floppy-drive-dead.md) (1982)
 - HP 9865A Tape Drive
 - [HP 7470A Plotter](index/hp-7470a-plotter.md) (1982)
