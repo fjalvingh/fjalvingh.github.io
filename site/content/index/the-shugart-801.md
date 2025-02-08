@@ -34,7 +34,7 @@ Next step was to try a seek:
 ```
 gw seek --drive 0 12
 ```
-This was reporting "Track 0 not found". This led to a bit of walking through the drive's schematics, which can be found in the sa801 reference manual [which can be downloaded here](https://retrocmp.de/fdd/shugart/801/sa801_i.htm). I followed the STEP signal, and put Greaseweazle in a loop to continuously do a seek. That led to the discovery of two straps, DS and HL, on the original schema. These define which signals will power up the stepper motor and the head load solenoid. Closing both of these causes the DS signal to do both, and after that the stepper could be heard.
+This was reporting "Track 0 not found". This led to a bit of walking through the drive's schematics, which can be found in the sa801 reference manual [which can be downloaded here](https://retrocmp.de/fdd/shugart/801/sa801_i.htm). I followed the STEP signal, and put Greaseweazle in a loop to continuously do a seek. That led to the discovery of two straps, DS and HL, on the original schema. These define which signals will power up the stepper motor and the head load solenoid. I initially closed both, with worked for a bit, bit after more careful studying of the schematic I found out that only one of these can be closed at one time, which should be DS for my use case (enabling all in the drive when just DS is asserted). I also needed to remove strap C and place strap X so that the DS signal both handles head load and seek enable.
 
 One thing to remember. The Greaseweaze remembers the track once a seek succeeds, so additional commands to seek to the same track do nothing. That is hard for testing, so add a "gw reset" command before the seek to force a seek to track 0 before going to the real track.
 
@@ -84,7 +84,43 @@ gw write --tracks=c=0-77:h=0 disk.scp
 ```
 Next round is to see whether we can read that disk on the rx02!
 
+## Reading from rx02
+Well, long story short, no go.
 
+## Next round
+I tried the disk-analyze command from the disk-utilities project of the Greaseweazle author, but that tool kept giving loads of errors on the image; things like track not formatted, track length incorrect and whatnot.
+
+It appears that there are several "levels" of reading data that you can use with gw. I tried raw, and it's very clear I do not fully understand it. Next thing I tried was to use a "format", and read with that:
+```
+gw read --format=dec.rx02 $1.img
+```
+The "img" extension was apparently needed for rx02 disk images, and the format apparently defines both the drive's tracks and header etc, but also the data format, because after reading this resulted in a file of 512.512 bytes, and doing a hexdump on that file actually revealed readable text, so the gw decoded the flux stream into a readable format.
+
+I then wrote a disk:
+```
+gw write --format dec.rx02 $1
+```
+which produced at the end the following errors:
+```
+T54.0: Writing Track (Flux: 166.7ms period, 183.3 ms total, Terminate at index)
+T55.0: Writing Track (Flux: 166.7ms period, 183.3 ms total, Terminate at index)
+T56.0: Writing Track (Flux: 166.7ms period, 183.3 ms total, Terminate at index)
+T57.0: Writing Track (Flux: 166.7ms period, 183.3 ms total, Terminate at index)
+T57.0: Writing Track (Verify Failure: Retry #1)
+T57.0: Writing Track (Verify Failure: Retry #2)
+T57.0: Writing Track (Verify Failure: Retry #3)
+** FATAL ERROR:
+Failed to verify Track 57.0
+```
+which told me two things:
+- Apparently the first 56 tracks were written OK, as the verify worked
+- There is something wrong at track 57...
+Retries gave errors at the same location.
+
+I decided to try the newly written floppy anyway in the RX02, and voila:
+![booting from a new disk](rx02-new-boot.png)
+
+So, the read+write basically works, once I get that track 57 issue fixed.
 
 
 # Links
