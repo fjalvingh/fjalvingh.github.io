@@ -3,9 +3,11 @@
 Let's try again.. I found a very curious device, a FAZ III microcomputer?, which contained 2 8" floppy drives, Shugart SA801's from March and June 1980.
 
 Pictures:
+
 ![The FAZ III](faz-iii-1.png)
 
 The Shugart SA801:
+
 ![Shugart PCB side](sa801-pcb-1.png)
 
 ## Initial work
@@ -118,6 +120,7 @@ which told me two things:
 Retries gave errors at the same location.
 
 I decided to try the newly written floppy anyway in the RX02, and voila:
+
 ![booting from a new disk](rx02-new-boot.png)
 
 So, the read+write basically works, once I get that track 57 issue fixed.
