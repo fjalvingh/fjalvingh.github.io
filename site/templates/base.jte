@@ -8,6 +8,11 @@
 <head>
 <title>${model.getTitle()}</title>
 <link rel="stylesheet" href='${model.siteURL("css/site.css")}'/>
+<link rel="stylesheet" href='${model.siteURL("css/dracula.css")}'/>
+
+<link rel="stylesheet" bhref="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
 </head>
 <body>
 <div class="ui-page-top">
