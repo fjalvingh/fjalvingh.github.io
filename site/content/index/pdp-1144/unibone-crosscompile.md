@@ -3,13 +3,13 @@
 When working on the Unibone software it is a lot more comfortable to be able to do that from your own workstation. Setting that up is not trivial so here is a description on how to get that to work. This description has been made for a Linux workstation running Ubuntu 24.04.
 
 I used the following documents, many thanks to the authors:
-* https://github.com/robamu-org/beaglebone-crosscompiling, this describes how to get the ARM toolchain.
+* [https://github.com/robamu-org/beaglebone-crosscompiling](https://github.com/robamu-org/beaglebone-crosscompiling), this describes how to get the ARM toolchain.
 
 The software needed from external sources will be installed in ~/opt. The Unibone root directory (the checked out git repo) is under ~/prj/QUniBone .
 
 ## Getting and installing the ARM compiler
 
-Download the appropriate compiler from Linaro: https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/ . Use gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz and extract with the xz tool, then untar:
+Download the appropriate compiler from Linaro: [https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/](https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/) . Use gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz and extract with the xz tool, then untar:
 
 ```
 cd ~/opt
@@ -19,7 +19,7 @@ This will create the directory gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabi
 
 ## Getting and installing the PRU compiler and software
 
-You can download the PRU compiler tools from here: https://www.ti.com/tool/download/PRU-CGT/2.3.3
+You can download the PRU compiler tools from here: [https://www.ti.com/tool/download/PRU-CGT/2.3.3](https://www.ti.com/tool/download/PRU-CGT/2.3.3)
 Download the "Linux Installer for PRU CGT". This will be a .bin file. After the download install the software as follows:
 ```
 cd (your download path)
