@@ -112,3 +112,11 @@ To use this just execute "unibone" from a shell. It will then have all settings 
 
 Next thing to investigate is why make -j64 does not work ;)
 
+## Getting Eclipse to work
+
+This is incomplete, documenting as I go along
+
+After untarring the eclipse-environment.tgz we now have the .project, .cproject and the .settings parts. The IDE now shows some projects as actual projects, but the include paths are wrong.
+This seems to be caused by the cross compiler settings being wrong. Opening the 10.02 project settings then selecting C/C++ Build we can see that it uses the "Grun c
+
+
