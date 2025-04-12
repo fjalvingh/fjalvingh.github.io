@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="ui-page-nav-end">
-            <a href='${model.siteURL("about.html")}' class="ui-nav-item">
+            <a href='${model.siteURL("about/index.html")}' class="ui-nav-item">
                 <span>About</span>
             </a>
         </div>
