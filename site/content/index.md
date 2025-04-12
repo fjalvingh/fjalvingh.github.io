@@ -91,9 +91,16 @@ Tools
 - [Updating the TL866 programmer using minipro](index/updating-the-tl866ii-using-minipro.md)
 - [Component references](index/component-details.md)
 
-Fun and games
+Odds and ends
 
+- [Using GPIB on Linux](index/using-gpib-on-linux.md)
 - [LED Matrices](index/led-matrix-fun.md)
+- [Installing Windows on old PCs](index/installing-windows-versions-on-old-pcs.md)
+- [Z80 hobby board](index/z80-hobby-board.md)
+- [Playing with amplifiers](index/amplifiers.md)
+- [Dec m7264 cpu](index/dec-digital-m7264-eb-qbus-lsi-1103-cpu-card.md)
+- [Playing with Core Memory](index/core-memory-experiments.md)
+- [Vic20 repair saga](index/vic-20-repair.md)
 
 Info
 

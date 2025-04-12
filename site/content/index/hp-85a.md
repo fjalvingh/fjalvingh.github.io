@@ -7,5 +7,6 @@ Repairing a HP 85A
 # Debugging HPDisk on the HP85A
 
 I built the HPDisk device to be able to have GPIB storage, but it did not work out of the box…
+- [Debugging HPDisk](hp-85a/debugging-hpdisk-gp-ib.md)
 
 - Progress log
