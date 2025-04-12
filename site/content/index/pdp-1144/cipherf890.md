@@ -60,8 +60,14 @@ I'm not exactly certain because there seem to be errors in the annotations in th
 The service manual for the F880 is a lot better; it has annotations in the schematic that tell us the above circuit is indeed what we're looking for. The theory of operation for the 980 describes the operation of this circuit:
 ![Theory of operation](theoryofoperation.png)
 
+### Measuring the circuit
+The version of the unit I have seems to be more close to what is described in 799816-006AA_Cipher_M890_M891_Cachetape_Operation_and_Maint_Vol1_Mar87. Measuring TP56 (which should show the sawtooth fed into the air capacitor) shows this:
+![tp56-waveform](tapeunit-tp56.png)
+This shows a 6.5V p-p sawtooth at 19.2KHz which seems to be OK (although the 880 manual says it needs to be 12vPP, and 10.5KHz).
 
-
+Measuring next TP59 shows the following:
+![tapeunit-tp59](tapeunit-tp59.png)
+According to the manual this is high, so I am going to replace the 4136.
 
 
 ## Drive error messages
@@ -80,3 +86,5 @@ We also have another list which is less precise but with more codes:
 ## Links
 
 - [Youtube repair video](https://www.youtube.com/watch?v=9-UWP-Op278)
+- [Repair description of a similar issue](https://microvax2.org/wp/2010/01/10/attempted-repair-cipher-880-or-891-tape-drive/)
+
