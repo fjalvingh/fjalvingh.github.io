@@ -1,18 +1,24 @@
 # The Cipher F890 tape drive
 
 I was very happy to get a 10.5 inch 9 track tape drive!!
+
 ![Tape unit](cipher-m890-1.png)
+
 This tape unit support up to 1600BPI tapes, and has a PERTEC interface.
 
 ## Initial status
 The unit needed a bit of cleaning but seemed in good state overall. It switched on without apparent problems. One thing that needed to be fixed were the rubber like pads on the main drive wheel:
+
 ![Rubber grabbers](original-grabbers.png)
+
 These had already been replaced with newer versions but these were a little too small.
 
 I made a new model in [Onshape](https://cad.onshape.com/documents/5250b162d057a5e5121f53b6/w/216b7eb7df0f59c64dfa8067/e/a828b49ce936e442852a7f1d) which I printed in NinjaFlex TPU and glued back on the grabbers:
+
 ![Grabbers redone](new-grabbers.png)
 
 After replacement I tried to load the tape but was greeted by an error 17, a problem with the tensioning arm. The tape did properly wind itself however:
+
 ![Tape captured](captured.png)
 
 ## Debugging the drive
@@ -51,22 +57,30 @@ This seems another indication that the voltages from the tensioning arm are inco
 
 ### What senses that angle?
 Looking at the drawings for the tensioning arm it looks like the angle is measured by an "air capacitor":
+
 ![Air capacitor](aircapacitor.png)
+
 The relevant part of the schematic seems to be this:
+
 ![Tension arm deflection circuit](tensionArmCircuit.png)
+
 I'm not exactly certain because there seem to be errors in the annotations in the wire loom. But that P4 matches in part, and it has the expected 3 wires. The circuit produces two voltages (vin2 and vin6) which are actually measured by the circuit:
+
 ![ad converter](adconverter.png)
 
 The service manual for the F880 is a lot better; it has annotations in the schematic that tell us the above circuit is indeed what we're looking for. The theory of operation for the 980 describes the operation of this circuit:
+
 ![Theory of operation](theoryofoperation.png)
 
 ### Measuring the circuit
 The version of the unit I have seems to be more close to what is described in 799816-006AA_Cipher_M890_M891_Cachetape_Operation_and_Maint_Vol1_Mar87. Measuring TP56 (which should show the sawtooth fed into the air capacitor) shows this:
+
 ![tp56-waveform](tapeunit-tp56.png)
 
 This shows a 6.5V p-p sawtooth at 19.2KHz which seems to be OK (although the 880 manual says it needs to be 12vPP, and 10.5KHz).
 
 Measuring next TP59 shows the following:
+
 ![tapeunit-tp59](tapeunit-tp59.png)
 
 According to the manual this is high, so I am going to replace the 4136.
@@ -81,8 +95,8 @@ We have the following list of error codes from the manual:
 ![alt text](errors2.png)
 
 We also have another list which is less precise but with more codes:
-![More error codes](errors3.png)
 
+![More error codes](errors3.png)
 
 
 ## Links
