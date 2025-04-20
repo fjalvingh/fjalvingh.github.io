@@ -80,6 +80,7 @@ Not hindered by knowledge nor abilities :smile:, this is me playing with electro
 
 ## Miscellaneous
 
+- [Kienzle 1140-20 Taximeter with Intel 4004 CPU](kienzle/index.md)
 - HP 8505A (Incomplete, Top half only)
 - HP 8151A Optical Pulse Power Meter
 
