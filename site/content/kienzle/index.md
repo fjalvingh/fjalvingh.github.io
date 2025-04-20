@@ -21,13 +21,13 @@ The following was found on [CPU-World](https://www.cpu-world.com/forum/viewtopic
 
 That document describes a 22 pin connector which my device does not have. The pinout seems to be:
 
-| pin | Description |
-|=====|=============|
-| 10  | +12V perm   |
-| 9   | GND         |
-| 8   | Ignition +12V |
-| 7..2| Relais lamps |
-| 1   | ? |
+| pin   | Description   |
+| ----- | ------------- |
+| 10    | +12V perm     |
+| 9     | GND           |
+| 8     | Ignition +12V |
+| 7..2  | Relais lamps  |
+| 1     | ?             |
 
 
 ## Documentation
