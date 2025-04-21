@@ -3,9 +3,8 @@
 > [!INFO]
 > tbd, boards I have or that I would like to have, with relevant info
 
-|     |     |     |     |
-| --- | --- | --- | --- |
 | Want/Have | Board    | Number | Description |
+| --- | --- | --- | --- |
 | Have      | DHU11-M  | M3105  | 16 line async NUX with DMA, 2x |
 | Want      | KE44-A   | M7091  | 11/44 CIS Control Store |
 | Want      | KE44-A/2 | M7092  | 11/44 CIS Data Path / Logic module |
@@ -25,9 +24,8 @@
 
 ## Emulex
 
-|     |     |     |     |
-| --- | --- | --- | --- |
 | Want/Have | Board    | Description |
+| --- | --- | --- | --- |
 | Have      | TC12     | Pertec tape controller, 2x |
 
 

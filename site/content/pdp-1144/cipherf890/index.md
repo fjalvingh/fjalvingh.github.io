@@ -43,7 +43,7 @@ I removed the tape from the machine as the first tests need to run without one.
 The error message tells us to runSA24. This test shows the voltage from the thing that measures the angle of the tension arm. The measurements here are:
 
 | Position | Binary value | Voltage | Comment |
-| - | - | - | - |
+| -------- | ------------ | ------- | ------- |
 | Rest     | 10010        | 2.817V  | Seems high, manual says 1.56 V |
 | Extended | 01001        | -0.313V | Manual says -1.565V |
 | Delta    | 00110        | 3.75V   | Slightly high, 3.13V |

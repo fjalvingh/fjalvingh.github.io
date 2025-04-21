@@ -56,21 +56,34 @@ body {
     margin: 0;
 }
 
-table {
+.ui-tbl {
     border-collapse: collapse;
+    background-color: var(--clr-surface-tonal-a10);
+}
+.ui-tbl thead {
+	background-color: var(--clr-surface-tonal-a0);
 }
 
-table th {
-	padding: 3px;
+.ui-tbl th {
+	padding: 3px 10px;
 	border-left: 1px solid #aaaaaa;
 	text-align: left;
 	white-space: nowrap;
     font-weight: bold;
 }
-table td {
-	padding: 1px 2px;
+.ui-tbl th:last-child {
+	border-right: 1px solid #aaaaaa;
+}
+.ui-tbl td {
+	padding: 1px 10px;
 	border-left: 1px solid #aaaaaa;
 	vertical-align: top;
+}
+.ui-tbl tr:nth-child(even) {
+	background-color: var(--clr-surface-tonal-a20);
+}
+.ui-tbl td:last-child {
+	border-right: 1px solid #aaaaaa;
 }
 
 h1, h2, h3, h4, h5, h6 {
