@@ -1,16 +1,15 @@
-# The DD11-DK backplane
+# The DD11-DK and DD11-CK backplanes
 
 # The DD11-DK backplane
 
-This DD11-DK backplane is a generic 9 slot Unibus backplane:
+The DD11-DK backplane is a generic 9 slot Unibus backplane:
 
 ![image-20241124-205818.png](image-20241124-205818.png)
 
 It has the following configuration:
 
-|     |     |     |     |     |     |     |
-| --- | --- | --- | --- | --- | --- | --- |
 |     | A   | B   | C   | D   | E   | F   |
+| --- | --- | --- | --- | --- | --- | --- |
 | 9   | UNIBUS |     | SPC |     |     |     |
 | 8   | Modified UNIBUS |     | SPC |     |     |     |
 | 7   | Modified UNIBUS |     | SPC |     |     |     |
@@ -25,9 +24,8 @@ The power connectors are configured as follows:
 
 P2 Connector: Amp 15 pin MATE-N-LOC
 
-|     |     |     |     |     |
-| --- | --- | --- | --- | --- |
 | Pin | AWG | Color | Function | **Slot Pins** |
+| --- | --- | --- | --- | --- |
 | 1   | 14  | red | +5V | AA2, BA2, CA2, DA2, EA2, FA2 |
 | 2   | 18  | grey | +15V | CU1 |
 | 3   | 14  | orange | +20V core | AU1, AV1, AV2 |
@@ -46,9 +44,8 @@ P2 Connector: Amp 15 pin MATE-N-LOC
 
 P3 Connector: Amp 6 pin MATE-N-LOC
 
-|     |     |     |     |     |
-| --- | --- | --- | --- | --- |
 | Pin | AWG | Color | Function | **Slot Pins** |
+| --- | --- | --- | --- | --- |
 | 1   | 14  | black | GND |     |
 | 2   | 18  | brown | LTC | CD1 |
 | 3   | 18  | violet | DCLO | BF2, CN1 |
@@ -58,9 +55,8 @@ P3 Connector: Amp 6 pin MATE-N-LOC
 
 P4 Connector: Amp 15 pin MATE-N-LOC
 
-|     |     |     |     |     |
-| --- | --- | --- | --- | --- |
 | Pin | AWG | Color | Function | Slot Pins |
+| --- | --- | --- | --- | --- |
 | 1   | 14  | red | +5V | AA2, BA2, CA2, DA2, EA2, FA2 |
 | 2   |     |     |     |     |
 | 3   | 14  | orange | +20V core | AU1, AV1, AV2 |
@@ -97,9 +93,8 @@ This backplane is a generic 4 slot backplane:
 
 The slots are numbered 1 to 4, starting the closest to the edge of the table. Connectors A are to the right; F is to the left. It has the following configuration:
 
-|     |     |     |     |     |     |     |
-| --- | --- | --- | --- | --- | --- | --- |
 |     | A   | B   | C   | D   | E   | F   |
+| --- | --- | --- | --- | --- | --- | --- |
 | 4   | UNIBUS |     | SPC |     |     |     |
 | 3   | Modified UNIBUS |     | SPC |     |     |     |
 | 2   | Modified UNIBUS |     | SPC |     |     |     |
@@ -115,21 +110,20 @@ and
 
 Power connector pinout:
 
-|     |     |     |     |     |
-| --- | --- | --- | --- | --- |
-| Pin | AWG | Color | Function | **Slot Pins** |
-| 1   | 14  | red | +5V | AA2, BA2, CA2, DA2, EA2, FA2 |
-| 2   |     | grey |     |     |
-| 3   |     | orange |     |     |
-| 4   | 14  | red | +5V | AA2, BA2 |
-| 5   |     | white |     |     |
-| 6   |     |     |     |     |
-| 7   | 14  | black | GND |     |
-| 8   | 14  | black | GND |     |
-| 9   |     |     |     |     |
-| 10  |     |     |     |     |
-| 11  |     |     |     |     |
-| 12  |     | red |     |     |
-| 13  | ?   | blue | \-15V |     |
-| 14  |     | brown |     |     |
-| 15  |     | green |     |     |
+| Pin | AWG | Color  | Function | **Slot Pins** |
+| --- | --- | ------ | -------- | --- |
+| 1   | 14  | red    | +5V      | AA2, BA2, CA2, DA2, EA2, FA2 |
+| 2   | 18  | grey   | +15V     | CU1 |
+| 3   |     | orange |          |     |
+| 4   | 14  | red    | +5V      | AA2, BA2 |
+| 5   |     | white  |          |     |
+| 6   |     |        |          |     |
+| 7   | 14  | black  | GND      |     |
+| 8   | 14  | black  | GND      |     |
+| 9   |     |        |     |     |
+| 10  |     |        |     |     |
+| 11  |     |        |     |     |
+| 12  |     | red    |     |     |
+| 13  | 18  | blue   | \-15V | CB2, CC2, CD2, CE2, CF2 |
+| 14  |     | brown  |     |     |
+| 15  |     | green  |     |     |
