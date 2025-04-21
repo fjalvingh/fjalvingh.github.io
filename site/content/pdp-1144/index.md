@@ -14,6 +14,7 @@ This is now a dump of things I learn and need to keep; it should be organized la
 
 ## Related devices
 
+- [The RL02 disk drive](rl02/index.md)
 - [The Cipher F880](cipherf890/index.md)
 - [Board extenders](douglas-extenders/index.md)
 - [The TU58 tape drive](the-tu58-tape-unit/index.md)
