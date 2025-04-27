@@ -7,10 +7,9 @@ This is now a dump of things I learn and need to keep; it should be organized la
 - [Inventory](pdp-11-inventory/index.md)
 - [Boards list / boards to look for](unibus-board-list/index.md)
 - [Unibus, Uniprobe, Unibone](unibus-uniprobe-and-unibone-tales/index.md)…
--   [The Unibone I2C panel](unibone-i2c-panel/index.md)
+- [The Unibone I2C panel](unibone-i2c-panel/index.md)
 - [List of Unibus machines and their details](pdp-11-unibus-processors/index.md)
 - [List of boot PROMs](pdp11-boot-proms/index.md)
-- [Unibone inside the 11/44](unibone-inside-the-pdp-1144/index.md)
 
 ## Related devices
 
@@ -24,10 +23,8 @@ This is now a dump of things I learn and need to keep; it should be organized la
 
 ## Unibone tutorials and details
 
-- [Using the Unibone on a standalone backplane (without a PDP-11)](using-the-unibone-as-a-stand-alone-machine/index.md)
-- [Cross-compiling the Unibone code on Ubuntu](unibone-crosscompile/index.md)
-- [Extending the Unibone CPU emulation](extending-the-unibone-cpu-emulation/index.md)
-- [Unibone disk image descriptions](unibone-disk-image-details/index.md) and details
+- [Unibone articles](unibone/index.md)
+
 
 ## Problems and fixes
 
