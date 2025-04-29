@@ -84,6 +84,10 @@ From that we learn that we have a "composite error", and "OPI" is set. OPI means
 
 ![opi error definition](opi-error-1.png)
 
+The failing test is test#25. That reads as follows:
+
+![test 25 from fiche](test25code.png)
+
 
 
 
