@@ -134,6 +134,7 @@ a:visited {
 
 .ui-flex-content {
     width: 1024px;
+    overflow: auto;
 }
 
 .ui-page-nav {
