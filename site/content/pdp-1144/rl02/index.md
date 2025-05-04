@@ -153,6 +153,22 @@ Next round is to check the same on the RV11. For that we need the schematics the
 
 Clock and CMD are both leaving from E5. Putting the LA there shows the same symptom: no CMD data.
 
+Next round: logic analyzer, connected as follows:
+
+![CMD generation on RL11](rl11-cmd-gen-1.png)
+
+* sysclk from E5 pin 11
+* cmd from E5 pin 5
+* cmdsrc from E109 pin 10 (the 74150 shift register)
+* p13 on E40 (cmd in from inverted 74150)
+* p12 on E40 (P7 send dr cmd H)
+
+which shows:
+
+![la trace cmd signals](la-cmd-signal-1.png)
+
+While the 74150 sends output p12 stays low, and that causes the output of E40 to remain low too, and hence no data is sent.
+
 
 ## More photos
 
