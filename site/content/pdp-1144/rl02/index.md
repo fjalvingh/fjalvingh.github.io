@@ -137,6 +137,22 @@ Looking at test 27:
 
 ![Test 27](fiche-test27-1.png)
 
+This seems to be the first test that actually talks with the disk drive- and it is not anwering..
+
+Time to take out the scope and logic analyzer. First check the drive inputs, which will be SYSCLK and DRIVE COMMAND (on the RL02):
+
+![RL02 receive part of SYSCLK and CMD](rl02-receive-1.png)
+
+Putting the oscilloscope on pins 1, 2 and 4 of E61 shows no clock signal. I checked the RV11 and the cable and clock DID come out (check the HH and JJ pins on the connector, use the translation to IDC numbering [found here](../decalphabet/index.md)). I cleaned the connectors on the drive side, after that clock did appear - but still the same error.
+
+Next round is the logic analyzer. I added a Saleae thingy to both pin4 (SYSCLK) and pin9 (CMD) of E61 and got a nice clock- but no activity at all on the CMD line..
+
+Next round is to check the same on the RV11. For that we need the schematics there:
+
+![RV11 clock and CMD](rv11-clock.png)
+
+Clock and CMD are both leaving from E5. Putting the LA there shows the same symptom: no CMD data.
+
 
 ## More photos
 

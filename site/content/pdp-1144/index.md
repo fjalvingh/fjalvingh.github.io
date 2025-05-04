@@ -59,6 +59,7 @@ Useful tools:
 
 ## Useful links
 
+- [DEC Alphabet BERG to IDC connector numbering](decalphabet/index.md)
 - [DEC related 3D models](https://so-much-stuff.com/pdp8/cad/3d.php)
 - Instruction set details
 -   [Stackosaurus](http://stackosaurus.com/pdp11.html)
