@@ -167,7 +167,21 @@ which shows:
 
 ![la trace cmd signals](la-cmd-signal-1.png)
 
-While the 74150 sends output p12 stays low, and that causes the output of E40 to remain low too, and hence no data is sent.
+While the 74150 sends output p12 stays low, and that causes the output of E40 to remain low too, and hence no data is sent. The signal p7 send dr cmd H comes from an xor gate (p6, E83). Adding pins 4 and 5 to the LA shows that both input stay low too. Both of these come from a set of PROMs:
+
+* p4 = p6 send status H (E114 pin 15)
+* p5 = p7 ena diff clk H (E112 pin 8)
+
+Checking whether we see a function code on E114 is next (pins 2,4,5,6). For this we also need the clock for its addresses, which comes from E104, a 74161 counter, pin 2.
+
+![la image on function code E114](la-fcode-1.png)
+
+This shows something odd imo: no clock on E104p2, the counter. This comes from a set of flipflops ultimately controlled by E102, a 74151 8-to-1 multiplexer. This has a number of inputs; the input that should control the "PC" (the 74161) gets selected by that thing. Next step: do we get pulses from it?
+
+TO BE CONTINUED.
+
+
+
 
 
 ## More photos
