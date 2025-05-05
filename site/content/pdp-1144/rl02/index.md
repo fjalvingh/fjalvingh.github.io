@@ -16,13 +16,6 @@ The RL02 drive is an impressive beast:
 
 First thing is to run some tests. I used the [Unibone test setup](../using-the-unibone-as-a-stand-alone-machine/index.md). As most Unibone xxdp scripts actually use an emulated RL02 I had to use another thing to boot from. I chose to use the rx02 emulation, and one of the rx02 images from [here](https://ak6dn.github.io/PDP-11/RX02/). More details [see here](../unibone/cpu20-booting-rx02/index.md).
 
-
-## RLV
-
-
-
-
-
 The results of the 1st run:
 ```
 CPU NOT SUPPORTED BY XXDP-XM
@@ -176,7 +169,31 @@ Checking whether we see a function code on E114 is next (pins 2,4,5,6). For this
 
 ![la image on function code E114](la-fcode-1.png)
 
-This shows something odd imo: no clock on E104p2, the counter. This comes from a set of flipflops ultimately controlled by E102, a 74151 8-to-1 multiplexer. This has a number of inputs; the input that should control the "PC" (the 74161) gets selected by that thing. Next step: do we get pulses from it?
+This shows something odd imo: no clock on E104p2, the counter. This comes from a set of flipflops ultimately controlled by E102, a 74151 8-to-1 multiplexer. This has a number of inputs; the input that should control the "PC" (the 74161) gets selected by that thing. Next step: do we get pulses from it? I add LA connections to E102 pin6 (the output) and to pins 9..11, the input selector inputs. This produces:
+
+![la trace for 74151](la-74151-1.png)
+
+which shows that the input selected seems to be p5 go 1 (H) which apparently is low all the time (p6 of 74151 is the inverse of the input. It is low, checked). Next is to look at the source of this signal. It comes from page 5 E101, a 74S74:
+
+![74S74 for p5 go signal](schema-p5-74s74.png)
+
+Attaching the LA there shows activity:
+
+![la 74s74](la-74s74-1.png)
+
+We see that the flipflop seems to do its work: D gets low, shortly after CLK goes down and up, and p9 (q) gets low too. A us later comes a low on p10 (PRE) which sets the q output back to 1 again.
+
+There appears to be an error in the schematic; E101 on the drawing has 2x pin 8 and 9 with inverted meaning. p8 is Q-bar, p9 is Q. E102 p12+p13 is connected to p8 (Q-bar).
+
+Checking again the LA, now with E102 p6 (inverted output) and p12 (output from e101) shows that I messed up before:
+
+![Sigh](la-e102-again.png)
+
+We nicely see pulses leaving it. That SHOULD mean that our PC advances, so let's go back to that.
+
+
+
+
 
 TO BE CONTINUED.
 
