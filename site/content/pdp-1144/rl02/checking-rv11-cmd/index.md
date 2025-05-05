@@ -8,6 +8,15 @@ Putting the oscilloscope on pins 1, 2 and 4 of E61 shows no clock signal. I chec
 
 Next round is the logic analyzer. I added a Saleae thingy to both pin4 (SYSCLK) and pin9 (CMD) of E61 and got a nice clock- but no activity at all on the CMD line..
 
+## Check some more basics
+
+As we are with the LA let's check the sector pulses and drive ready.
+
+![drvready and sector pulses](la-drvready-1.png)
+
+The sector pulse seems ok, manual says 625us +/- 6us.
+
+
 ## Checking the rv11 for cmd data
 
 Next round is to check the same on the RV11. The failing test is trying to send an incorrect GET STATUS command to the drive. This uses function code 2, and there is a good summary of how this works in the rv11 technical guide:
@@ -71,13 +80,13 @@ I fear that what went wrong is that I forgot to switch on the drive in some of t
 
 ## We have cmd output...
 
-Well, we now do seem to have cmd output on e5p5. According to the test it sends the get status command with only the marker bit set (so a single bit), and that is what we seem to see here:
+Well, we now do seem to have cmd output on e5p5. According to the test it sends the get status command with only the marker bit set (so a single bit). This single bit should be the width of a single clock period, as far as I understand, and that does not seem to be the case here:
 
 ![la trace with cmd active](la-cmd-active-1.png)
 
+Perhaps that is why OPI is not being set? If the thing is sending a lot of ones then the drive will see it as the proper GS bit, and it will just work....
 
-This gives me a headache. Let's check some more basics: drv ready and sector pulse:
 
-![drvready and sector pulses](la-drvready-1.png)
 
-Looks like 1600rpm.
+
+
