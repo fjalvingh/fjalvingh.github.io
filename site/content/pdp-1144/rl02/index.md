@@ -189,7 +189,18 @@ Checking again the LA, now with E102 p6 (inverted output) and p12 (output from e
 
 ![Sigh](la-e102-again.png)
 
-We nicely see pulses leaving it. That SHOULD mean that our PC advances, so let's go back to that.
+We nicely see pulses leaving it. That SHOULD mean that our PC advances, and at least now I see pulses at e104p2 (CLK).
+
+I fear that what went wrong is that I forgot to switch on the drive in some of the initial measurements and did not notice, and that sent me on a wild goose chase. Being stupid never helps, sigh.
+
+## We have cmd output...
+
+Well, we now do seem to have cmd output on e5p5, but it looks bad:
+
+![la trace with cmd active](la-cmd-active-1.png)
+
+This gives me a headache. Time for more reading.
+
 
 
 
