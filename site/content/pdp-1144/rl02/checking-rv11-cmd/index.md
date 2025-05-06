@@ -84,9 +84,16 @@ Well, we now do seem to have cmd output on e5p5. According to the test it sends 
 
 ![la trace with cmd active](la-cmd-active-1.png)
 
-Perhaps that is why OPI is not being set? If the thing is sending a lot of ones then the drive will see it as the proper GS bit, and it will just work....
+Perhaps that is why OPI is not being set? If the thing is sending a lot of ones then the drive will see it as the proper GS bit, and it will just work.... That pulse is 3.875uS long. With a clock of 4.1MHz (243.9ns) this is about 16 clocks.. 
 
+Next trace is to see what happens around that 74150. One expects as input the 0001(hex) and as output the bit pattern. But it does not look like it:
 
+![La trace around the 74150](la-74150-2.png)
 
+If we zoom in around the last CMD pulse we see:
+
+![last cmd pulse](la-74150-3-zoomed.png)
+
+d0..d3 show a 1H which is what I would expect. But nothing happens on the s0..s3 lines. That looks wrong too.
 
 
