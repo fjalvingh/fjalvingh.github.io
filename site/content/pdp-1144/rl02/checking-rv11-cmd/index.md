@@ -80,7 +80,7 @@ I fear that what went wrong is that I forgot to switch on the drive in some of t
 
 ## We have cmd output...
 
-Well, we now do seem to have cmd output on e5p5. According to the test it sends the get status command with only the marker bit set (so a single bit). This single bit should be the width of a single clock period, as far as I understand, and that does not seem to be the case here:
+Well, we now do seem to have cmd output on e5p5. According to the test it sends the get status command with only the marker bit set (so a single bit). This single bit should be the width of a single clock period, as far as I understand, and that does not seem to be the case here: 
 
 ![la trace with cmd active](la-cmd-active-1.png)
 
@@ -94,6 +94,21 @@ If we zoom in around the last CMD pulse we see:
 
 ![last cmd pulse](la-74150-3-zoomed.png)
 
-d0..d3 show a 1H which is what I would expect. But nothing happens on the s0..s3 lines. That looks wrong too.
+d0..d3 show a 1H which is what I would expect. But nothing happens on the s0..s3 lines. That looks wrong too. These lines get controlled by E98, a 74161 counter. Let's monitor its CLK and CLR line to see what happens:
 
+![Check clock on e98](la-e98-clockandclear.png)
+
+Clear is high, clock is pulsing - but the 74150 s0..s3 lines stay at 0. **This looks like a failed 74161**.
+
+I replaced the 74161 with a 74LS161 as I had nothing else, and I put it in a socket ofc:
+
+![placed a new socket](new-socket.png)
+
+and with that we got:
+
+![passed test 27!!](test27-passed.png)
+
+The signals also look a whole lot better now:
+
+![Signals after replacement of 74161](la-74161-replaced.png)
 
