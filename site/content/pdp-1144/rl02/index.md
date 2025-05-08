@@ -16,6 +16,7 @@ The RL02 drive is an impressive beast:
 
 * [Initial tests](initial-tests/index.md)
 * [Hunting for the rl11 CMD signal](checking-rv11-cmd/index.md)
+* [Fixing ZRLG test 33](fixing-test-33/index.md)
 
 TO BE CONTINUED.
 
