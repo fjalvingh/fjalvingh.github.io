@@ -12,6 +12,14 @@ The RL02 drive is an impressive beast:
 
 ![rl02 and disk pack](rl02-1.png)
 
+## The Drive number button
+
+You can have max. 4 RL02 drives connected to a controller. Each drive has a drive number to identify it, from 0 to 3. The way the drive number is selected is quite special! The second "button" on the drive shows the drive number. This button can be removed! By simply replacing the button with a button that shows a different number you change the drive number.
+This works because the button holder has a number of microswitches that "sense" the cams at the end of the button.
+I only had a drive button 2, and many tools require a drive 0. Luckily someone created [a 3D model for those drive buttons](https://so-much-stuff.com/pdp8/cad/3d.php)! Thanks a lot Vince Slyngstad!
+
+A copy of these files can be found here: [0](0.stl), [1](1.stl), [2](2.stl), [3](3.stl).
+
 ## Getting it to work
 
 * [Initial tests](initial-tests/index.md)
