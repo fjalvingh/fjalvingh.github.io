@@ -20,13 +20,44 @@ I only had a drive button 2, and many tools require a drive 0. Luckily someone c
 
 A copy of these files can be found here: [0](0.stl), [1](1.stl), [2](2.stl), [3](3.stl).
 
-## Getting it to work
+## The controller
+
+The controller for this device is the RL11 (M7762):
+
+![m7762 rl11 controller](rl11-1.png)
+
+I have two of these, one marked as defective and one without any markers.
+
+## Getting it to work (controller 1)
+
+Let's start with the RL11 that is not marked defective.
 
 * [Initial tests](initial-tests/index.md)
 * [Hunting for the rl11 CMD signal](checking-rv11-cmd/index.md)
 * [Fixing ZRLG test 33](fixing-test-33/index.md)
 
+The final test is ZRLH, this one runs without problems:
+
+![zrlh test results](test-zrlh.png)
+
+This controller - and the drive - seem to be OK now ;)
+
+## Controller number 2
+
+The second controller came with a label:
+
+![rl11-2](rl11-2-label.png)
+
+The drive does not show "ready" when connected to this controller. So let's go to work on it..
+
+* [Initial tests: ZRLG](c2-initial-tests/index.md)
+
+
+
+
 TO BE CONTINUED.
+
+
 
 
 
