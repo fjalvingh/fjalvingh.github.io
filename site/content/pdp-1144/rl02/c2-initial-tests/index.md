@@ -160,10 +160,10 @@ Let's try another trick. You can set a breakpoint on the Unibone. Let's put that
 * It should show the data seen by the code
 
 The results from the code:
-22776 (1st header word) = 000044 (24H)
-23024 (2nd header word) = 0
-23026 (crc from 1st word) = 000033 (1B)
-02344 (calbcc) = 170012 (f00a)
+* 22776 (1st header word) = 000044 (24H)
+* 23024 (2nd header word) = 0
+* 23026 (crc from 1st word) = 000033 (1B)
+* 02344 (calbcc) = 170012 (f00a)
 
 When we plug these words in the calculation tools those indeed match.. So where the f are those numbers coming from!?
 
