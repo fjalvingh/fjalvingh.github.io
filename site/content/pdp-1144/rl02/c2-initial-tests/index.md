@@ -147,3 +147,55 @@ BA 002032 IR 000000 PSW 000
 
 i.e. the sum is 21000, or 0x2200. I validated it with a Java program that implemented the same algorithm. This is a lot different from the value received (0x33).
 
+## Tracing the working controller (#1)
+
+To make sure that I understand what's happening I decided to trace the now working controller too. As this passes the tests it should show us traces where we can check the checksum. This is one:
+
+![la trace working controller](la-hdr-trace-working.png)
+
+But if we calculate the checksum with the code we still have a mismatch: calculating the sum for A1FE 0000 returns 0a60... I'm lost now..
+
+Let's try another trick. You can set a breakpoint on the Unibone. Let's put that in the test routine, at 23044 ~(oct)~. That should do two things:
+* It should immediately stop the trace so we can see the last pulse train
+* It should show the data seen by the code
+
+The results from the code:
+22776 (1st header word) = 000044 (24H)
+23024 (2nd header word) = 0
+23026 (crc from 1st word) = 000033 (1B)
+02344 (calbcc) = 170012 (f00a)
+
+When we plug these words in the calculation tools those indeed match.. So where the f are those numbers coming from!?
+
+In the end that was easy: the syncserial decoder was reading the bits in the opposite order from what is expected.. The 9403 FIFO registers will move the very first bit in the bit train to D0 of their output, the second one becomes D1, etc. The 9403's in the controller are put in series; when the first 9403 has 4 bits read the next 4 bits go to the second one.. And the first 9403 is connected to D0..D3 of the data bus, so the first bits are the LSB bits.
+
+Adding an option to revert the interpreted bit order shows that the last trace is actually correct:
+
+![la trace with bits interpreted in reverse order](la-bits-reversed-now-ok.png)
+
+One mystery solved.
+
+## Going back to the bad controller (#2)
+
+Let's try the bad controller again. This is the new trace:
+
+![la trace bad controller with bits in order](la-bad-bits-ordered-correct.png)
+
+The error message from the test read:
+```
+CZRLG DVC FTL ERR  00037 ON UNIT 00 TST 032 SUB 000 PC: 023054
+BAD HEADER CRC ON READ HEADER
+CONTROLLER: 174400  DRIVE: 0
+BEFORE COMMAND: CS: 000211 BA: 002416 DA: 000001 MP: 002001
+TIME OF ERROR:  CS: 000211 BA: 002416 DA: 000001 MP: 000024?
+EXP'D: 170005 REC'D: 000005
+```
+The CRC that we actually see on the serial bus is 0xf005 which is 170005 ~oct~, so the correct checksum.. This means something must go wrong reading that value from the 9403. Yay.
+
+Next step: does the 9403 that holds the upper values actually report that value to the bus when queried? This is the highest nibble which comes from E106. We need to probe that one. This shows the following when the test runs:
+
+![la trace of 9403 data outputs](la-9403-data-out.png)
+
+This is zoomed out; we see the drive sector response on channel 0 and 1, and a lot later we see OE going down a few times - but all that time the data lines remain at zero. Conclusion: that 9403 is dead..
+
+
