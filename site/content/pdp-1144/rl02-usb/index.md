@@ -86,6 +86,37 @@ cd ISE/bin/lin64
 
 ```
 
+### Opening the FPGA code in ISE
+
+Start ISE, then select "Open Project" and select the project file in the FPGA directory. This should open the project without too much trouble. After that do the build steps by selecting the top module, then with the right mouse button select "run":
+
+![Synthesize design](fpga-implement.png)
+
+The next step is to generate the programming file using the same right mouse -> run step, followed by "Configure target device". This should open a tool called "iMPACT", which should be able to program the FPGA.
+
+### Configuring iMPACT
+
+Use "Open Project", and load the impact file from the FPGA directory. This should show the basic configuration:
+
+![initial impact after load](fpga-impact-1.png)
+
+Next step is to try "program". That failed on my machine because the Xilinx USB Platform cable was not recognized. To make this work (Ubuntu Linux 25.04) do the following.
+
+Disconnect the platform cable, then:
+```
+$ sudo apt install libusb-dev fxload
+$ cd /opt/Xilinx/
+$ sudo git clone git://git.zerfleddert.de/usb-driver
+$ cd usb-driver/
+$ sudo make
+$ ./setup_pcusb /opt/Xilinx/14.7/ISE_DS/ISE
+$ sudo udevadm control --reload-rules
+```
+(Shamelessly stolen from https://askubuntu.com/questions/838260/install-xilinx-platform-usb-in-ubuntu-16-04-x64/1128841#1128841, with thanks!)
+
+After this, reconnect the platform cable and try again; the thing should now be recognized.
+
+This should now make the cable work.
 
 
 
@@ -94,6 +125,8 @@ cd ISE/bin/lin64
 
 * [Getting a flashable output file](https://kitflix.com/getting-started-with-tiva-launchpad-tm4c123/)
 * [Errors during the conversion to .bin](https://software-dl.ti.com/ccs/esd/documents/sdto_cgt_tiobj2bin_failed.html)
+- [Getting the USB Platform cable to be recognized](https://askubuntu.com/questions/838260/install-xilinx-platform-usb-in-ubuntu-16-04-x64/1128841#1128841)
+
 
 
 
