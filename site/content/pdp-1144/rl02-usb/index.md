@@ -118,8 +118,12 @@ After this, reconnect the platform cable and try again; the thing should now be 
 
 This should now make the cable work.
 
+### Programming the FLASH
 
+Programming the FPGA only does that once; as soon as power disappears the FPGA is empty again. This is why we have the M25P10 flash aboard. It can be programmed with the bitstream for the FPGA, and at reset the FPGA will read the bitstream from that flash.
+The flash chip is only connected to the FPGA, so to program it we need to use a trick: we need to send something to the FPGA that will let _it_ program the flash. This can be done fully automagically by iMPACT, [The process is very well described here](https://docs.amd.com/r/en-US/xapp586-spi-flash/Programming-the-SPI-Flash-In-System).
 
+Use PROGRAM on the FLASH chip in the image, and make sure to also VERIFY.
 
 ### Links to documentation used
 
