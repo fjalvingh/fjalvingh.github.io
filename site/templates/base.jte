@@ -36,10 +36,6 @@
     </div>
 </div>
 <div class="ui-page-middle">
-    <div class="ui-page-menu">
-        <!-- template.menuitem(model, model.getMenuRoot()) -->
-    </div>
-
     <div class="ui-page-content">
         <div class="ui-flex-content">
             $unsafe{model.getContent()}

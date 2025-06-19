@@ -125,7 +125,7 @@ a:visited {
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    overflow: auto;
+/*    overflow: auto; */
 }
 .ui-page-menu {
     overflow: auto;
@@ -134,7 +134,6 @@ a:visited {
 
 .ui-flex-content {
     width: 1024px;
-    overflow: auto;
 }
 
 .ui-page-nav {
