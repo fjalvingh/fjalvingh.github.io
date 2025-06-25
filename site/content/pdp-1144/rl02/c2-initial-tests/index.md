@@ -213,3 +213,17 @@ Running the test however returned this:
 This is a test of the GET STATUS command, and it caused a timeout. I checked the chip again with the logic analyzer (but forgot to make the proper trace) and found out that the command was sent correctly, and the drive answered, but the CPSI clock signal on the 9403's never stopped pulsing. This was because the IRF output (pin 1) of the new 74F403 never signaled that the data was received. Actually, that output was flapping around in the breeze at high speed. Clearly this chip was bad. Sadly enough the same happened with the second one...
 Back to Ebay, and now to order a real 9403 from the States, a 4 week wait, sigh.
 
+## Second try with a real F9403
+
+After a few weeks of waiting I got a few real F9403's. These looked like the Real Deal, so I had high hopes. But when I replaced the 74F403 with them I saw the exact same thing..
+So, back to the logic analyzer for apparently a new fault.. The trace showed this:
+
+![replacement 9403](9403-replaced-bad-1.png)
+
+I added the IRF signals of the other 9403's starting at pin 6 (the lsb) and going on to the higher nibbles. We can see the following:
+
+* We see that the 4 chips are reset properly just before the CMD line starts to send the GET STATUS command. This command also looks proper.
+
+* The last IRF never gets low. This means that the state machine will never see that the whole word has been read, and consequently we see the input clock continuing endlessly.
+
+* The first and second 7403's do clock data in and make IRF low after 4 bits, but apparently the 3rd nibble (e107) is now dead also..
