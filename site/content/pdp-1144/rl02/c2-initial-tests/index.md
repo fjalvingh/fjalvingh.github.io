@@ -226,4 +226,64 @@ I added the IRF signals of the other 9403's starting at pin 6 (the lsb) and goin
 
 * The last IRF never gets low. This means that the state machine will never see that the whole word has been read, and consequently we see the input clock continuing endlessly.
 
-* The first and second 7403's do clock data in and make IRF low after 4 bits, but apparently the 3rd nibble (e107) is now dead also..
+* The first and second 7403's do clock data in and make IRF low after 4 bits, but apparently the 3rd nibble (e107) is now dead also.
+
+After replacing that third chip in the fifo chain we still had IRF of the last chip (e106) low. I then decided to check the IES signal on that chip, and lo and behold: it stayed high.. Even though e107 has been replaced and now works properly.. I did a continuation check between e107p1 and e106p9 and this was open, so the signal never reached e106; I must have broken a trace during my repair, sadly enough.
+Adding a wire fix on the PCB fixed that, and retesting finally shows a happy result:
+
+```
+DR>STA/FLAGS:HOE
+
+CHANGE HW (L)  ? N
+
+CHANGE SW (L)  ? N
+
+CZRLG EOP    1
+    0 TOTAL ERRS
+
+CZRLG EOP    2
+    0 TOTAL ERRS
+```
+
+## About the 74F403 we tried earlier
+
+These proved to be just fine too, so I'm now the proud owner of a stock of these, sigh. It does not always pay to be lazy and assume the EBay chips are bad; had I measured inputs again proper I would have seen that.
+
+## The second test
+
+Running ZRLH on the same controller:
+
+```
+.R ZRLH??
+ZRLHB1.BIC
+
+DRSSM-G2
+CZRLH-B-0
+CZRLH TESTS WRITE DATA, READ DATA, AND WRITE CHECK OPERATIONS
+UNIT IS RL01,RL02
+RSTRT ADR 145702
+DR>STA/FLAGS:HOE
+
+CHANGE HW (L)  ? Y
+
+# UNITS (D)  ? 1
+
+UNIT 0
+RL11 (L) Y ? 
+BUS ADDRESS (O)  174400 ? 
+DRIVE TYPE = RL01 (L) Y ? N
+VECTOR (O)  160 ? 
+BR LEVEL (O)  5 ? 
+DRIVE (O)  0 ? 
+
+CHANGE SW (L)  ? N
+
+CZRLH EOP    1
+    0 TOTAL ERRS
+
+CZRLH EOP    2
+    0 TOTAL ERRS
+```
+
+Fine as well. Controller repaired ;)
+
