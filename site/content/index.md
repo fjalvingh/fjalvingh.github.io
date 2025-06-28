@@ -86,7 +86,7 @@ Not hindered by knowledge nor abilities :smile:, this is me playing with electro
 
 Tools
 
-- [Tools (software) I've made](tools/index.md)
+- [Tools (software) I've made, linux tips](tools/index.md)
 - [Mini fast pulse generator](mini-fast-pulse-generator/index.md)
 - [Kicad tricks and tips](kicad-tips-and-tricks/index.md)
 - [Debugging Saleae analyzers](creatingdebugging-saleae-analyzers/index.md)

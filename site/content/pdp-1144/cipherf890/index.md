@@ -30,12 +30,11 @@ The drive has extensive help for servicing. The details can be found in the serv
 * Press 5 (HI-DEN) to enable the SA.
 Make sure to press the buttons within 3 seconds.
 
+(!) If the drive enters an error state you do not have to switch it off and on again; you can press the "test" button after which the drive returns to its initial state.
+
 Important service aids:
 
 * 33: This disables the "door open" checks and allows you to see what happens during tape load. WATCH OUT FOR YOUR HANDS!!
-
-
-
 
 ## Fixing error 17
 I removed the tape from the machine as the first tests need to run without one.
@@ -84,6 +83,38 @@ Measuring next TP59 shows the following:
 ![tapeunit-tp59](tapeunit-tp59.png)
 
 According to the manual this is high, so I am going to replace the 4136.
+
+## After replacing the 4136
+
+It took a week for replacements to arrive. After replacing the chip the tension arm voltages were a lot more as described, but we still had tape load issues.
+
+I used test setting 33 to enable me to see the load process. This showed that the reel hub (the thing on which you place the spool) was not grabbing the tape: it slipped like mad. I then thought I needed to print the rubber pads a bit larger, but this did not help at all. Luckily my friend Marc arrived from the Netherlands and we looked at the issue together. We found out that that drive hub has a special mechanism to grab the tape: when the hub turns there is a ring inside that hub which controls the arms containing the rubber pads. When moving in the right direction this causes those arms to move the pads to the tape. But in fact the pads were too large, so the arms would not fully extend and because of that they did not apply pressure on the pads, causing the slippage.
+
+I reprinted the pads a whole lot smaller in OnShape:
+
+![new pad](pad-2.png)
+
+and that made the tape load work. I could see that the little arms inside the hub were now almost fully straight, and with that the tape was grabbed a lot more forcefully.
+
+## But then we got a new problem, sigh
+
+The tape load worked fine for a while. I then worked on the RL02 drive for a few weeks, and when I returned to the tape unit it would not fail the load, it would always report an error with the last three lamps flashing which is apparently error 28 "Servo failure or hub is jammed during manual load". Which is an odd error.
+
+Looking at the load operation with the door open I saw the following: the hub starts with turning in reverse, and this will blow the start of the tape into the area that should detect it:
+
+![tape leader detection area](tape-detection-area-1.png)
+
+The tape would nicely blow in there every time, but it looks like it was not detected? This detection is done by the "TAPE IN PATH" circuits:
+
+![Tape in path sensor](tape-in-path-1.png)
+
+Number 10 is the transmitter, number 11 is the receiver according to the diagram. There is a test, #31, which tests this. Running that test makes the reel turn in reverse with the blower on and the LOAD light flickers every time the tape is detected. This works fine. I also tested the normal load sequence by putting a finger over the transmitter. This still fails the load, but when it does it starts to turn faster in reverse until you remove your finger. This is clearly meant to remove all of the tape from the path on failure, so clearly that detector works.
+
+Looking in another manual it states that error 28 means "Tape reel prevented movement of the supply reel hub. Remove and reinsert tape to clear. Possible bell crank solenoid failure"... 
+
+
+
+
 
 
 ## Drive error messages
