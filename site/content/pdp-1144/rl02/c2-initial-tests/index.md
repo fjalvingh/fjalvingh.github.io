@@ -200,7 +200,7 @@ This is zoomed out; we see the drive sector response on channel 0 and 1, and a l
 
 ## Replacement with 74F403
 
-I could not find a 9403 on Ebay (it turned out I made an error searching for it). But there is a replacement: the 74F403 is the same chip. I found two of those on Ebay, in Germany, and ordered those. I removed the dead one and added a handcrafted socket because I had none for the odd form factor of this chip:
+I could not find a 9403 on Ebay (it turned out I made an error searching for it, and apparently the real code is N9403). But there is a replacement: the 74F403 is the same chip. I found two of those on Ebay, in Germany, and ordered those. I removed the dead one and added a handcrafted socket because I had none for the odd form factor of this chip:
 
 ![removed 9403](9403-removed.png)
 
@@ -213,9 +213,9 @@ Running the test however returned this:
 This is a test of the GET STATUS command, and it caused a timeout. I checked the chip again with the logic analyzer (but forgot to make the proper trace) and found out that the command was sent correctly, and the drive answered, but the CPSI clock signal on the 9403's never stopped pulsing. This was because the IRF output (pin 1) of the new 74F403 never signaled that the data was received. Actually, that output was flapping around in the breeze at high speed. Clearly this chip was bad. Sadly enough the same happened with the second one...
 Back to Ebay, and now to order a real 9403 from the States, a 4 week wait, sigh.
 
-## Second try with a real F9403
+## Second try with a real N9403
 
-After a few weeks of waiting I got a few real F9403's. These looked like the Real Deal, so I had high hopes. But when I replaced the 74F403 with them I saw the exact same thing..
+After a few weeks of waiting I got a few real N9403's. These looked like the Real Deal, so I had high hopes. But when I replaced the 74F403 with them I saw the exact same thing..
 So, back to the logic analyzer for apparently a new fault.. The trace showed this:
 
 ![replacement 9403](9403-replaced-bad-1.png)

@@ -50,17 +50,7 @@ The second controller came with a label:
 
 The drive does not show "ready" when connected to this controller. So let's go to work on it..
 
-* [Initial tests: ZRLG](c2-initial-tests/index.md)
-
-
-
-
-TO BE CONTINUED.
-
-
-
-
-
+* [Fixing the second rl11](c2-initial-tests/index.md)
 
 
 ## More photos
