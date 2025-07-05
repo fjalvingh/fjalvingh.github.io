@@ -58,7 +58,7 @@ Not hindered by knowledge nor abilities :smile:, this is me playing with electro
 - [HP 8161A](hp-8161a-100mhz-pulse-generator/index.md) (100MHz pulse generator, needs repair, incomplete, 1981)
 - [HP 5304A Timer/Counter module](hp-5304a-timer-counter/index.md) (10MHz, 1971?)
 
-## Digital measurement tools
+## [Digital measurement tools](digital-tools/index.md)
 
 ### HP Probe set:
 
@@ -69,14 +69,14 @@ Not hindered by knowledge nor abilities :smile:, this is me playing with electro
 
 ### Logic Analyzers
 
-- [HP 1600A (Logic Analyzer, 1975)](hp-1600a-logic-analyzer/index.md)
-- [HP 1607A (Logic Analyzer, 1975)](the-hp-1607a-logic-analyzer/index.md)
-- [HP 16702A Logic Analyzer](hp-16702a-logic-analyzer/index.md)
+- [HP 1600A (Logic Analyzer, 1975)](digital-tools/hp-1600a-logic-analyzer/index.md)
+- [HP 1607A (Logic Analyzer, 1975)](digital-tools/the-hp-1607a-logic-analyzer/index.md)
+- [HP 16702A Logic Analyzer](digital-tools/hp-16702a-logic-analyzer/index.md)
 - HP 1662A Logic Analyzer (:latin_cross:)
 
 ### Signature analyzer
 
-- [HP 5006 Signature Analyzer](hp-5006a-signature-analyzer/index.md)
+- [HP 5006 Signature Analyzer](digital-tools/hp-5006a-signature-analyzer/index.md)
 
 ## Miscellaneous
 
