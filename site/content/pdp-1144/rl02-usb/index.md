@@ -60,7 +60,7 @@ To program you need to power both the flasher and the board. To power the board 
 
 [Download the flash tool (Uniflash) from here](https://www.ti.com/tool/UNIFLASH) and install it.
 
-Run the Uniflash tool, select the correct controller:
+Run the Uniflash tool, select the correct controller and device (TM4C1232C3PM):
 
 ![flash tool config](flashtoolconfig.png)
 
@@ -197,6 +197,8 @@ read: sector 8 count 1
 read: sector 9 count 1
 read: sector 10 count 1
 ```
+These sector and count numbers are in usb units of 512 bytes; the RL02 reads in sectors of 256 bytes so internally in the code these numbers double.
+
 After that last read I tried to fdisk the drive but this hung again without any messages. Let's also add info on whether it exits read. This shows that the read for sector 10 does not finish:
 
 ```
@@ -207,8 +209,25 @@ read: at track
 read: exit ok
 read: sector 10 count 1
 ```
-and there it hangs..
+and there it hangs.
 
+### First round of discovery results
+
+I added a lot of extra debugging to see which sectors are being found and read, and this showed the following:
+
+* The hang is caused by the code not finding a sector it needs on the drive. It loops infinitely trying to find it. In the case of that usb sector 10 it is RL02 sector 21 that cannot be found.
+
+### What is in the FPGA?
+
+The FPGA has a state machine which reads header and data bytes as they pass under the heads of the drive. Whenever a word (16 bits) is read it is put in a FIFO queue in the FPGA. This FIFO queue consists of 514 (512) entries of a 17-bit word. Bit 0..15 is the actual data, bit 16 is an indicator that the word is the first word of a header, called SPI_HEADER in the schematic and SPI_CurWordIsHeader in the top FPGA module.
+
+Subsequent header words will not have that bit set!
+
+The FPGA exposes the following things on GPIO port A:
+ * pin6: the SPI_HEADER bit as read from the FIFO.
+ * pin7: the data ready indicator from the SPI code.
+
+The uC code checks the header bit when it needs to know the current sector. It waits for the word with that bit set and uses it to read the 3 words of the header. From that it can then decode the current sector number.
 
 
 
@@ -220,7 +239,7 @@ and there it hangs..
 
 * [Getting a flashable output file](https://kitflix.com/getting-started-with-tiva-launchpad-tm4c123/)
 * [Errors during the conversion to .bin](https://software-dl.ti.com/ccs/esd/documents/sdto_cgt_tiobj2bin_failed.html)
-- [Getting the USB Platform cable to be recognized](https://askubuntu.com/questions/838260/install-xilinx-platform-usb-in-ubuntu-16-04-x64/1128841#1128841)
+* [Getting the USB Platform cable to be recognized](https://askubuntu.com/questions/838260/install-xilinx-platform-usb-in-ubuntu-16-04-x64/1128841#1128841)
 
 
 
