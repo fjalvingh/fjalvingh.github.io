@@ -139,6 +139,19 @@ The flash chip is only connected to the FPGA, so to program it we need to use a 
 
 Use PROGRAM on the FLASH chip in the image, and make sure to also VERIFY.
 
+### What is in the FPGA?
+
+The FPGA has a state machine which reads header and data bytes as they pass under the heads of the drive. Whenever a word (16 bits) is read it is put in a FIFO queue in the FPGA. This FIFO queue consists of 514 (512) entries of a 17-bit word. Bit 0..15 is the actual data, bit 16 is an indicator that the word is the first word of a header, called SPI_HEADER in the schematic and SPI_CurWordIsHeader in the top FPGA module.
+
+Subsequent header words will not have that bit set!
+
+The FPGA exposes the following things on GPIO port A:
+ * pin6: the SPI_HEADER bit as read from the FIFO.
+ * pin7: the data ready indicator from the SPI code.
+
+The uC code checks the header bit when it needs to know the current sector. It waits for the word with that bit set and uses it to read the 3 words of the header. From that it can then decode the current sector number.
+
+
 ## Initial test of the device
 
 After flashing I connected the pcb to the RL02 by opening up the RL02, removing the flat cable from the two connectors at the back and inserting that flat cable into the PCB:
@@ -215,25 +228,53 @@ and there it hangs.
 
 I added a lot of extra debugging to see which sectors are being found and read, and this showed the following:
 
-* The hang is caused by the code not finding a sector it needs on the drive. It loops infinitely trying to find it. In the case of that usb sector 10 it is RL02 sector 21 that cannot be found.
+* The hang is caused by the code not finding a sector it needs on the drive. It loops infinitely trying to find it. In the case of that usb sector 10 it is RL02 sector 21 that cannot be found. This could of course be a problem on the disk pack I used (even though that pack did finish the RL02 XXDP tests), but changing the pack reported the error at the exact same track.
 
-### What is in the FPGA?
+I wrote something that can quickly show the sectors that ARE found. For the 1st platter this shows (after letting the drive run for 15 minutes):
 
-The FPGA has a state machine which reads header and data bytes as they pass under the heads of the drive. Whenever a word (16 bits) is read it is put in a FIFO queue in the FPGA. This FIFO queue consists of 514 (512) entries of a 17-bit word. Bit 0..15 is the actual data, bit 16 is an indicator that the word is the first word of a header, called SPI_HEADER in the schematic and SPI_CurWordIsHeader in the top FPGA module.
+```
+000000000011111111112222222222333333333344444444445
+012345678901234567890123456789012345678901234567890
+********************* **************            ***
 
-Subsequent header words will not have that bit set!
+Total sectors encountered: 2999
+Number of sectors >= 40: 123
+Missing are: 21, 36, 37, 38, 39
 
-The FPGA exposes the following things on GPIO port A:
- * pin6: the SPI_HEADER bit as read from the FIFO.
- * pin7: the data ready indicator from the SPI code.
+```
+It gets worse when I add 40 to the USB sector number (in the code) so that it tries to read track 2. That does not finish at all because of CRC errors, and the cyl/head/sector from those errors show lots of issues:
+```
+seek: crc fail, 124/1/3,7679 f00/b1f5
+seek: crc fail, 0/0/48,0 c005/f
+seek: crc fail, 0/0/20,0 407/f005
+seek: crc fail, 0/0/1,0 fc00/fc01
+seek: crc fail, 0/0/3,0 3801/4400
+seek: crc fail, 6/0/24,0 43/a0f6
+seek: crc fail, 0/1/31,0 7cc/1412
+seek: crc fail, 1/0/2,0 381f/7828
+seek: crc fail, 511/1/63,65535 3f7/9401
+```
+I.e. we have bad track numbers in the header word all over the place, and impossible sector numbers too. Btw: Both of the above tests were repeated with two different platters with the same results!
 
-The uC code checks the header bit when it needs to know the current sector. It waits for the word with that bit set and uses it to read the 3 words of the header. From that it can then decode the current sector number.
+Either my drive is bad, or the FPGA is doing something wrong.
+
+TO BE CONTINUED.
 
 
 
 
 
 
+## RL01/RL02 details
+
+| What            | RL02 | RL01 |
+| ----            | ---- | ---- |
+| Capacity        | 10MB | 5MB  |
+| Cylinders       | 512  | 256  | 
+| Sectors/track   | 40   | 40   |
+| Heads           | 2    | 2    |
+| Bytes/sector    | 256  | 256  |
+| Rotation speed  | 2400rpm     |
 
 ## Links to documentation used
 
