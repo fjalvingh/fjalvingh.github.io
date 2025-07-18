@@ -96,7 +96,7 @@ After that do the following to start ISE:
 cd /opt/Xilinx/14.7/ISE_DS
 . settings64.sh
 cd ISE/bin/lin64
-./ISE
+./ise
 
 ```
 
