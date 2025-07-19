@@ -15,93 +15,14 @@ The repo contains the KiCAD board design, the gerbers and everything else to get
 
 The FPGA does all of the heavy work; the uC is used to implement the USB mass storage part only.
 
+## Installing the required software
+
+* [Installing TI Code Composer Studio](install-ccstudio/index.md)
+* [Installing Xilinx ISE](install-xilinx/index.md)
+
 ## Building and installing the uC code
 
-### Installing the TI software
-
-To build the code you need to install TI's Code Composer Studio. This helpfully exists in two completely incompatible versions: an older version based on Eclipse, and a newer one based on VS Code. The latter does not seem to be very complete and it did not recognize the project at all, so I used the Eclipse version (I used 12.8.1.00005).
-
-DO NOT USE 2.x, it will not work as the Tiva family appears to be unsupported there.
-
-Before we can install the software we need to install some dependencies.
-
-#### Installing python2.7
-
-```
-sudo apt update
-wget http://security.ubuntu.com/ubuntu/pool/universe/p/python2.7/python2.7_2.7.18-13ubuntu1.5_amd64.deb http://security.ubuntu.com/ubuntu/pool/universe/p/python2.7/libpython2.7-stdlib_2.7.18-13ubuntu1.5_amd64.deb http://security.ubuntu.com/ubuntu/pool/universe/p/python2.7/python2.7-minimal_2.7.18-13ubuntu1.5_amd64.deb http://security.ubuntu.com/ubuntu/pool/universe/p/python2.7/libpython2.7-minimal_2.7.18-13ubuntu1.5_amd64.deb http://security.ubuntu.com/ubuntu/pool/universe/p/python2.7/libpython2.7_2.7.18-13ubuntu1.5_amd64.deb
-
-sudo apt install ./libpython2.7-minimal_2.7.18-13ubuntu1.5_amd64.deb ./libpython2.7-stdlib_2.7.18-13ubuntu1.5_amd64.deb ./python2.7-minimal_2.7.18-13ubuntu1.5_amd64.deb ./python2.7_2.7.18-13ubuntu1.5_amd64.deb
-```
-
-#### Fixing missing libtinfo.so.5
-
-Do the following:
-```
-sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so /usr/lib/x86_64-linux-gnu/libtinfo.so.5
-```
-
-#### libusb-0.1.so.4
-
-```
-sudo apt-get install libusb-0.1-4
-```
-
-#### libgconf-2
-
-```
-wget http://kr.archive.ubuntu.com/ubuntu/pool/universe/g/gconf/libgconf-2-4_3.2.6-6ubuntu1_amd64.deb
-wget http://kr.archive.ubuntu.com/ubuntu/pool/universe/g/gconf/gconf2-common_3.2.6-6ubuntu1_all.deb
-apt install ./libgconf-2-4_3.2.6-6ubuntu1_amd64.deb ./gconf2-common_3.2.6-6ubuntu1_all.deb
-```
-
-#### Installing Code Studio, finally
-
-Untar the tar in a temp dir, cd into the directory and execute the .run file to install. It should say that all dependencies are OK. If not, fix them!
-When asked what to install I installed all packages.
-
-![Install packages](install-packages-cc.png)
-
-Install all debug probes
-
-I got this error:
-
-![error-1](install-cc-1.png)
-
-This does not want to get fixed. Leave the error on the screen and open a console, then do this:
-
-* Go to the /tmp folder and find a folder name starting with ccs_ and some hex numbers.
-* In that folder is a folder called DMED. Go there.
-* The failing installation is ti_cgt_dmed_1.1.6_linux_installer_x86.bin. Move that file to a new name (install.bin), then create a NEW file ti_cgt_dmed_1.1.6_linux_installer_x86.bin with the content:
-
-```
-#!/bin/sh
-exit 0
-```
-and make it executable
-
-After that go back to the installer and retry. It should now finish successfully.
-
-After that run the driver installer as told by the installer:
-
-```
-sudo ~/opt/ccs/ccs/install_scripts/install_drivers.sh
-```
-
-#### After installation...
-
-After installation the IDE might fail to start with an executable stack error:
-```
-libMiniDump.so: cannot enable executable stack as shared object requires
-```
-This can be fixed by installing execstack (apt install execstack) followed by:
-```
-execstack -c /home/jal/opt/ccs1281/ccs/eclipse/../ccs_base/common/bin/libMiniDump.so
-```
-
-After this you should be able to start ccstudio, and open the uC project. It will not yet build though because we should be:
-
-#### Installing the required SDKs
+### Installing the required SDKs
 
 Download the USB Driver library and the peripheral driver libraries described in the project from the TI website. This should result in two files:
 
@@ -160,92 +81,7 @@ Now press the "Load Image" button, and if successful press the "Verify image" bu
 
 Round 1: the tool said flashing was successful; the verify worked too, but after flashing I did not have USB response when connecting the board. I would have expected it to register the mass storage device..
 
-## Installing the FPGA code
-
-The FPGA used is a Spartan 3a level FPGA from Xilinx. This company has been bought by AMD.
-
-### Finding and installing the required software on Ubuntu 25.04
-
-The Spartan 3a FPGA's are not supported by Vivado, the modern IDE from Xilinx. Instead we will need a tool called ISE, which is quite old software. The last version is 14.7, from 2015. Google for it and download the .tar.gz file, after that untar the archive and run the setup using "sudo ./xsetup".
-
-You might have a failure because it cannot find libncurses.so.5. If so then do the following:
-```
-$ cd /usr/lib/x86_64-linux-gnu
-$ sudo ln -s libncurses.so.6 libncurses.so.5
-```
-After that the installer should work. Install the full edition including cable drivers. The cable driver install will fail, but ignore that.
-
-After installing you will need to get a license. The license manager that is supposed to start does not, so [go here to get one](https://account.amd.com/en/forms/license/license-form.html). You will need to apply for the free "WebPack" license. This will email you a license file. Place this license file in "/opt/Xilinx/14.7/ISE_DS/ISE/coregen/core_licenses".
-
-After that do the following to start ISE:
-
-```bash
-cd /opt/Xilinx/14.7/ISE_DS
-. settings64.sh
-cd ISE/bin/lin64
-./ise
-```
-
-### Problem since 2025-07-19
-
-Since this date ISE dies with a segmentation fault. Reinstalling does not help, it does the same. There is this [page that describes possible fixes](https://gist.github.com/aliemo/ce58ea570ee6ffa6dedfa569f87f1c1e). I did the following which at least cancelled the segmentation fault (copied from the above page):
-
-#### Remove the NOTO fonts and playing with qtconfig
-
-The next tip was to remove the NOTO fonts. I did:
-
-```
-sudo apt remove fonts-noto-cjk fonts-noto-color-emoji fonts-noto-core fonts-noto-hinted fonts-noto-mono fonts-noto-ui-core fonts-noto-unhinted python3-monotonic
-```
-I also edited the file ~/.config/Trolltech.conf and removed the reference to the Noto font. You can then try to start the qtconfig program (in the same shell where you tried to start ise) and change the font there to Ubuntu Sans.
-
-This made the IDE work again.
-
-If there is still trouble: the following might help too:
-
-The ISE tools supply an outdated version of the libstdc++.so library, which may cause segfaults when using the Xilinx Microprocessor Debugger and prevents the usage of the oxygen-gtk theme. This outdated version is located in two directories within the installation tree: <installation-path>/ISE_DS/ISE/lib/lin64/ and <installation-path>/ISE_DS/common/lib/lin64
-
-To use newer version of libstdc++, rename or delete the original files and replace them with symlinks:
-
-```
-cd <installation-path->ISE_DS/ISE/lib/lin64/
-mv libstdc++.so libstdc++.so.orig
-mv libstdc++.so.6 libstdc++.so.6.orig
-mv libstdc++.so.6.0.8 libstdc++.so.6.0.8.orig
-ln -s /usr/lib/libstdc++.so
-ln -s libstdc++.so libstdc++.so.6
-ln -s libstdc++.so libstdc++.so.6.0.8
-```
-
-Repeat this process in the <installation-path>/ISE_DS/common/lib/lin64
-
-This did not stop the SEGFAULT if the Noto fonts are still installed though.
-
-### Problem: unable to install ChipScope
-
-Trying to install ChipScope into the project resulted in this:
-```
-Started : "Creating ChipScope Definition File".
-Running inserter...
-Command Line: inserter -intstyle ise -mode initial -proj /home/jal/prj/RL02/FPGA/chipscope.cdc -p xc3s50a -output_dir _ngo -ise_project_dir /home/jal/prj/RL02/FPGA
-/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/inserter: 72: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/cs_common.sh: XIL_DIRS[0]=/opt/Xilinx/14.7/ISE_DS/ISE/: not found
-/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/inserter: 73: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/cs_common.sh: count++: not found
-/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/inserter: 152: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/cs_common.sh: Syntax error: Bad for loop variable
-ERROR: Unable to create CDC source
-
-Process "Creating ChipScope Definition File" failed
-```
-
-A solution [was found here](https://pradeepkb.wordpress.com/xilinx-chipscope-inserter-error/):
-
-* Edit /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/analyzer and change #!/bin/sh to #!/bin/bash
-* Do the same in /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/inserter
-
-This solved the issue for me.
-
-
-
-
+## The FPGA
 
 ### Opening the FPGA code in ISE
 
