@@ -184,8 +184,43 @@ cd /opt/Xilinx/14.7/ISE_DS
 . settings64.sh
 cd ISE/bin/lin64
 ./ise
+```
+
+### Problem since 2025-07-19
+
+Since this date ISE dies with a segmentation fault. Reinstalling does it help, it does the same. There is this [page that describes possible fixes](https://gist.github.com/aliemo/ce58ea570ee6ffa6dedfa569f87f1c1e). I did the following which at least cancelled the segmentation fault (copied from the above page):
+
+#### Dynamic library fix (libstdc++.so)
+
+The ISE tools supply an outdated version of the libstdc++.so library, which may cause segfaults when using the Xilinx Microprocessor Debugger and prevents the usage of the oxygen-gtk theme. This outdated version is located in two directories within the installation tree: <installation-path>/ISE_DS/ISE/lib/lin64/ and <installation-path>/ISE_DS/common/lib/lin64
+
+To use newer version of libstdc++, rename or delete the original files and replace them with symlinks:
 
 ```
+cd <installation-path->ISE_DS/ISE/lib/lin64/
+mv libstdc++.so libstdc++.so.orig
+mv libstdc++.so.6 libstdc++.so.6.orig
+mv libstdc++.so.6.0.8 libstdc++.so.6.0.8.orig
+ln -s /usr/lib/libstdc++.so
+ln -s libstdc++.so libstdc++.so.6
+ln -s libstdc++.so libstdc++.so.6.0.8
+```
+
+Repeat this process in the <installation-path>/ISE_DS/common/lib/lin64
+
+This did not stop the SEGFAULT.
+
+#### Remove the NOTO fonts and playing with qtconfig
+
+The next tip was to remove the NOTO fonts. I did:
+
+```
+sudo apt remove fonts-noto-cjk fonts-noto-color-emoji fonts-noto-core fonts-noto-hinted fonts-noto-mono fonts-noto-ui-core fonts-noto-unhinted python3-monotonic
+```
+I also edited the file ~/.config/Trolltech.conf and removed the reference to the Noto font. You can then try to start the qtconfig program (in the same shell where you tried to start ise) and change the font there to Ubuntu Sans.
+
+This made the IDE work again.
+
 
 ### Opening the FPGA code in ISE
 
