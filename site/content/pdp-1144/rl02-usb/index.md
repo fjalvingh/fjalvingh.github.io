@@ -221,6 +221,31 @@ Repeat this process in the <installation-path>/ISE_DS/common/lib/lin64
 
 This did not stop the SEGFAULT if the Noto fonts are still installed though.
 
+### Problem: unable to install ChipScope
+
+Trying to install ChipScope into the project resulted in this:
+```
+Started : "Creating ChipScope Definition File".
+Running inserter...
+Command Line: inserter -intstyle ise -mode initial -proj /home/jal/prj/RL02/FPGA/chipscope.cdc -p xc3s50a -output_dir _ngo -ise_project_dir /home/jal/prj/RL02/FPGA
+/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/inserter: 72: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/cs_common.sh: XIL_DIRS[0]=/opt/Xilinx/14.7/ISE_DS/ISE/: not found
+/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/inserter: 73: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/cs_common.sh: count++: not found
+/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/inserter: 152: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/cs_common.sh: Syntax error: Bad for loop variable
+ERROR: Unable to create CDC source
+
+Process "Creating ChipScope Definition File" failed
+```
+
+A solution [was found here](https://pradeepkb.wordpress.com/xilinx-chipscope-inserter-error/):
+
+* Edit /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/analyzer and change #!/bin/sh to #!/bin/bash
+* Do the same in /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/inserter
+
+This solved the issue for me.
+
+
+
+
 
 ### Opening the FPGA code in ISE
 
@@ -382,9 +407,9 @@ Either my drive is bad, or the FPGA is doing something wrong.
 
 TO BE CONTINUED.
 
+### FPGA Debugging
 
-
-
+To debug, initially, it would be nice to use an FPGA-embedded debugger... For that Xilinx uses ChipScope. Install it by following [this tutorial](https://docs.amd.com/v/u/en-US/ug750) which describes the process quite well.
 
 
 ## RL01/RL02 details
