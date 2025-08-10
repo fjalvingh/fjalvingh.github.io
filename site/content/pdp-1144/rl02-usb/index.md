@@ -103,7 +103,7 @@ Disconnect the platform cable, then:
 ```
 $ sudo apt install libusb-dev fxload
 $ cd /opt/Xilinx/
-$ sudo git clone git://git.zerfleddert.de/usb-driver
+$ git clone git://git.zerfleddert.de/usb-driver
 $ cd usb-driver/
 $ sudo make
 $ ./setup_pcusb /opt/Xilinx/14.7/ISE_DS/ISE
@@ -241,12 +241,11 @@ I.e. we have bad track numbers in the header word all over the place, and imposs
 
 Either my drive is bad, or the FPGA is doing something wrong.
 
-TO BE CONTINUED.
-
 ### FPGA Debugging
 
 To debug, initially, it would be nice to use an FPGA-embedded debugger... For that Xilinx uses ChipScope. Install it by following [this tutorial](https://docs.amd.com/v/u/en-US/ug750) which describes the process quite well.
 
+This document gets a bit too big, so [the FPGA debugging parts go to the next document](fpga-debugging/index.md)..
 
 ## RL01/RL02 details
 
