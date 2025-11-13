@@ -2,6 +2,11 @@
 
 I’m using this page to keep track of things to know about KICAD easily.
 
+# Schematic editor
+
+- Press "Q" to add a "not connected" X.
+
+
 # PCB Editor
 
 ## Precise positioning

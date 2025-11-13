@@ -111,10 +111,21 @@ The tape would nicely blow in there every time, but it looks like it was not det
 Number 10 is the transmitter, number 11 is the receiver according to the diagram. There is a test, #31, which tests this. Running that test makes the reel turn in reverse with the blower on and the LOAD light flickers every time the tape is detected. This works fine. I also tested the normal load sequence by putting a finger over the transmitter. This still fails the load, but when it does it starts to turn faster in reverse until you remove your finger. This is clearly meant to remove all of the tape from the path on failure, so clearly that detector works.
 
 Looking in another manual it states that error 28 means "Tape reel prevented movement of the supply reel hub. Remove and reinsert tape to clear. Possible bell crank solenoid failure"... 
+The Bell Crank and it solenoid are responsible for raising the "arms" on the hub wheel which grip the tape:
 
+![hub wheel things](hubwheelthings.png)
 
+I could indeed see that those grippers did not move "upward" and grabbed the spool. The solenoid is on the underside of the tape unit, and I could see it move when I tried to load the tape, so the solenoid was OK. Next step was to remove the hub wheel, and that showed the real problem: the actual "bell crank", a plastic lever, had broken:
 
+![bellcrank-broken](bellcrank-broken)
 
+I was very lucky to have my friend Marc here who is quite the wizard with 3d design, and he created a design for a new bellcrank in about an hour ;) I printed the thing in PETG:
+
+![bellcrank-redesign](bellcrank-redesigned.png)
+
+To replace the bellcrank you need to remove the motor, and after replacing you need to also replace the hub wheel. WARNING: Make sure that that wheel is not too low! If it is, then the tape detection flap on the wheel will hit the bellcrank, causing it to bend which of course causes another problem. Don't ask me how I know.
+
+After this the tape unit again loaded the tape ;)
 
 
 ## Drive error messages
