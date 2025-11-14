@@ -117,7 +117,7 @@ The Bell Crank and it solenoid are responsible for raising the "arms" on the hub
 
 I could indeed see that those grippers did not move "upward" and grabbed the spool. The solenoid is on the underside of the tape unit, and I could see it move when I tried to load the tape, so the solenoid was OK. Next step was to remove the hub wheel, and that showed the real problem: the actual "bell crank", a plastic lever, had broken:
 
-![bellcrank-broken](bellcrank-broken)
+![bellcrank-broken](bellcrank-broken.png)
 
 I was very lucky to have my friend Marc here who is quite the wizard with 3d design, and he created a design for a new bellcrank in about an hour ;) I printed the thing in PETG:
 
