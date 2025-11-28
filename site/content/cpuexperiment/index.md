@@ -8,6 +8,6 @@ The things I make for this project can be found [on Github](https://github.com/f
 
 # Progress blog
 
-* 2025/11/28 Creating a Java program + Arduino program to remote control the ALU
-* 2025/10/18 A 16-bit ALU board using am2901's
+* 2025/11/28 [Creating a Java program + Arduino program to remote control the ALU](20251128/index.md)
+* 2025/10/18 [A 16-bit ALU board using am2901's](20251018/index.md)
 
