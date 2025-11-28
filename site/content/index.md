@@ -31,6 +31,12 @@ Not hindered by knowledge nor abilities :smile:, this is me playing with electro
 - Stag Quasar Plus (model 1044) (1997?)
 - [GangPro 8 Gang EPROM Programmer](gangpro-8-eprom-programmer/index.md) (1986)
 
+
+## Hobby projects
+
+- [8-bit bus to 7-segment hex display board](https://github.com/fjalvingh/8bit-busdisplay)
+- [CPU Experiments with am29xx bitslice chips](cpuexperiment/index.md)
+
 ## Measurement Equipment
 
 ### Serial data analyzers / Network analyzers
