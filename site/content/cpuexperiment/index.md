@@ -8,6 +8,17 @@ The things I make for this project can be found [on Github](https://github.com/f
 
 # Progress blog
 
+
+## 2025/11/29 Fixing schematic and board, and adding more commands
+
+There were a few errors in the schematic which I fixed. The ALU latch had its OE pin connected to LE, I cut the trace on the PCB and connected OE to ground. Also, LEDs for signals that were active LOW would be lighted when the signals were negated (high). The PCB still needs to be updated though.
+
+Added SLAVE commands to set all registers, and to execute an ALU operation, and added buttons for re-getting and setting the registers to the UI:
+
+![ui for setting registers](ui-setregisters.png)
+
+## Older entries
+
 * 2025/11/28 [Creating a Java program + Arduino program to remote control the ALU](20251128/index.md)
 * 2025/10/18 [A 16-bit ALU board using am2901's](20251018/index.md)
 
