@@ -1,6 +1,6 @@
 # Using the RL02 as an USB drive
 
-!WARNING Incomplete, in progress.
+!! Incomplete, in progress.
 
 There is a project on the Internet where someone created a board which allows the RL02 to be used as an USB drive. The project is quite old (10 years in 2025) and not well described; there is just a Github repo without instructions. I got a board for this project from Ed, and am trying to get the code on that board - and the result to work. This document is the log of things done so far..
 

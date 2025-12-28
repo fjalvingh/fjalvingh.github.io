@@ -138,7 +138,7 @@ a:visited {
 
 .ui-page-nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin: 20px 10px;
 }
 .ui-page-nav-end {
@@ -153,7 +153,7 @@ a:visited {
     background-color: var(--clr-surface-tonal-a50);
 }
 .ui-page-bc-cont {
-    width: 700px;
+/*    width: 700px; */
 }
 
 /** Breadcrumb **/
@@ -243,3 +243,46 @@ code {
     display: block;
     word-wrap: break-word;
 }
+
+.ui-not {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 20px;
+}
+.ui-not-icon {
+	width: 32px;
+	height: 32px;
+}
+.ui-not-cnt {
+	padding: 0 20px;
+}
+
+.ui-not-warning .ui-not-icon {
+	background-image: url(../img/notif-icon-warning.png);
+}
+.ui-not-error .ui-not-icon {
+	background-image: url(../img/notif-icon-error.png);
+}
+.ui-not-success .ui-not-icon {
+	background-image: url(../img/notif-icon-success.png);
+}
+.ui-not-info .ui-not-icon {
+	background-image: url(../img/notif-icon-info.png);
+}
+
+
+.ui-not-warning {
+	border-left: 5px solid #E7B600;
+}
+.ui-not-error {
+	border-left: 5px solid #C20000;
+}
+.ui-not-success {
+	border-left: 5px solid #A4B123;
+}
+.ui-not-info {
+	border-left: 5px solid rgb(102, 209, 255);
+}
+
