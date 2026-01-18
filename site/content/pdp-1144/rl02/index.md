@@ -44,14 +44,7 @@ This controller - and the drive - seem to be OK now ;)
 
 ## Controller number 2
 
-The second controller came with a label:
-
-![rl11-2](rl11-2-label.png)
-
-The drive does not show "ready" when connected to this controller. So let's go to work on it..
-
-* [Fixing the second rl11](c2-initial-tests/index.md)
-
+* [The repair of the 2nd controller was a bit more work](second-controller/index.md)
 
 ## More photos
 
