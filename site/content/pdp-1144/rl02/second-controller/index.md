@@ -62,6 +62,12 @@ OP DONE = 000304  000003  000000  000235   002  0
 ERR HLT
 ```
 
+The description for test15 reads:
+
+![test15 p1](test15-1.png)
+
+![test15 p2](test15-2.png)
+
 For this test it is useful to look at the RL02 command word which has the following format:
 
 ![rl02commandword](rl02-commandregister.png)
