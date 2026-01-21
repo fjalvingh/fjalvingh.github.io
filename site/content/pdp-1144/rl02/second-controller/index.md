@@ -62,6 +62,25 @@ OP DONE = 000304  000003  000000  000235   002  0
 ERR HLT
 ```
 
+For this test it is useful to look at the RL02 command word which has the following format:
+
+![rl02commandword](rl02-commandregister.png)
+
+As can be seen the seek operation works on deltas; a seek is done by sending a delta cylinder address and a sign (upwards, downwards) to the drive. 
+Looking at the first and third error I think we see that the test expects the drive to be on cyl 2, and it sends a command with a delta of +2. This should make the drive arrive at cyl 4, and it appears that it doesn't.
+
+The RESULT line shows that we got drive status 5 while we expected drive status 4. The drive status register looks like this:
+
+![drive status register layout](drvstatus-layout.png)
+
+The message apparently talks about state, not status, so those bits have the following values:
+
+![drive state values](drvstate-bits.png)
+
+So, state 5 would be "Seek-linear mode (lock on)", and state 4 would be "Seek-Track Counting". Reading time..
+
+
+
 
 
 
