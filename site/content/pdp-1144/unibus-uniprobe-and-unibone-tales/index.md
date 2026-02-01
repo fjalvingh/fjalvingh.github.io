@@ -15,6 +15,30 @@ In addition, there are two versions of Unibus. Normal Unibus and modified Unibus
 
 Picture [from here, where there is also way more information](http://retrocmp.com/tools/uniprobe/292-uniprobe-standard-unibus-modified-unibus).
 
+## The backplane for the 11/44
+
+This is a special backplane for the 11/44's KD11-Z processor. It is a 14-row backplane with a VERY special configuration. Its configuration is as follows:
+
+| Row | A B  | C D E F |
+| --- | ---- | ------- |
+| 1   | M7090 CIM | CIS M7091 (optional) |
+| 2   | CIS M7092 (optional), 6x |
+| 3   | FPP M7093 (optional), 6x |
+| 4   | Data Path M7094 |
+| 5   | Control M7095 | 
+| 6   | Multifunction M7096 |
+| 7   | Cache M7097 |
+| 8   | Unibus IF M7098 |
+| 9   | EUB Memory |
+| 10  | EUB Memory |
+| 11  | EUB Memory |
+| 12  | EUB Memory |
+| 13  | Mod Unibus device slot |
+| 14  | Terminator M9302 | Leave empty |
+
+
+## Unibone testing using a stand-alone backplane
+
 To test the Unibone we need it in a terminated backplane like the DD11-CK:
 
 ![](image-20230422-101852.png)
