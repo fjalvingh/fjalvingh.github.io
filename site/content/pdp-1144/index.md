@@ -4,14 +4,13 @@ I got this beauty from Geert Rolf, thanks Geert!!
 
 This is now a dump of things I learn and need to keep; it should be organized later.
 
-- [Inventory](pdp-11-inventory/index.md)
-- [Boards list / boards to look for](unibus-board-list/index.md)
-- [Unibus, Uniprobe, Unibone](unibus-uniprobe-and-unibone-tales/index.md)…
-- [The Unibone I2C panel](unibone-i2c-panel/index.md)
+- [The 11/44 board and backplane layout](pdp-11-inventory/index.md)
+- [Boards I have / boards to look for](unibus-board-list/index.md)
+- [Unibus, Uniprobe, Unibone](unibus-uniprobe-and-unibone-tales/index.md)
 - [List of Unibus machines and their details](pdp-11-unibus-processors/index.md)
 - [List of boot PROMs](pdp11-boot-proms/index.md)
 
-## Related devices
+## PDP related devices
 
 - [The RL02 disk drive](rl02/index.md)
 - [Using the RL02 as an USB device](rl02-usb/index.md)
@@ -25,6 +24,7 @@ This is now a dump of things I learn and need to keep; it should be organized la
 ## Unibone tutorials and details
 
 - [Unibone articles](unibone/index.md)
+- [The Unibone I2C panel](unibone-i2c-panel/index.md)
 
 
 ## Problems and fixes
