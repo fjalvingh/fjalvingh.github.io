@@ -12,14 +12,14 @@ This is now a dump of things I learn and need to keep; it should be organized la
 
 ## PDP related devices
 
+- [The RX02 floppy drive](the-rx02-floppy-drive-and-the-m8256-rv211-controller/index.md)
+- [The TU58 tape drive](the-tu58-tape-unit/index.md)
 - [The RL02 disk drive](rl02/index.md)
 - [Using the RL02 as an USB device](rl02-usb/index.md)
 - [The Cipher F880](cipherf890/index.md)
-- [Board extenders](douglas-extenders/index.md)
-- [The TU58 tape drive](the-tu58-tape-unit/index.md)
-- [The RX02 floppy drive](the-rx02-floppy-drive-and-the-m8256-rv211-controller/index.md)
 - [The DELUA ethernet controller (M7521)](the-delua-ethernet-controller-m7521/index.md)
 - [Unibus backplanes](the-dd11-dk-backplane/index.md)
+- [Board extenders](douglas-extenders/index.md)
 
 ## Unibone tutorials and details
 
