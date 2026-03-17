@@ -41,7 +41,7 @@ I did not have a 7 switch DIP switch so I had to use an 8 switch one and cut of 
 
 ![](image-20230604-151009.png)
 
-I could now switch to 38400bps for the TU58 which helps a lot with load speed of these diagnostics :wink:
+I could now switch to 38400bps for the TU58 which helps a lot with load speed of these diagnostics :wink: (do notice that the above image is still for 9600bps, though).
 
 # Preparing for running the emulation
 
@@ -234,6 +234,17 @@ CONSOLE
 ```
 
 This shows a failing test, sigh.
+
+# Troubleshooting
+
+There are a lot of really bad USB<->RS232 adapters on the market. I have had the following issues with them.
+
+* Failure to disable hardware flow control. The tu58fs program disables hardware flow control, but some USB adapters do not listen to that. This hangs the emulation when it starts to send the initial chars to the serial port to indicate that a TU58 is present. It can be sene on a serial monitor: when started the tu58fs program should send data on rs232. By pressing "S" while it runs it should output a continuous stream on Sx characters. If this is not seen - hardwire the handshake signals on your rs232 adapter or buy a better one.
+
+* Failure to send data with the --boot command.
+  - Make sure that you do NOT also have a terminal open on the same USB channel!
+  - If you get timeouts: add --usbdelay 100000 to the command line.
+
 
 # Initial test results
 
