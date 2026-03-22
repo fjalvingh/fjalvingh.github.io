@@ -46,6 +46,11 @@ This controller - and the drive - seem to be OK now ;)
 
 * [The repair of the 2nd controller was a bit more work](second-controller/index.md)
 
+## Other rl02 related actions
+
+* [Testing on the real pdp11/44](testing-on-pdp/index.md)
+
+
 ## More photos
 
 It opens at the top to insert the cartridges:
