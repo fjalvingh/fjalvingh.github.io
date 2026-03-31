@@ -38,4 +38,28 @@ We will need to toggle W13 ON. I added the same switch there after removing the 
 
 ## Running the tests
 
+### ZRLG
+
+![zrlg-11](zrlgresult.png)
+
+### ZRLH
+
+This test fails:
+
+![zrlh failure 1](zrlh-fail-01.png)
+
+cs 112313 (94cb h):
+- composite error (15)
+- header not found (12, bit 10 is set)
+- operation incomplete (10)
+- controller ready (7)
+- interrupt enable
+- function code: 101 (write data)
+- drive ready
+
+
+
+### ZRLJ
+
+![zrlj failure 1](zrlj-fail-01.png)
 
