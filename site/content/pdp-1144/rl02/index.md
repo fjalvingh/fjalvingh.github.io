@@ -12,47 +12,6 @@ The RL02 drive is an impressive beast:
 
 ![rl02 and disk pack](rl02-1.png)
 
-## The Drive number button
-
-You can have max. 4 RL02 drives connected to a controller. Each drive has a drive number to identify it, from 0 to 3. The way the drive number is selected is quite special! The second "button" on the drive shows the drive number. This button can be removed! By simply replacing the button with a button that shows a different number you change the drive number.
-This works because the button holder has a number of microswitches that "sense" the cams at the end of the button.
-I only had a drive button 2, and many tools require a drive 0. Luckily someone created [a 3D model for those drive buttons](https://so-much-stuff.com/pdp8/cad/3d.php)! Thanks a lot Vince Slyngstad!
-
-A copy of these files can be found here: [0](0.stl), [1](1.stl), [2](2.stl), [3](3.stl).
-
-## The controller
-
-The controller for this device is the RL11 (M7762):
-
-![m7762 rl11 controller](rl11-1.png)
-
-I have two of these, one marked as defective and one without any markers.
-
-## Getting it to work (controller 1)
-
-Let's start with the RL11 that is not marked defective.
-
-* [Initial tests](initial-tests/index.md)
-* [Hunting for the rl11 CMD signal](checking-rv11-cmd/index.md)
-* [Fixing ZRLG test 33](fixing-test-33/index.md)
-
-The final test is ZRLH, this one runs without problems:
-
-![zrlh test results](test-zrlh.png)
-
-This controller - and the drive - seem to be OK now ;)
-
-## Controller number 2
-
-* [The repair of the 2nd controller was a bit more work](second-controller/index.md)
-
-## Other rl02 related actions
-
-* [Testing on the real pdp11/44](testing-on-pdp/index.md)
-
-
-## More photos
-
 It opens at the top to insert the cartridges:
 
 ![alt text](rl02-open.png)
@@ -68,3 +27,40 @@ Opening the back panel exposes the motor and the power supply:
 And the back panel itself holds the controller PCB:
 
 ![Controller pcb](rl02-cvtrl.png)
+
+## The Drive number button
+
+You can have max. 4 RL02 drives connected to a controller. Each drive has a drive number to identify it, from 0 to 3. The way the drive number is selected is quite special! The second "button" on the drive shows the drive number. This button can be removed! By simply replacing the button with a button that shows a different number you change the drive number.
+This works because the button holder has a number of microswitches that "sense" the cams at the end of the button.
+I only had a drive button 2, and many tools require a drive 0. Luckily someone created [a 3D model for those drive buttons](https://so-much-stuff.com/pdp8/cad/3d.php)! Thanks a lot Vince Slyngstad!
+
+A copy of these files can be found here: [0](0.stl), [1](1.stl), [2](2.stl), [3](3.stl).
+
+## The controller
+
+## Getting it to work (controller 1)
+
+The controller for this device is the RL11 (M7762). I have two of them, this is the first one:
+
+![m7762 rl11 controller](rl11-1.png)
+
+The controller was defective so it needed repairs.
+
+* [Initial tests](initial-tests/index.md)
+* [Hunting for the rl11 CMD signal](checking-rv11-cmd/index.md)
+* [Fixing ZRLG test 33](fixing-test-33/index.md)
+
+This controller - and the drive - seem to be OK now ;)
+
+## Controller number 2
+
+The second controller had a "defective module" label:
+
+![rl11-2](rl11-2-label.png)
+
+This also needed repairs, which was quite interesting.
+
+* [First round of tests and fixes](c2-initial-tests/index.md)
+* [ZRLI drive test failure](c2-rlzi-failure/index.md)
+* [Testing on the real pdp11/44](testing-on-pdp/index.md)
+

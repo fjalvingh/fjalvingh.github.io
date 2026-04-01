@@ -2,11 +2,7 @@
 
 The second controller came with a label:
 
-![rl11-2](rl11-2-label.png)
-
 The drive does not show "ready" when connected to this controller. So let's go to work on it..
-
-* [First round of tests and fixes](c2-initial-tests/index.md)
 
 
 

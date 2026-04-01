@@ -17,4 +17,11 @@ With this the test works:
 
 The drive makes a bit of noise doing the seek tests so even those parts seem to be fine!
 
+## Running ZRLH
+
+The final test is ZRLH, this one runs without problems:
+
+![zrlh test results](test-zrlh.png)
+
+
 Wheehaw ;)
