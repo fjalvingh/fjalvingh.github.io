@@ -1,8 +1,12 @@
 # Installing and testing the drive on the PDP11/44 w/Unibone
 
-To test I need to run xxdp on the PDP11/44. This is done the easiest using the Unibone as I have no other working hardware at the moment. The Unibone emulates a set of RL02 drives by itself on the first RL11 controller. This means that we will have to set the controller we want to test to be the second controller in the system.
+To test I need to run xxdp on the PDP11/44. This is done the easiest using the Unibone as I have no other working hardware at the moment. The Unibone emulates a set of RL02 drives by itself on the first RL11 controller. This means that we will have to set the controller we want to test to be the second controller in the system, or we need to boot from some other (emulated) device on the Unibone.
 
-## Setting the controller as the second one
+## Controller 2
+
+The first test was done with controller 2.
+
+### Setting the controller as the second one
 
 The first RL11 controller has the following settings:
 
@@ -36,7 +40,7 @@ The CSR address needs to be set using the following schema:
 
 We will need to toggle W13 ON. I added the same switch there after removing the wire wrap posts from that location.
 
-## Running the tests
+### Running the tests - controller 2
 
 ### ZRLG
 
@@ -57,9 +61,23 @@ cs 112313 (94cb h):
 - function code: 101 (write data)
 - drive ready
 
-
-
 ### ZRLJ
 
 ![zrlj failure 1](zrlj-fail-01.png)
+
+## Controller 1
+
+That was depressing.
+
+I swapped the controller. Controller 1 still uses its original addresses, so I ran the xxdp software through the Unibone using RX02 emulation. This caused some trouble: for some reason the 11/44 would start running immediately after a "pwr" command, and it would not boot from the Unibone provided files.
+
+After some investigation I think this was because my 11/44 was set to boot automatically after powerup using settings on the M7098 Unibus module. I switched autoboot off, and that made the start from rx02 emulation work. For details see [Boot proms](../../pdp11-boot-proms/index.md).
+
+The following tests work on this controller (2 passes each):
+
+* zrlg e0
+* zrlh b0
+* zrli d1
+* zrlj c0
+
 

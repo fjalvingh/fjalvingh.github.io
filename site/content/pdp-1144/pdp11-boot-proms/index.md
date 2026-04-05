@@ -1,6 +1,40 @@
 # Pdp11 Boot proms
 
-Boot proms and types
+## My 11/44
+
+The user manual describes this for the boot command:
+
+![boot info](manual-boot-info.png)
+
+On my 11/44 the poked memory addresses show the following:
+
+| address | value | Meaning |
+| ------- | ----- | ------- |
+| 17765774 | 041460 | C0 |
+| 17773000 | 046523 | MS |
+| 17773200 | 042114 | DL |
+| 17773400 | 042104 | DD |
+| 17773600 | 161777 | xxx777 means no ROM present |
+| 17773024 | 173052	| 173 -> boot to selected device; sel=052? |
+
+The auto-boot mode is controlled on the M70 Unibus module:
+
+![UBI module 1](ubi-boot-1.png)
+
+![UBI Module 2](ubi-boot-2.png)
+
+![UBI Module 3](ubi-boot-3.png)
+
+My machine was auto-booting from socket E48, second device (apparently a MS device).
+
+
+There is also an odd switch on the M7095:
+
+![boot auto](boot-auto.png)
+
+
+
+## List of boot proms
 
 |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- |
