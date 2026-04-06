@@ -1,10 +1,16 @@
 # Installing and testing the drive on the PDP11/44 w/Unibone
 
-To test I need to run xxdp on the PDP11/44. This is done the easiest using the Unibone as I have no other working hardware at the moment. The Unibone emulates a set of RL02 drives by itself on the first RL11 controller. This means that we will have to set the controller we want to test to be the second controller in the system, or we need to boot from some other (emulated) device on the Unibone.
+To test I need to run xxdp on the PDP11/44. This is done the easiest using the Unibone as I have no other working hardware at the moment.
+
+It seems important to place the Unibone __after__ the RL11 controller, because this makes the NPR and grant lines go directly to the controller without the Unibone in between which would introduce a delay. The disk tests are often quite time-critical.
+
+![Unibone placement](unibone-placement.png)
 
 ## Controller 2
 
 The first test was done with controller 2.
+
+The xxdp2.2 Unibone script emulates a set of RL02 drives by itself on the first RL11 controller. This means that we will have to set the controller we want to test to be the second controller in the system, or we need to boot from some other (emulated) device on the Unibone.
 
 ### Setting the controller as the second one
 
