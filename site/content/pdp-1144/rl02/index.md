@@ -61,4 +61,5 @@ This also needed repairs, which was quite interesting.
 * [First round of tests and fixes](c2-initial-tests/index.md)
 * [ZRLI drive test failure](c2-rlzi-failure/index.md)
 * [Testing on the real pdp11/44](testing-on-pdp/index.md)
+* [Second round: ZRLG errors again](c2-second-round/index.md)
 
