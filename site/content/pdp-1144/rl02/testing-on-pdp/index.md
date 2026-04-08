@@ -86,4 +86,103 @@ The following tests work on this controller (2 passes each):
 * zrli d1
 * zrlj c0
 
+## Testing the drive with RT11
 
+Next step was to try to use the drive under RT11. I booted RT-11SB V05.07 from the Unibone (/rt11v54_ry0.sh) and checked that it has the RL02 driver:
+
+```
+RT-11SB  V05.07  
+
+.R MSCPCK
+
+.show
+TT  (Resident) 
+DY  (Resident) 
+    DY0 = DK , SY 
+LD   
+SL   
+DL   <-- rl02
+VM   
+SP   
+LS   
+NL   
+13 free slots
+```
+
+Then tried to access the disk:
+
+```
+.dir dl0:
+ 
+?DIR-F-Invalid directory
+```
+
+Not RT-11 format, obviously, so trying to format:
+
+```
+.init
+Device? dl0:
+DL0:/Initialize; Are you sure? Y
+?DUP-W-Replacement table overflow DL0:
+Type <RET>, 0, or nnnnnn (<RET>)
+Replace block # 
+?DUP-W-Replacement table overflow DL0:
+Type <RET>, 0, or nnnnnn (<RET>)
+Replace block # 0
+
+.dir dl0:
+ 
+FILE  .BAD     1                 
+ 1 Files, 1 Blocks
+ 20381 Free blocks
+```
+
+Apparently some bad block? Copying data however failed with I/O errors. I tried to init the disk again:
+
+```
+.init dl0:
+DL0:/Initialize; Are you sure? Y
+?DUP-F-Error reading bad block replacement table DL0:
+
+.init/REPLACE:RETAIN dl0:
+DL0:/Initialize; Are you sure? Y
+?DUP-F-Bad block in system area DL0:
+```
+
+I tried several other packs, but they all failed in the same way (I have only 2 without a marking that says they have a read error at the start).
+
+## Testing with ZRLM..
+
+A tip from vfced was to try ZRLM, this contains a full disk scan:
+
+![zrlm step 1](zrlm-1.png)
+
+Running option 4 delivered first:
+
+![result 1](zrlm-2.png)
+
+After that retrying causes an odd error:
+
+![zrlm restart does not work](zrlm-3.png)
+
+Restarting the machine and re-running reports an error now:
+
+![zrlm error](zrlm-4.png)
+
+Completely switching off and retrying made the read run successfully twice, after that there was another error:
+
+![zrlm soft error](zrlm-5.png)
+
+Trying option 5, "Write pack with worst case data pattern" failed with:
+
+![zrlm write](zrlm-6.png)
+
+What is also odd: running ZRLGE0 after all this also aborts immediately:
+
+![zrlg dies](zrlg-1.png)
+
+Restarting the whole bunch and running zrlg:
+
+![zrlg again](zrlg-2.png)
+
+Something is rotten in the state of Denmark..
