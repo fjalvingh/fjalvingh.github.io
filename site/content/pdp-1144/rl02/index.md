@@ -36,6 +36,10 @@ I only had a drive button 2, and many tools require a drive 0. Luckily someone c
 
 A copy of these files can be found here: [0](0.stl), [1](1.stl), [2](2.stl), [3](3.stl).
 
+## Drive measurements
+
+To make sure we have a properly working drive [we need to do some measurements and alignment checks...](drive-measurements/index.md).
+
 ## Getting it to work (controller 1)
 
 The controller for this device is the RL11 (M7762). I have two of them, this is the first one:
@@ -62,4 +66,7 @@ This also needed repairs, which was quite interesting.
 * [ZRLI drive test failure](c2-rlzi-failure/index.md)
 * [Testing on the real pdp11/44](testing-on-pdp/index.md)
 * [Second round: ZRLG errors again](c2-second-round/index.md)
+
+
+
 
