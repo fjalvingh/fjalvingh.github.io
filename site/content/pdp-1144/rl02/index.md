@@ -52,7 +52,13 @@ The controller was defective so it needed repairs.
 * [Hunting for the rl11 CMD signal](checking-rv11-cmd/index.md)
 * [Fixing ZRLG test 33](fixing-test-33/index.md)
 
-This controller - and the drive - seem to be OK now ;)
+This controller - and the drive - seem to work properly at this point.
+
+## Controller 1 - bad again
+
+But a few months later the controller (or the drive) has a problem again...
+
+* [ZRLG Seek difference failure](c1-second-round/index.md)
 
 ## Controller number 2
 

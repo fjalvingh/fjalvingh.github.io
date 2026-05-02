@@ -40,4 +40,13 @@ This manual image is confusing. It shows chA at 500mv/Div, and the pulse at 2div
 
 This looks OK; the servo burst arrives at 15.6 uS
 
-(to be continued)
+## Jitter fix
+
+While doing the Head Alignment test I found that the signal had a very large amount of "jitter":
+
+![Drive Jitter](jitter.mp4)
+
+Doing the alignment reduced that to within spec (15 uS +/- 3 uS).
+
+
+
