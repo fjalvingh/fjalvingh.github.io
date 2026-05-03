@@ -2,7 +2,7 @@
 
 ## The Sigrok / DSView "syncserial" decoder
 
-I needed this decoder to help with debugging a Dec RL02/RL11 pair. The disk drive communicates with the controller using a serial link with clock and data, and I needed to be able to decode things a bit faster than following the edges. The decoder is called syncserial, and is very simple. The source for the decoder [can be found on Github](https://githum.com/fjalvingh/sigrokdecoders). Just clone, then copy the decoders to the "decoders" folder of Sigrok to make it active.
+I needed this decoder to help with debugging a Dec RL02/RL11 pair. The disk drive communicates with the controller using a serial link with clock and data, and I needed to be able to decode things a bit faster than following the edges. The decoder is called syncserial, and is very simple. The source for the decoder [can be found on Github](https://github.com/fjalvingh/sigrokdecoders). Just clone, then copy the decoders to the "decoders" folder of Sigrok to make it active.
 
 The decoder has only a few settings:
 
