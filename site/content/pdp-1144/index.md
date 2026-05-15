@@ -15,6 +15,7 @@ This is now a dump of things I learn and need to keep; it should be organized la
 - [The RX02 floppy drive](the-rx02-floppy-drive-and-the-m8256-rv211-controller/index.md)
 - [The TU58 tape drive](the-tu58-tape-unit/index.md)
 - [The RL02 disk drive](rl02/index.md)
+- [The RL02 emulator](rl02-emulator/index.md)
 - [Using the RL02 as an USB device](rl02-usb/index.md)
 - [The Cipher F880](cipherf890/index.md)
 - [The DELUA ethernet controller (M7521)](the-delua-ethernet-controller-m7521/index.md)

@@ -55,3 +55,63 @@ LAST: 000000 PRES: 000000 EXP'D: 000400
 This does seem to indicate an issue with the drive itself..
 We also know that manually moving the head and then starting the test fails at the very start. The head does seem to move back to track 0, very clearly when you move it all the way spindlewards. It then still fails the test. Running the test a second time however does not fail the initial track 0 test; it fails the next one..
 
+## Command and data refresher
+
+The command word sent to the RL02 over the command serial line has the following format:
+
+![command word format](command-word-format.png)
+
+The GS bit is 1 for a "get status" command; in that case all other bits (except bit 0 and 1) will be zero. With GS = 0 we have a seek. We should mostly see SEEK commands there.
+
+The READ HEADER action is initiated on the controller, not the drive. It clocks the data read into the SILO fifo's (9304). There are three words:
+
+* The header data (16 bits) containing cylinder, sector and head
+* An all-zeroes word
+* The checksum.
+
+The header data word has the following format:
+
+![header data](header-data-1.png)
+
+* SA = sector address
+* HS = Head number
+* CA = Cylinder number.
+
+Dividing the header word by 128 delivers the sector #.
+
+
+
+
+## Traces...
+
+I put the logic analyzer on the serial input of the SILO (9304) chips, and on the command data and clock. We see the following in the trace from the last few read header commands:
+
+![trace-data-1](trace-data-1.png)
+
+These come in pairs of 3: the header word, the always-zero word and the checksom. Decoding these delivers:
+
+| Cylinder  | Sector  | Head | Header word |
+| --------- | ------- | ---- | ----------- |
+| 0         | 6       | 0    | 0x6         |
+| 3         | 14      | 1    | 0x1ce       |
+| 2         | 23      | 0    | 0x117       |
+| 0         | 28      | 0    | 0x1c        |
+| 0         | 7       | 0    | 0x7         |
+
+A second run produces:
+
+| Cylinder  | Sector  | Head | Header word |
+| --------- | ------- | ---- | ----------- |
+| 0         | **56**  | 0    | 0x38        |
+| 3         | **44**  | 0    | 0x1ac       |
+| 2         | **58**  | 0    | 0x13A       |
+| 0         | 32      | 1    | 0x60        |
+| 0         | 30      | 0    | 0x1e        |
+
+Very strange sector numbers here..
+
+
+
+
+
+
