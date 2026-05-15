@@ -3,6 +3,14 @@
 There is a RL02 emulator written by Reinhard Heuberger [which can be found here](https://pdp11gy.com/RL02_Emulator_E.html).
 This uses a Terrasic DE10-Lite or DE0-Nano board. I got the Nano board.
 
+## Building
+
+The PCB is rather easy to do. What was slightly problematic was the USB connector; it took some
+time to find the right one and soldering it was a bit challenging. The same went for the SD card
+connector. I opted to add the optional LEDs for the dip switches so I mounted those at the bottom.
+
+![The completed board](board-1.png)
+
 ## Programming the device
 
 After populating the PCB the next round was to get the code programmed. That took a bit of effort..
