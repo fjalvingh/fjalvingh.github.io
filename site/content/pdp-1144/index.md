@@ -19,6 +19,7 @@ This is now a dump of things I learn and need to keep; it should be organized la
 - [Using the RL02 as an USB device](rl02-usb/index.md)
 - [The Cipher F880](cipherf890/index.md)
 - [The DELUA ethernet controller (M7521)](the-delua-ethernet-controller-m7521/index.md)
+- [The Documation M200 punched card reader](documation-m200/index.md)
 - [Unibus backplanes](the-dd11-dk-backplane/index.md)
 - [Board extenders](douglas-extenders/index.md)
 
