@@ -8,6 +8,7 @@ Not hindered by knowledge nor abilities :smile:, this is me playing with electro
 - [Dolch Pac 64](dolch-pac-64/index.md)
 - [PDP 11/44](pdp-1144/index.md)
 - [PDP 11/10](pdp-1110/index.md)
+- [HP 2113B](hp1000/index.md)
 - [PDP 11 Interactive disassembler](the-interactive-disassembler/index.md) (work in progress)
 
 ### Calculators/early desktops
