@@ -18,20 +18,29 @@
 | 12791-60001 | 1     | Firmware expansion card | 
 | 12821A      | 1     | Disk controller (inside I/O) bay |
 | 12897-60004 | 2     | Dual channel port controller | | 
-| 12966-60002 | 2     | BACI-Term / Async I/O I/F | | 
+| 12966-60002 | 3     | BACI-Term / Async I/O I/F | 1 in I/O bay | 
 | 13037-80023 | 1     | Disc interface PCA F/HP1000 |
 | 13183-60012 | 1     | 7970 Tape controller |
 | 26099-60001 | 1     | Printer interface card | |
 | 59310-60101 | 2     | 59310B HPIB In/output | For use with devices supporting the HP Interface Bus standard. 77 catalog says for 21MX or 2100 Series, schematic shows use still of -2V on processor I/O bus. |
 | 91200-60007 | 1     | TV Display | A dot-matrix graphics display interface for television monitors. 256*240 on 525-line monitors, 256*256 on 625-line and 288-line monitors. Up to 3 cards can be used to provide up to 8 grey-scale levels or 8 colors. Manual says "compatible with 2100A/S and 21MX computers". |
 
-Other parts
+## Other parts
 
 | Code        | Count | Description |
 | ----------- | ----- | ----------- |
 | 12992A      | 2     | 7900A Disk Loader ROM |
 | 12992C      | 1     | Mini cartridge loader ROM |
 | 92067-8001  | 1     | EMA Firmware |
+| 12966-60003 | 1     | BACI Serial test connector |
+
+## Cables
+
+| Code        | Count | Description |
+| ----------- | ----- | ----------- |
+| 02640-60043 | 1     | 103/202 Modem cable |
+| 12880-60003 | 1     | Crt term I/F? Cable for 12880A Keyboard-Display terminal kit |
+| 12966-60008 | 1     | Direct cable from BACI 12966 to HP 2640A Terminal - wrong connector?? |
 
 
 
