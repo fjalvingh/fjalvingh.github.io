@@ -6,7 +6,7 @@
 | 02116-6110  | 5     | Teleprinter / interrupt continuity | 
 | 5061-3418   | 1     | 12793A Bisync modem interface kit | |
 | 5080-9787   | 1     | |
-| 5090-1608   | 1     | 8-channel MUX | |
+| 12792A/B    | 1     | 8-channel MUX (5090-1608), with cable and RS232 8 channel | Whether it is A or B is not completely sure. The B manual specifically states that 5090-1608 is not the real number of the board - but the actual number should be stamped in black on it. I cannot find that. |
 | 05432-60002 | 1     | ? X-register ? | | 
 | 05432-60003 | 1     | ? Control ? | | 
 | 05432-60004 | 1     | ? Discriminator? | | 
@@ -41,9 +41,5 @@
 | 02640-60043 | 1     | 103/202 Modem cable |
 | 12880-60003 | 1     | Crt term I/F? Cable for 12880A Keyboard-Display terminal kit |
 | 12966-60008 | 1     | Direct cable from BACI 12966 to HP 2640A Terminal - wrong connector?? |
-
-
-
-
 
 
