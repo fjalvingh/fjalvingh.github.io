@@ -16,6 +16,13 @@ Inside view of the CPU chassis:
 
 
 
+
+## Current loop converter
+
+The 11/05 uses a current loop for the console. The following old schematic is a conversion from current loop to RS232 and vice versa:
+
+![Current loop converter](current-loop-1.png)
+
 ## Links to documentation
 
 * [Gunkies](https://gunkies.org/wiki/PDP-11/05)
