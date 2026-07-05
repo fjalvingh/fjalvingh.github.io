@@ -40,6 +40,7 @@ Links to the information:
 
 ## Links to documentation
 
+* [VCFed forums - pdp-11/05 restauration blog](https://forum.vcfed.org/index.php?threads/pdp-11-05-restoration-blog.1249299/)
 * [Gunkies](https://gunkies.org/wiki/PDP-11/05)
 * [Bitsavers documentation](https://www.bitsavers.org/pdf/dec/pdp11/1105/)
 
