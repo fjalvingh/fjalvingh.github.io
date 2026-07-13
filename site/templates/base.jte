@@ -43,7 +43,22 @@
     </div>
 </div>
 <div class="ui-page-bottom">
-    © 2024 by Frits Jalvingh. All information in here can be freely used (MIT License)
+    @if(model.getPreviousHref() != null || model.getNextHref() != null)
+        <div class="ui-blog-nav">
+            @if(model.getPreviousHref() != null)
+                <a class="ui-blog-nav-prev" href="${model.getPreviousHref()}"><span class="ui-blog-nav-icon">&#8592;</span> ${model.getPreviousTitle()}</a>
+            @endif
+            @if(model.getNextHref() != null)
+                <a class="ui-blog-nav-next" href="${model.getNextHref()}">${model.getNextTitle()} <span class="ui-blog-nav-icon">&#8594;</span></a>
+            @endif
+        </div>
+    @endif
+    <div class="ui-page-meta-date">
+        Last modified: ${model.getModifiedDateText()}
+    </div>
+    <div class="ui-page-copyright">
+        © 2024 by Frits Jalvingh. All information in here can be freely used (MIT License)
+    </div>
 </div>
 
 </body>

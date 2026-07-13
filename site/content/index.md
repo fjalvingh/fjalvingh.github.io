@@ -3,6 +3,10 @@ Not hindered by knowledge nor abilities :smile:, this is me playing with electro
 
 [TOC formatted]
 
+## Blog
+
+[BLOG GLOBAL]
+
 ## (Mini) computers and related
 
 - [Dolch Pac 64](dolch-pac-64/index.md)
