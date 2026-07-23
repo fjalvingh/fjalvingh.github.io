@@ -69,7 +69,9 @@ The same needs to be done for the other makefiles, for all conditionals.
 
 ## Fixing the missing PRU tools
 
-The directory 91_3rd_party in the Github project does not contain all that is needed to get the build to work. I fixed it by copying the same directory from the real Unibone root directory into the repository one. This should not be committed, but I do not know how this was originally meant to be handled.
+The directory 91_3rd_party in the Github project does not contain all that is needed to get the build to work. 
+The two missing files can be found here: [https://github.com/beagleboard/am335x_pru_package/tree/master/pru_sw/app_loader/include](https://github.com/beagleboard/am335x_pru_package/tree/master/pru_sw/app_loader/include), and should be put under 91_3rdparty/am335x_pru_package/include.
+I fixed it by copying the same directory from the real Unibone root directory into the repository one. This should not be committed, but I do not know how this was originally meant to be handled.
 
 
 ## Create a helper shell file to set up a build environment
