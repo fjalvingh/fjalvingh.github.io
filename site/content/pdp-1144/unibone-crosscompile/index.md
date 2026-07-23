@@ -9,7 +9,7 @@ The software needed from external sources will be installed in ~/opt. The Unibon
 
 ## Getting and installing the ARM compiler
 
-Download the appropriate compiler from Linaro: [https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/](https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/) . Use gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz and extract with the xz tool, then untar:
+Download the appropriate compiler from Linaro: [https://developer.arm.com/Downloads/-/Legacy%20Linaro%20GNU%20Toolchains](https://developer.arm.com/Downloads/-/Legacy%20Linaro%20GNU%20Toolchains) . Use gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz and extract with the xz tool, then untar:
 
 ```
 cd ~/opt
