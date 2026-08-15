@@ -9,7 +9,7 @@ The software needed from external sources will be installed in ~/opt. The Unibon
 
 ## Getting and installing the ARM compiler
 
-Download the appropriate compiler from Linaro: [https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/](https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/) . Use gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz and extract with the xz tool, then untar:
+Download the appropriate compiler from Linaro: [https://developer.arm.com/Downloads/-/Legacy%20Linaro%20GNU%20Toolchains](https://developer.arm.com/Downloads/-/Legacy%20Linaro%20GNU%20Toolchains) . Use gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz and extract with the xz tool, then untar:
 
 ```
 cd ~/opt
@@ -69,7 +69,9 @@ The same needs to be done for the other makefiles, for all conditionals.
 
 ## Fixing the missing PRU tools
 
-The directory 91_3rd_party in the Github project does not contain all that is needed to get the build to work. I fixed it by copying the same directory from the real Unibone root directory into the repository one. This should not be committed, but I do not know how this was originally meant to be handled.
+The directory 91_3rd_party in the Github project does not contain all that is needed to get the build to work. 
+The two missing files can be found here: [https://github.com/beagleboard/am335x_pru_package/tree/master/pru_sw/app_loader/include](https://github.com/beagleboard/am335x_pru_package/tree/master/pru_sw/app_loader/include), and should be put under 91_3rdparty/am335x_pru_package/include.
+I fixed it by copying the same directory from the real Unibone root directory into the repository one. This should not be committed, but I do not know how this was originally meant to be handled.
 
 
 ## Create a helper shell file to set up a build environment
