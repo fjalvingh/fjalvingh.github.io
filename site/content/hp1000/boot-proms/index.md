@@ -153,10 +153,10 @@ Socket number: the U216 socket has the disk boot PROM. I have no idea which sock
 
 Trying with all socket numbers would give:
 
-001300
-041300
-101300
-141300
+- 001300
+- 041300
+- 101300
+- 141300
 
 Then: set S, press STORE, PRESET, IBL, RUN. IBL copies the 64-word ROM into the top of memory, patching the select code into its I/O instructions as it goes, and sets P to the loader's entry point. (Sources differ slightly on whether PRESET goes before or after IBL — the HP Computer Museum's CS/80 boot writeup gives STORE, PRESET, IBL, RUN, which is the safe order.) 
 
