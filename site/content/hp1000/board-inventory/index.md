@@ -39,7 +39,7 @@
 | Code        | Count | Description |
 | ----------- | ----- | ----------- |
 | 02640-60043 | 1     | 103/202 Modem cable |
-| 12880-60003 | 1     | Crt term I/F? Cable for 12880A Keyboard-Display terminal kit |
+| 12880-60003 | 1     | Crt term I/F? Cable for 12880A Keyboard-Display terminal kit - REMOVED, offered up to make a BACI cable |
 | 12966-60008 | 1     | Direct cable from BACI 12966 to HP 2640A Terminal - wrong connector?? |
 
 

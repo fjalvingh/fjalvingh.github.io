@@ -135,3 +135,29 @@ addr   octal   mnemonic        12992D label / comment
 07777  000000  =OCT 0
 ```
 
+## Booting the machine
+
+The machine will not auto-boot according to the documentation. It needs to boot from one of the boot PROMs. The process for that is the following:
+
+The Initial Binary Loader is controlled entirely through the S (switch) register:
+
+* Bits 15–14 — which of the four loader-ROM sockets to use (0–3). The ROM is selected by setting bits 15-14 of the S register to the socket number. 
+* Bits 11–6 — the I/O select code of the device's interface card. If the device has two select codes, bits 11-6 specify the lower one.
+* Bits 5–0 — bits 5-3 are passed to the bootstrap program, and bits 2-0 specify options for the boot loader. What these mean depends on the individual ROM (unit/subchannel number, and so on).
+
+In octal that works out to: S = (socket × 40000) + (select code × 100) + options. So socket 1, select code 24₈ → 042400.
+
+Select code: determined by the backplane slot the interface card sits in, counting up from 10₈ for the lowest I/O slot. In my case the disk controller is in the 3rd slot from the bottom so 13oct
+
+Socket number: the U216 socket has the disk boot PROM. I have no idea which socket that is.
+
+Trying with all socket numbers would give:
+
+001300
+041300
+101300
+141300
+
+Then: set S, press STORE, PRESET, IBL, RUN. IBL copies the 64-word ROM into the top of memory, patching the select code into its I/O instructions as it goes, and sets P to the loader's entry point. (Sources differ slightly on whether PRESET goes before or after IBL — the HP Computer Museum's CS/80 boot writeup gives STORE, PRESET, IBL, RUN, which is the safe order.) 
+
+![HP 2113B blinkenlights](blinkenlights-1.png)

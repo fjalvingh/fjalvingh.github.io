@@ -109,7 +109,7 @@ For each channel you load a small control block:
 
 Then you start the channel and the CPU is free. DCPC moves the block by cycle stealing — it grabs memory cycles as it needs them, momentarily pausing the CPU's access to the memory bus, then hands the bus back. The CPU keeps executing the rest of the time, so the transfer overlaps computation.
 
-### Ties to your other options
+### Ties to the other options
 
 This is where a fully-populated machine matters:
 
