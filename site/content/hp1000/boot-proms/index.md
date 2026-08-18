@@ -147,17 +147,39 @@ The Initial Binary Loader is controlled entirely through the S (switch) register
 
 In octal that works out to: S = (socket × 40000) + (select code × 100) + options. So socket 1, select code 24₈ → 042400.
 
-Select code: determined by the backplane slot the interface card sits in, counting up from 10₈ for the lowest I/O slot. In my case the disk controller is in the 3rd slot from the bottom so 13oct
+Select code: determined by the backplane slot the interface card sits in, counting up from 10₈ for the lowest I/O slot. In my case the disk controller is in the 3rd slot from the bottom so 12oct
 
 Socket number: the U216 socket has the disk boot PROM. I have no idea which socket that is.
 
 Trying with all socket numbers would give:
 
-- 001300
-- 041300
-- 101300
-- 141300
+- 001200
+- 041200
+- 101200
+- 141200
 
-Then: set S, press STORE, PRESET, IBL, RUN. IBL copies the 64-word ROM into the top of memory, patching the select code into its I/O instructions as it goes, and sets P to the loader's entry point. (Sources differ slightly on whether PRESET goes before or after IBL — the HP Computer Museum's CS/80 boot writeup gives STORE, PRESET, IBL, RUN, which is the safe order.) 
+Then: set S, press STORE, PRESET, IBL. This should copy the ROM content to the last words of available RAM memory, replacing the device code entered in the copy. A successful copy is indicated when the OVERFLOW lamp stays OFF. If it is ON there is an issue.
+
+Next switch to the P register and check that it holds the correct start address according to this table:
+
+| Memory Size | Octal start address |
+| ----- | ----- |
+| 4K | 007700 |
+| 8K | 017700 |
+| 12K | 027700 |
+| 16K | 037700 |
+| 24K | 057700 |
+| 32K | 077700 |
+
+It is supposed to be set correctly already from the IBL step, but check. If it is not correct change the address, press STORE (with P selected).
+
+To actually start the load: press PRESET, RUN.
 
 ![HP 2113B blinkenlights](blinkenlights-1.png)
+
+## Trying the boot on my machine
+
+I tried to boot off the RAID controller but that does not seem to do anything. However if I enter xx1300 then there is some life coming from the punched card reader: it moves a bit, then stops. Slot 13 indeed contains the reader card.
+
+
+
