@@ -181,5 +181,18 @@ To actually start the load: press PRESET, RUN.
 
 I tried to boot off the RAID controller but that does not seem to do anything. However if I enter xx1300 then there is some life coming from the punched card reader: it moves a bit, then stops. Slot 13 indeed contains the reader card.
 
+## Determining which PROM is which..
 
+The schematic shows the following:
+
+![Loader ROMs](loader-roms-1.png)
+
+Reading that schematic (and assuming the IR is not negated) the ROM decode should be the following;
+
+| ROM | Pattern |
+| --- | ------- |
+| U255 | 00 |
+| U216 | 04 |
+| U256 | 10 |
+| U196 | 14 |
 
