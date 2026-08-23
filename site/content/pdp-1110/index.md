@@ -1,23 +1,35 @@
 # The PDP 11/10
 
-Investigating this machine.. One of the earliest PDP's. The 11/10 is only a marketing trick: it actually is a PDP 11/05 but with a 11/10 label on the front.
+I got this beauty from Geert again, thanks a lot!
 
-## Pictures
+This is one of the earliest PDP 11's. The type was introduced in 1972. The 11/10 is the exact same machine as the 11/05; only the printed label on the console changes, nothing else. The 11/10 was meant for end users while the 11/05 was for the OEM market. All documentation refers to the 11/05.
+Mine is one of the early models in a 5 1/4" box:
 
-The full machine:
+![pdp 11/10](1110-1.png)
 
-![fullmachine](full-1.png)
+The machine came empty, but with a full set of cards (see [pdp card inventory](../pdp-1144/unibus-board-list/index.md)).
 
-The underside, with the lamps and the switches, houses the actual CPU. The top part is the extension chassis which contains all other cards. The CPU part has no room for extra cards.
+## What goes inside
 
-Inside view of the CPU chassis:
+According to Gunkies the board layout changes depending on the backplane model number. This number cannot be seen on my machine, but it came with Unibus terminators in slot#5 and #7, and 4 G727A BR passthrough cards in slots 6 to 9, so I assume my backplane is #54-09818 which should have the following configuration:
 
-![Chassis](inside-1.png)
+|	Connector |
+| Slot | A  B | C  D  E  F |
+| --- | --- | --- |
+|1 | M7260 CPU board #0 |
+|2 | M7261 CPU board #1 |
+|3 | G110 Memory Control |
+|4 | G231 Memory Driver |
+|5 | UNIBUS Terminator | H213/H214 Core stack |
+|6 | Unused | SPC |
+|7 | UNIBUS Out | SPC |
+|8 | KM11-1	KM11-2 | SPC |
+|9 | DF11 | SPC |
+
+Slot #1 is at the bottom. Checked against the 11/05 engineering
 
 
-
-
-## Current loop converter
+## Current loop converter and hidden 5V RS-232
 
 The 11/05 uses a current loop for the console. The following old schematic is a conversion from current loop to RS232 and vice versa:
 
@@ -35,7 +47,6 @@ Links to the information:
 
 * [Ronald's RS232 interface for the 11/05](https://github.com/Roland-Huisman/RS232_converter_for_PDP11)
 * [Joerg Hoppe's interface description](https://retrocmp.com/how-tos/interfacing-to-a-pdp-1105)
-
 
 
 ## Links to documentation
