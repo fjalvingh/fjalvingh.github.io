@@ -11,6 +11,8 @@ The machine came empty, but with a full set of cards (see [pdp card inventory](.
 
 ## What goes inside
 
+### Boards and board layout
+
 According to Gunkies the board layout changes depending on the backplane model number. This number cannot be seen on my machine, but it came with Unibus terminators in slot#5 and #7, and 4 G727A BR passthrough cards in slots 6 to 9, so I assume my backplane is #54-09818 which should have the following configuration:
 
 |	Connector |
@@ -26,7 +28,20 @@ According to Gunkies the board layout changes depending on the backplane model n
 |8 | KM11-1	KM11-2 | SPC |
 |9 | DF11 | SPC |
 
-Slot #1 is at the bottom. Checked against the 11/05 engineering
+Slot #1 is at the bottom. Checked against the 11/05 engineering drawings.
+
+### Power supply
+
+According to Gunkies the power supply for this model is unspecified. It looks like this:
+
+![power supply top view](psu-top-1.png)
+
+But in my 11/05 technical drawings that board with the large cooling fin is called the "Regulator for the H740", so I think it will be that. This power supply is (apparently used in the PDP 8 too)[https://forum.vcfed.org/index.php?threads/h740-power-supply-whats-your-q1.1238205/].
+
+The PSU's specs:
+* +5V at 15A max
+* +15V at 1A max, for RS-232 and bus termination, apparently
+* -15V at 7A max for core memory.
 
 
 ## Current loop converter and hidden 5V RS-232
