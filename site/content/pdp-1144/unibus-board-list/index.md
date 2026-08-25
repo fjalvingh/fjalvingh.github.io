@@ -29,7 +29,8 @@ Check [Henk's board list](https://www.pdp-11.nl/fieldguide.html) for details.
 | 2          | ML11-L      | G231E  | Memory driver for H214, 16K X/Y Selection, Current source, Address Latch, 8K Decode |
 | 4          | MM11-L      | H214   | 8-Kword 16-bit memory stack (with G110 and G231) (replaced by H215) |
 | 4          | KD11-B      | M7260  | 11/05 data path module |
-| 3          | KD11-B      | M7261  | 11/05 control module |
+| 3          | KD11-B      | M7261  | 11/05 control module, 2x revision E, 2x revision F |
+
 
 Extra Backplane: MM11-5
 

@@ -18,8 +18,8 @@ According to Gunkies the board layout changes depending on the backplane model n
 |	Connector |
 | Slot | A  B | C  D  E  F |
 | --- | --- | --- |
-|1 | M7260 CPU board #0 |
-|2 | M7261 CPU board #1 |
+|1 | M7260 KD11-A CPU board #0 |
+|2 | M7261 KD11-A CPU board #1 |
 |3 | G110 Memory Control |
 |4 | G231 Memory Driver |
 |5 | UNIBUS Terminator | H213/H214 Core stack |
@@ -30,18 +30,17 @@ According to Gunkies the board layout changes depending on the backplane model n
 
 Slot #1 is at the bottom. Checked against the 11/05 engineering drawings.
 
-### Power supply
+## Multiple machine revisions..
 
-According to Gunkies the power supply for this model is unspecified. It looks like this:
+There have been multiple revisions of this machine's internals. I found the following engineering drawing sets:
 
-![power supply top view](psu-top-1.png)
+* [BitSavers revision AH from Jul 76](https://www.bitsavers.org/pdf/dec/pdp11/1105/1105_RevAH_Engineering_Drawings_Jul76.pdf). This seems to match with M7261F boards.
+* [pdp-11-05-engineering-drawings-oct-1973](https://archive.org/details/pdp-11-05-engineering-drawings-oct-1973), uploaded by 1944GW. This matches the M7261E board.
 
-But in my 11/05 technical drawings that board with the large cooling fin is called the "Regulator for the H740", so I think it will be that. This power supply is (apparently used in the PDP 8 too)[https://forum.vcfed.org/index.php?threads/h740-power-supply-whats-your-q1.1238205/].
 
-The PSU's specs:
-* +5V at 15A max
-* +15V at 1A max, for RS-232 and bus termination, apparently
-* -15V at 7A max for core memory.
+## Getting the machine to work (in progress)
+
+* [The power supply](power-supply/index.md)
 
 
 ## Current loop converter and hidden 5V RS-232
@@ -66,7 +65,12 @@ Links to the information:
 
 ## Links to documentation
 
+* [Unibone in an 11/05](https://groups.google.com/g/unibone/c/hup_cLA7_7o)
+* [11/10 at the DatorMuseum](http://www.datormuseum.se/computers/digital-equipment-corporation/pdp-11-10---s-n-pr0313150)
+* [Open view of the 11/05](http://www.b67c.com/DECPDP1105.html)
 * [VCFed forums - pdp-11/05 restauration blog](https://forum.vcfed.org/index.php?threads/pdp-11-05-restoration-blog.1249299/)
 * [Gunkies](https://gunkies.org/wiki/PDP-11/05)
 * [Bitsavers documentation](https://www.bitsavers.org/pdf/dec/pdp11/1105/)
+* [DEC Firmware PROM list](https://oldpc.su/articles/dec_roms/)
+
 
