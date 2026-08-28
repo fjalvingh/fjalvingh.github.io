@@ -40,6 +40,8 @@ Having fun with electronics and old computers..
 
 ## [Hobby Projects](hobby-projects/index.md)
 
+- [8-bit 7-segment bus display board](https://github.com/fjalvingh/8bit-busdisplay)
+- [PDP KM11 debugging board](https://github.com/fjalvingh/km11)
 - [Amplifiers](hobby-projects/amplifiers/index.md)
 - [CPU Experiments with am29xx bitslice chips](hobby-projects/cpuexperiment/index.md)
 - [Core memory experiments](hobby-projects/core-memory-experiments/index.md)
@@ -48,10 +50,13 @@ Having fun with electronics and old computers..
 - [VIC 20 repair](hobby-projects/vic-20-repair/index.md)
 - [Z80 Hobby board](hobby-projects/z80-hobby-board/index.md)
 
-## [Software](software/index.md)
+## [Software](software/index.md) I have written or worked on
 
 - [The interactive pdp-11 disassembler](software/the-interactive-disassembler/index.md)
 - [Sigrok and other logic analyzer decoders](software/saleae-decoders/index.md)
+- [The DomUI user interface framework](https://domui.org/)
+- [The new QUniBone software: QUniLator!](https://github.com/QUniBone/QUniLator)
+- [PDP11GUI in Java](https://github.com/fjalvingh/pdp11javagui)
 
 ## [Tips and tricks](tips-and-tricks/index.md)
 
