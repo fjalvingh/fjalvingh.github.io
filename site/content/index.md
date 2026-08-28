@@ -1,103 +1,64 @@
 # Home
-Not hindered by knowledge nor abilities :smile:, this is me playing with electronics..
 
-[TOC formatted]
+Having fun with electronics and old computers..
 
 ## Blog
 
 [BLOG GLOBAL]
 
-## (Mini) computers and related
+## [MiniComputers](minicomputers/index.md)
 
-- [Dolch Pac 64](dolch-pac-64/index.md)
-- [PDP 11/44](pdp-1144/index.md)
-- [PDP 11/10](pdp-1110/index.md)
-- [HP 2113B](hp1000/index.md)
-- [PDP 11 Interactive disassembler](the-interactive-disassembler/index.md) (work in progress)
+- [PDP Common info](minicomputers/pdp-common-info/index.md)
+- [The PDP 11/10](minicomputers/pdp-1110/index.md)
+- [PDP-11/44](minicomputers/pdp-1144/index.md)
+- [Peripherals](minicomputers/peripherals/index.md)
+- [The Unibone](minicomputers/unibone/index.md)
+- [The HP 1000 (2100 E-series 2113B)](minicomputers/hp1000/index.md)
 
-### Calculators/early desktops
+## [Computers and Calculators](computers-and-calculators/index.md)
 
-- [HP 9825A](hp-9825a/index.md) (16 bit calculator, 1976)
-- [HP 85A](hp-85a/index.md) (8 bit calculator with CRT screen, 1980)
+- [Dolch Pac 64](computers-and-calculators/dolch-pac-64/index.md)
+- [HP 85A](computers-and-calculators/hp-85a/index.md)
+- [HP 9825A](computers-and-calculators/hp-9825a/index.md)
 
-### Peripherals
+## [Vintage Equipment](vintage-equipment/index.md)
 
-- [Shugart SA801 8 inch floppy](the-shugart-801/index.md) (1980)
-- [BASF 6102 8 inch floppy drive](the-basf-6102-8-inch-floppy-drive-dead/index.md) (1982)
-- HP 9865A Tape Drive
-- [HP 7470A Plotter](hp-7470a-plotter/index.md) (1982)
-- [HP 82901M HP/IB Disk drives](hp82901m-disk-drives/index.md) (1980)
-- [The MOXA 5610-8 terminal server](the-moxa-nport-5610-serial-ethernet-device/index.md)
+- [Digital](vintage-equipment/digital/index.md)
+- [Oscilloscopes](vintage-equipment/oscilloscopes/index.md)
+- [Serial data analyzers / Network analyzers](vintage-equipment/serial-data-analyzers/index.md)
+- [Signal generators / RF](vintage-equipment/signal-generators-rf/index.md)
+- [Voltage/Multimeters](vintage-equipment/voltage-multimeters/index.md)
 
-### Programmers
+## [Other Hardware](other-hardware/index.md)
 
-- [Data I/O 29B with UniPak 2B and LogicPak](data-io-29b/index.md)
-- Stag Quasar Plus (model 1044) (1997?)
-- [GangPro 8 Gang EPROM Programmer](gangpro-8-eprom-programmer/index.md) (1986)
+- [DEC Digital M7264-EB QBUS LSI-11/03 CPU CARD](other-hardware/dec-digital-m7264-eb-qbus-lsi-1103-cpu-card/index.md)
+- [HP 7470A Plotter](other-hardware/hp-7470a-plotter/index.md)
+- [HP82901M Disk drives](other-hardware/hp82901m-disk-drives/index.md)
+- [The BASF 6102 8 inch floppy drive (dead)](other-hardware/the-basf-6102-8-inch-floppy-drive-dead/index.md)
+- [The Kienzle 1140-20 Taxameter](other-hardware/kienzle/index.md)
+- [The Shugart SA801 diskette drive](other-hardware/the-shugart-801/index.md)
 
+## [Hobby Projects](hobby-projects/index.md)
 
-## Hobby projects
+- [Amplifiers](hobby-projects/amplifiers/index.md)
+- [CPU Experiments with am29xx bitslice chips](hobby-projects/cpuexperiment/index.md)
+- [Core memory experiments](hobby-projects/core-memory-experiments/index.md)
+- [Led matrix fun](hobby-projects/led-matrix-fun/index.md)
+- [Mini fast pulse generator](hobby-projects/mini-fast-pulse-generator/index.md)
+- [VIC 20 repair](hobby-projects/vic-20-repair/index.md)
+- [Z80 Hobby board](hobby-projects/z80-hobby-board/index.md)
 
-- [8-bit bus to 7-segment hex display board](https://github.com/fjalvingh/8bit-busdisplay)
-- [CPU Experiments with am29xx bitslice chips](cpuexperiment/index.md)
+## [Software](software/index.md)
 
-## Measurement Equipment
+- [The interactive pdp-11 disassembler](software/the-interactive-disassembler/index.md)
+- [Sigrok and other logic analyzer decoders](software/saleae-decoders/index.md)
 
-### Serial data analyzers / Network analyzers
+## [Tips and tricks](tips-and-tricks/index.md)
 
-- [HP 1640A Serial Data Analyzer](hp1640a-serial-data-analyzer/index.md) (1979)
-- [HP 4951B Protocol Analyzer](hp-4951b-protocol-analyzer/index.md) (1984)
-- HP 4951C Protocol Analyzer (1986)
-- [Wandel & Goltermann DA30C Internetwork Analyzer](wandel-goltermann-da30c/index.md) (1993)
-
-### Voltage/Multimeters
-
-- [HP 410C Voltmeter (1963)](the-hp-410c-voltmeter/index.md)
-- HP 3478A Multimeter (1988)
-
-### Oscilloscopes
-
-- [Tektronix 602 X/Y Display](tektronix-602-x-y-display/index.md) (1969)
-- [Tektronix 2236 100MHz 2 channel](tektronix-2236/index.md) (1986)
-- [Tektronix 2465A 350MHz 4 channel](tektronix-2465a-oscilloscope/index.md) (1986)
-
-### Signal generators / RF
-
-- [HP 8656B](hp-8656b-repair/index.md) (Synthesized Signal gen, 0.1 to 990MHz, repaired 2022/05/15, 1990?)
-- HP 8568B Spectrum Analyzer 100Hz to 1.5GHz (1978 (A), 1985 (B))
-- [HP 8161A](hp-8161a-100mhz-pulse-generator/index.md) (100MHz pulse generator, needs repair, incomplete, 1981)
-- [HP 5304A Timer/Counter module](hp-5304a-timer-counter/index.md) (10MHz, 1971?)
-
-## Digital measurement tools
-
-[Details can be found here](digital-tools/index.md)
-
-## Miscellaneous
-
-- [Kienzle 1140-20 Taximeter with Intel 4004 CPU](kienzle/index.md)
-- HP 8505A (Incomplete, Top half only)
-- HP 8151A Optical Pulse Power Meter
-
-Tools
-
-- [Tools (software) I've made, linux tips](tools/index.md)
-- [Mini fast pulse generator](mini-fast-pulse-generator/index.md)
-- [Kicad tricks and tips](kicad-tips-and-tricks/index.md)
-- [Debugging Saleae analyzers](creatingdebugging-saleae-analyzers/index.md)
-- [Updating the TL866 programmer using minipro](updating-the-tl866ii-using-minipro/index.md)
-- [Component references](component-details/index.md)
-
-Odds and ends
-
-- [Using GPIB on Linux](using-gpib-on-linux/index.md)
-- [LED Matrices](led-matrix-fun/index.md)
-- [Installing Windows on old PCs](installing-windows-versions-on-old-pcs/index.md)
-- [Z80 hobby board](z80-hobby-board/index.md)
-- [Playing with amplifiers](amplifiers/index.md)
-- [Dec m7264 cpu](dec-digital-m7264-eb-qbus-lsi-1103-cpu-card/index.md)
-- [Playing with Core Memory](core-memory-experiments/index.md)
-- [Vic20 repair saga](vic-20-repair/index.md)
-
-Info
-
-- [Dec PDP related information](dec-pdp-home/index.md)
+- [Components and datasheets](tips-and-tricks/components-and-datasheets/index.md)
+- [Creating/Debugging Saleae analyzers](tips-and-tricks/creatingdebugging-saleae-analyzers/index.md)
+- [Installing Windows versions on old PCs](tips-and-tricks/installing-windows-versions-on-old-pcs/index.md)
+- [KICAD Tips and tricks](tips-and-tricks/kicad-tips-and-tricks/index.md)
+- [Linux tips and tricks](tips-and-tricks/linux/index.md)
+- [Updating the TL866/II using Minipro](tips-and-tricks/updating-the-tl866ii-using-minipro/index.md)
+- [Using GPIB on Linux](tips-and-tricks/using-gpib-on-linux/index.md)
