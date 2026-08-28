@@ -133,8 +133,11 @@ a:visited {
     justify-content: flex-start;
 }
 .ui-page-menu {
-    flex: 0 0 400px;
-    width: 400px;
+    /* As wide as the menu needs, but never below 300 nor over 400 pixels */
+    flex: 0 0 auto;
+    width: max-content;
+    min-width: 300px;
+    max-width: 400px;
     min-height: 0;
     overflow: auto;
 }
@@ -235,18 +238,31 @@ a:visited {
     background: var(--bc-bg-last);
 }
 
-/** Menu **/
+/** Menu.
+ * Deliberately not styled like the page text: its own darker surface, a cooler
+ * grey instead of the content's mint, and denser, smaller type - so it reads as
+ * navigation rather than as part of the article.
+ **/
+.ui-page-menu {
+    background: var(--clr-surface-a0);
+    border-right: 1px solid var(--clr-surface-a20);
+}
 .ui-menu-home {
     display: block;
-    padding: 2px 6px;
-    margin: 0 8px 6px 10px;
+    padding: 8px 10px;
+    margin-bottom: 6px;
     color: var(--clr-primary-a0);
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.75em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--clr-surface-a20);
 }
 .ui-menu {
-    font-size: 0.875em;
-    padding: 0 8px 20px 10px;
+    font-size: 0.8125em;
+    line-height: 1.4;
+    padding: 0 6px 20px 6px;
 }
 .ui-menu-level {
     list-style: none;
@@ -261,24 +277,29 @@ a:visited {
 }
 .ui-menu-item .ui-menu-level {
     padding-left: 12px;
-    border-left: 1px solid var(--clr-surface-a20);
-    margin-left: 4px;
+    border-left: 1px solid var(--clr-surface-a10);
+    margin-left: 6px;
 }
 .ui-menu-item > a {
     display: block;
-    padding: 2px 6px;
+    padding: 3px 8px;
     border-radius: 3px;
-    color: var(--clr-primary-a50);
+    color: var(--clr-surface-tonal-a50);
     text-decoration: none;
 }
+.ui-menu-level-0 > .ui-menu-item > a {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
 .ui-menu-item > a:hover {
-    background: var(--clr-surface-a20);
+    background: var(--clr-surface-a10);
+    color: var(--clr-primary-a30);
 }
 .ui-menu-open > a {
-    color: var(--clr-primary-a0);
+    color: var(--clr-primary-a20);
 }
 .ui-menu-current > a {
-    background: var(--clr-surface-a20);
+    background: var(--clr-surface-tonal-a0);
     color: var(--clr-primary-a0);
     font-weight: 600;
 }
