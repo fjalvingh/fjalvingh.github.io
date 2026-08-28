@@ -164,13 +164,31 @@ a:visited {
 .ui-page-nav-end {
 
 }
+/* The About button: the only action in the top bar, so it is styled as one -
+   the accent colour on a dark ground rather than another grey box. */
 .ui-nav-item {
-    display: flex;
-    padding: 0.75em 0.75em 0.75em 1.25em;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8em 1.4em;
     outline: none;
     position: relative;
     text-decoration: none;
-    background-color: var(--clr-surface-tonal-a50);
+    border-radius: 0.3rem;
+    background-color: var(--clr-primary-a0);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.ui-nav-item, .ui-nav-item:visited {
+    color: var(--clr-surface-a0);
+}
+.ui-nav-item:hover {
+    background-color: var(--clr-primary-a20);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.ui-nav-item:active {
+    box-shadow: none;
 }
 .ui-page-bc-cont {
 /*    width: 700px; */
