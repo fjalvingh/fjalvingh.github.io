@@ -21,11 +21,25 @@ The board has some very large capacitors. First round of business is to reform t
 
 I reformed them by putting them on a voltage through a 100R resistor, slowly increasing the voltage every few hours. All of them seem to work absolutely fine after 50 years!
 
-### Power supply standalone run
+### Getting power to the Transformer
+
+Next step was to check the transformer, by just powering it on... That didn't work: no output from it, at all... Tracing the cabling (and cleaning it as I went, it is amazing how dirty these machines get) I found the first flaw: one of the power wires went to the console's key switch, and looking closely I could see that one of the connectors there got loose. I had to remove the console front panel to get to it, but just pressing it back restored that switch to work.
+
+I still did not have any power, though. After more wire following I found a small 2-prong female connector which clearly meant to be connected to something because it interrupted the power; connecting both prongs got power out of the transformer which proved to be OK.
+
+After some head scratching the cluestick hit when I looked at how the power supply fit back:
+
+![thermal protection on the PSU](thermal-fuse-1.png)
+
+The PSU has a thermal protection, and removing the PSU of course also removed that from the plug..
+
+## Power supply standalone run
 
 Next step is to actually run the power supply without anything attached, to see where things go. For that we need the layout of the power connector, a 9-tip MATE-LOC kind of thing. In the schematic drawings this thing is annotated as follows:
 
 ![power-output connector](pwrout-1.png)
+
+First check was the fuses, those were both OK. Next is to measure voltages.
 
 With the connector at the right (and looking on top of the PCB, connector pointing down) the pinout is as follows:
 
@@ -47,7 +61,10 @@ The pinout, then, according to the schematic:
 | 8   | PWR OK |
 | 9   | -15V |
 
-I also checked both fuses which were OK.
+I soldered some wires to the power plug and added a 3ohm resistor to the 5V channel. That produced the following measurements:
 
+![power supply voltages](voltages.png)
+
+Yes, lots of different meters, but each of them showed a reasonable voltage, although the 5V one is a bit high.
 
 
