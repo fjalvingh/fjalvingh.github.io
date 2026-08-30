@@ -65,6 +65,6 @@ I soldered some wires to the power plug and added a 3ohm resistor to the 5V chan
 
 ![power supply voltages](voltages.png)
 
-Yes, lots of different meters, but each of them showed a reasonable voltage, although the 5V one is a bit high.
+Yes, lots of different meters, but each of them showed a reasonable voltage, although the 5V one is a bit high. The voltages can be fixed with the three potentiometers on the power supply.
 
-
+The PSU has crossbars over all power outputs, so we should not get into an overvoltage situation...

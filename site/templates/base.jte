@@ -7,6 +7,9 @@
 <html lang="en">
 <head>
 <title>${model.getTitle()}</title>
+<link rel="icon" href='${model.siteURL("favicon.ico")}' sizes="16x16 32x32 48x48"/>
+<link rel="icon" type="image/png" sizes="192x192" href='${model.siteURL("img/favicon-192.png")}'/>
+<link rel="apple-touch-icon" sizes="180x180" href='${model.siteURL("img/apple-touch-icon.png")}'/>
 <link rel="stylesheet" href='${model.siteURL("css/site.css")}'/>
 <link rel="stylesheet" href='${model.siteURL("css/dracula.css")}'/>
 
