@@ -24,15 +24,15 @@ Check [Henk's board list](https://www.pdp-11.nl/fieldguide.html) for details.
 
 | Want/#Have | Board       | Number | Description |
 | ---------- | --------    | ------ | --- |
-| 2          | ?????       | G109C  | Unknown, but also mentions "control and data loops" |
-| 2          | MM11-L      | G110   | Control and data loops for H214
+| 4          | ?????       | G109C  | Control and data loops for H214, with 2 extra parity bit channels |
+| 0          | MM11-L      | G110   | Control and data loops for H214, without the 2 extra bit parts populated (same PCB as G109) |
 | 2          | ML11-L      | G231E  | Memory driver for H214, 16K X/Y Selection, Current source, Address Latch, 8K Decode |
 | 4          | MM11-L      | H214   | 8-Kword 16-bit memory stack (with G110 and G231) (replaced by H215) |
 | 4          | KD11-B      | M7260  | 11/05 data path module |
 | 3          | KD11-B      | M7261  | 11/05 control module, 2x revision E, 2x revision F |
+| 1          | MM11-S      | -      | extension backplane which can hold a single MM11-L board set. |
 
-
-Extra Backplane: MM11-5
+There was some confusion. The stickers on the bags with boards marked two G109 boards as G110, and the 1973 drawings also specify the G110 as part of the 11/05. Apparently both boards use the exact same PCB (which is marked as G109C), but the G110 leaves out chips for two extra "parity" channels (details from [Gunkies](https://gunkies.org/wiki/MM11-L_core_memory)).
 
 
 ## Common DEC cards

@@ -24,7 +24,7 @@ According to Gunkies the board layout changes depending on the backplane model n
 | --- | --- | --- |
 |1 | M7260 KD11-A CPU board #0 |
 |2 | M7261 KD11-A CPU board #1 |
-|3 | G110 Memory Control |
+|3 | G110/G109C Memory Control |
 |4 | G231 Memory Driver |
 |5 | UNIBUS Terminator | H213/H214 Core stack |
 |6 | Unused | SPC |
@@ -33,6 +33,11 @@ According to Gunkies the board layout changes depending on the backplane model n
 |9 | DF11 | SPC |
 
 Slot #1 is at the bottom. Checked against the 11/05 engineering drawings.
+
+### About G109C / G110
+
+The engineering drawings talk about the G110 board, as does most of the public documentation. I actually only have G109C boards. The difference is that G109 boards have two extra "parity" bit channels and the G110 does not. These channels are not useful on an 11/05 because there is nothing using them; the H214 core stack does not have them either. The G110 is the same PCB (so also marked as G109) but with the extra channels unpopulated (details from [Gunkies](https://gunkies.org/wiki/MM11-L_core_memory)).
+.
 
 ## Multiple machine revisions..
 
