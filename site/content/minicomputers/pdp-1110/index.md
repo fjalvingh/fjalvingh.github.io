@@ -46,6 +46,9 @@ There have been multiple revisions of this machine's internals. I found the foll
 * [BitSavers revision AH from Jul 76](https://www.bitsavers.org/pdf/dec/pdp11/1105/1105_RevAH_Engineering_Drawings_Jul76.pdf). This seems to match with M7261F boards.
 * [pdp-11-05-engineering-drawings-oct-1973](https://archive.org/details/pdp-11-05-engineering-drawings-oct-1973), uploaded by 1944GW. This matches the M7261E board.
 
+The user manual I have (DEC-11-H05AA-A-D_1105um) is for the 1973 revision (A-D).
+
+
 
 ## Getting the machine to work (in progress)
 
