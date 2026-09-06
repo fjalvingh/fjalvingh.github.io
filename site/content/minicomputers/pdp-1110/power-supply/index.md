@@ -72,3 +72,5 @@ The PSU has crossbars over all power outputs, so we should not get into an overv
 ## Other signals
 
 I measured pin 1 (BUS AC LO L), 4V; pin 6 (BUS DC LO L), 4V and pin 8 (PWR OK), 4V.
+
+!i Heads-up: in the next part it was found that the BUS DC LO L and AC LO L signals were not a fixed voltage: they were a 15% low, rest high block pulse at 100Hz. This measured as the about 4V and caused issues, of course.

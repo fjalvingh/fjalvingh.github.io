@@ -32,10 +32,51 @@ This signal arrives from the BERG connector, of course, which resides on the M72
 
 In there you can see that T on the M7260 side maps to CC on the console side. That took an hour or so, sigh. Measuring E089P6 (a 7437) shows it is L, which is incorrect; it should be high under normal operation. Pin 4+5 are 1, so the 7437 is ok. These come from CON H PROC INIT H.
 
-This comes from E81P6 (74H40), its inputs, 1, 2 and 4 are 1, 5 is zero. That is CONH INIT SYNC (1)L, coming from E65P9 (7473), 
+This comes from E81P6 (74H40), its inputs, 1, 2 and 4 are 1, 5 is zero. That is CONH INIT SYNC (1)L, coming from E65P9 (7473)..
 
+The F power circuitry is more complex than the E one, and the user manual describes revision E, so let's swap boards..
 
-!i to be continued...
+### M7261E (#2) - clock and console
 
+Clock (6MHz) present @E19P8. Still no signals on 74150 of the DP. E89P6 0, pins 4+5 1; same as before. These come from CONH PROC INIT H,
+coming from E108P8. Its inputs: 12,13=1, 9,10=0. The latter come from E72P6 (7474, Q-BAR).
+This flipflop has:
 
+| Pin | Name | Value |
+| --- | ---- | ----- |
+| 1   | CLEAR-BAR | 1 |
+| 2,3 | CLK,D | 0 |
+| 4   | SET-BAR | 0 |
+| 5   | Q | 1 |
+| 6   | Q-BAR | 0 |
+
+The SET line is low which forces the flipflop in its SET state. This set signal comes from E71P7 (9602 monostable multivibrator, "INIT", Q-BAR). 
+
+This E71 is stuck in the "init" phase, somehow. Measuring the signals:
+
+| Pin | Name | Value |
+| --- | ---- | ----- |
+| 3,5 | CLR-BAR, B-BAR | 4.7V |
+| 4   | A | 100HZ square pulse |
+
+That 100Hz pulse is what keeps retriggering the thing, causing the continuous reset like state.
+
+Pin 4 comes from E63P8 (7427). On pin9+10 is a 100Hz block wave (with a 1ms ON time and 9ms off). Pin 11 has a similar pulse, but it starts 1 ms before the one on 9+10. These are the following signals:
+
+* 9+10: COND DC LO H
+* 11: CONH PWDN (0)L
+
+COND DC LO H comes from E01P2 (380). This bus receiver has 2 inputs: 
+
+* 6: CONH RUN GND L
+* 7: BUS DC LO L (BF2)
+
+Measuring these (which sucks because they are hard to reach under the terminator) shows P7 having the block signal. This actually comes from the power supply (H740), on pin 6 of the PSU.
+
+### PSU repair
+
+Looking at the schematic there is a very obvious candidate for this problem. The power loss detection takes its power directly from the windings of the transformer, rectifies it with two diodes, and stabilizes it with a 20uF capacitor (C9). Measuring the signal on that capacitor showed a huge sine signal, indicating the capacitor was gone.. Indeed, after desoldering and measuring it was found be be open, mostly.
+Replacing the capacitor with a new one (47uF, which was the only one I had, and which will mess up DC LO and AC LO timing, probably) did solve the PSU issue.
+
+And that, in turn, solved the console clock problem: there is now data on E006P10 (74150, the console mux).
 

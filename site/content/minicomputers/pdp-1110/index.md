@@ -53,6 +53,7 @@ The user manual I have (DEC-11-H05AA-A-D_1105um) is for the 1973 revision (A-D).
 ## Getting the machine to work (in progress)
 
 * [The power supply](power-supply/index.md)
+* [First power-up](first-powerup/index.md)
 
 
 ## Current loop converter and hidden 5V RS-232
