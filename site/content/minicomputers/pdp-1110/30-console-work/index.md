@@ -52,8 +52,15 @@ Reasoned because these are the full path from switches to console display.
 What it leaves as possible culprits are:
 
 * The 7489 Scratchpad RAM (E13)
- 
-!i To be continued..
 
+## Odd behavior
+
+While validating the above it was found that the behavior is not stable. I had the hanging bit 8 for quite a while, but after some power-ups it disappeared, and I had random behavior changes: sometimes a deposit and an exam would show wildly different results, but sometimes it would work perfectly. Always great, of course.
+
+## Managed a run (2026/09/06)!
+
+I got the machine to actually run for the 1st time, without any changes to the hardware, using the above program (which stayed stable during the run):
+
+![The machine shows a RUN light, and the address/data lights actually flicker](run-light-1.png)
 
 
