@@ -9,7 +9,7 @@ I got this beauty from Geert again, thanks a lot!
 This is one of the earliest PDP 11's. The type was introduced in 1972. The 11/10 is the exact same machine as the 11/05; only the printed label on the console changes, nothing else. The 11/10 was meant for end users while the 11/05 was for the OEM market. All documentation refers to the 11/05.
 Mine is one of the early models in a 5 1/4" box:
 
-![pdp 11/10](1110-1.png)
+![pdp 11/10](1110-1.png "One of the early models in a 5 1/4\" box. The 11/10 badge on the right is the only thing separating it from an OEM 11/05.")
 
 The machine came empty, but with a full set of cards (see [pdp card inventory](../pdp-common-info/unibus-board-list/index.md)).
 
@@ -54,6 +54,7 @@ The user manual I have (DEC-11-H05AA-A-D_1105um) is for the 1973 revision (A-D).
 
 * [The power supply](20-power-supply/index.md)
 * [First power-up](10-first-powerup/index.md)
+- [Working with the console](30-console-work/index.md)
 
 
 ## Current loop converter and hidden 5V RS-232

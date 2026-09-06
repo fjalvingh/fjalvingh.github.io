@@ -10,8 +10,15 @@
 <link rel="icon" href='${model.siteURL("favicon.ico")}' sizes="16x16 32x32 48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href='${model.siteURL("img/favicon-192.png")}'/>
 <link rel="apple-touch-icon" sizes="180x180" href='${model.siteURL("img/apple-touch-icon.png")}'/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- The two faces every page needs before it can paint. A font is fetched
+     with CORS even from our own origin, so the preload needs crossorigin
+     too - without it the file is downloaded a second time. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href='${model.siteURL("fonts/source-serif-4-normal-latin.woff2")}'/>
+<link rel="preload" as="font" type="font/woff2" crossorigin href='${model.siteURL("fonts/archivo-normal-latin.woff2")}'/>
+<link rel="stylesheet" href='${model.siteURL("css/fonts.css")}'/>
 <link rel="stylesheet" href='${model.siteURL("css/site.css")}'/>
-<link rel="stylesheet" href='${model.siteURL("css/dracula.css")}'/>
+<link rel="stylesheet" href='${model.siteURL("css/code.css")}'/>
 
 <link rel="stylesheet" bhref="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

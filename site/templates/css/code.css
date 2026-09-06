@@ -1,0 +1,80 @@
+/*
+ * highlight.js theme for the workshop-bench palette. Dracula, which this
+ * replaces, is built around violets and cyans on a blue-black ground; on the
+ * warm charcoal below they fight the orange headings. Same roles, warm hues,
+ * and every colour checked against --clr-bg-deep (#171410).
+ */
+
+.hljs {
+    display: block;
+    background: none;                       /* The <pre> around it draws the box, and scrolls it */
+    padding: 0;
+    color: #e2dbd0;
+}
+
+/* Comments recede: they are the one thing you skip when scanning code */
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+    color: #8a8074;
+    font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag {
+    color: #e0779e;
+}
+
+.hljs-string,
+.hljs-meta,
+.hljs-name,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-template-tag,
+.hljs-template-variable {
+    color: #cbbd7e;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-meta-keyword {
+    color: #86c9a4;
+}
+
+.hljs-built_in,
+.hljs-section,
+.hljs-type,
+.hljs-link,
+.hljs-selector-class,
+.hljs-selector-id {
+    color: #71bccb;
+}
+
+.hljs-number {
+    color: #d3a2d8;
+}
+
+.hljs-variable,
+.hljs-attribute,
+.hljs-params {
+    color: #e0a05e;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-title,
+.hljs-section,
+.hljs-doctag,
+.hljs-type,
+.hljs-name,
+.hljs-strong {
+    font-weight: 600;
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}

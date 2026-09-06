@@ -1,36 +1,39 @@
-/* See https://colorffy.com/dark-theme-generator?colors=2ec3be-121222 */
+/*
+ * "Workshop bench": a warm charcoal ground, paper-warm text, and three hues
+ * that each have exactly one job - console orange on the headings, a cool
+ * teal on the links, DEC plum on the small markers. The prose itself carries
+ * no colour at all, which is what keeps a long build log readable.
+ */
 
 :root {
-    /** Dark theme primary colors */
-    --clr-primary-a0: #20eaa5;
-    --clr-primary-a10: #53edaf;
-    --clr-primary-a20: #71f0b9;
-    --clr-primary-a30: #8af3c3;
-    --clr-primary-a40: #a1f5cd;
-    --clr-primary-a50: #b5f8d7;
+    color-scheme: dark;                     /* So the scrollbars and form controls come up dark too */
 
-    /** Dark theme surface colors */
-    --clr-surface-a0: #121222;
-    --clr-surface-a10: #282837;
-    --clr-surface-a20: #3f3f4d;
-    --clr-surface-a30: #575764;
-    --clr-surface-a40: #71717c;
-    --clr-surface-a50: #8c8b95;
+    /** Grounds, from the page's surface down to the panels around it **/
+    --clr-bg-deep: #171410;                 /* Menu, header, footer, code: the frame around the article */
+    --clr-bg: #201c17;                      /* The article itself */
+    --clr-raised: #2a2620;                  /* Callouts, hovers, table zebra */
+    --clr-rule: #39332b;                    /* Every hairline */
 
-    /** Dark theme tonal surface colors */
-    --clr-surface-tonal-a0: #1f373a;
-    --clr-surface-tonal-a10: #354a4d;
-    --clr-surface-tonal-a20: #4c5f61;
-    --clr-surface-tonal-a30: #637476;
-    --clr-surface-tonal-a40: #7c8a8b;
-    --clr-surface-tonal-a50: #95a0a1;
+    /** Text **/
+    --clr-text: #e2dbd0;                    /* Body copy: warm, near-neutral, deliberately not tinted */
+    --clr-muted: #9c9285;                   /* Captions, metadata, the menu at rest */
+
+    /** The three accents **/
+    --clr-head: #ff9260;                    /* Headings: the orange off an 11/10 console */
+    --clr-link: #71bccb;                    /* Links, and only links */
+    --clr-accent: #ff9260;                  /* The About button, the current page, the code rule */
+    --clr-accent2: #c9628f;                 /* Small markers: h3, table headers, caption rules */
+    --clr-on-accent: #2a1409;               /* Text on top of --clr-accent */
+
+    /** Type. The chrome is set in the display face, the article in the serif. **/
+    --font-display: Archivo, ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif;
+    --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "Courier New", monospace;
 
     /** Breadcrumb **/
-    --bc-bg: var(--clr-surface-tonal-a20);
-    --bc-fg: white;
-    --bc-bg-last: var(--clr-surface-tonal-a30);
-    --bc-border: var(--clr-surface-tonal-a0);
-    --bc-hover: var(--clr-primary-a0);
+    --bc-fg: var(--clr-muted);
+    --bc-fg-last: var(--clr-text);
+    --bc-sep: var(--clr-rule);
 }
 
 html {
@@ -41,61 +44,21 @@ html {
     padding: 0;
     margin: 0;
 }
+*, *::before, *::after {
+    box-sizing: inherit;
+}
 
 body {
     height: 100%;
-    font: 400 1em / 1.714 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, system-ui, "Helvetica Neue", sans-serif;
-    color: var(--clr-primary-a50);
-    background-color: var(--clr-surface-a10);
-    background-image: url(../img/backdrop-1.png);
-    background-repeat: repeat-x;
+    font: 400 1em / 1.72 var(--font-body);
+    color: var(--clr-text);
+    background-color: var(--clr-bg);
 
     display: flex;
     flex-direction: column;
     overflow: hidden;                       /* The page itself never scrolls, only the middle row's columns do */
     padding: 0;
     margin: 0;
-}
-
-.ui-tbl {
-    border-collapse: collapse;
-    background-color: var(--clr-surface-tonal-a10);
-}
-.ui-tbl thead {
-	background-color: var(--clr-surface-tonal-a0);
-}
-
-.ui-tbl th {
-	padding: 3px 10px;
-	border-left: 1px solid #aaaaaa;
-	text-align: left;
-	white-space: nowrap;
-    font-weight: bold;
-}
-.ui-tbl th:last-child {
-	border-right: 1px solid #aaaaaa;
-}
-.ui-tbl td {
-	padding: 1px 10px;
-	border-left: 1px solid #aaaaaa;
-	vertical-align: top;
-}
-.ui-tbl tr:nth-child(even) {
-	background-color: var(--clr-surface-tonal-a20);
-}
-.ui-tbl td:last-child {
-	border-right: 1px solid #aaaaaa;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: var(--clr-primary-a30);
-}
-a {
-    color: #b0bbfc;
-    text-decoration: none;
-}
-a:visited {
-    color: #b0bbfc;
 }
 
 /** Main layout: three rows - the top and the bottom row take the room they
@@ -105,24 +68,14 @@ a:visited {
 .ui-page-top {
     flex: 0 0 auto;
 }
-.ui-page-header {
-    display: flex;
-    justify-content: center;
-}
-
 .ui-page-bottom {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.ui-page-copyright {
-    font-size: xx-small;
-    color: #777;
-}
-.ui-page-meta-date {
-    font-size: xx-small;
-    color: var(--clr-primary-a30);
+    background: var(--clr-bg-deep);
+    border-top: 1px solid var(--clr-rule);
+    padding: 12px 20px 14px;
 }
 .ui-page-middle {
     flex: 1 1 auto;
@@ -149,126 +102,122 @@ a:visited {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    padding: 0 26px 40px;
 }
-
 .ui-flex-content {
     width: 1024px;
     max-width: 100%;
 }
 
+/** Header: the PCB backdrop with a scrim over it so the logo has something to
+ * sit on, closed off by an accent hairline instead of a hard cut.
+ **/
+.ui-page-header {
+    display: flex;
+    justify-content: center;
+    background-color: var(--clr-bg-deep);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, .30), rgba(23, 20, 16, .86)),
+        url(../img/backdrop-1.png);
+    background-repeat: no-repeat, repeat-x;
+    background-position: center, center;
+    border-bottom: 1px solid var(--clr-accent);
+    padding: 10px 0;
+}
+.ui-page-header img {
+    display: block;
+    height: 84px;
+    width: auto;
+}
+
 .ui-page-nav {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin: 20px 10px;
+    gap: 16px;
+    background: var(--clr-bg-deep);
+    border-bottom: 1px solid var(--clr-rule);
+    padding: 10px 22px;
 }
-.ui-page-nav-end {
 
-}
 /* The About button: the only action in the top bar, so it is styled as one -
    the accent colour on a dark ground rather than another grey box. */
 .ui-nav-item {
     display: inline-flex;
     align-items: center;
-    padding: 0.8em 1.4em;
-    outline: none;
-    position: relative;
-    text-decoration: none;
-    border-radius: 0.3rem;
-    background-color: var(--clr-primary-a0);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.55em 1.2em;
+    outline: none;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 4px;
+    background-color: var(--clr-accent);
     transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
 .ui-nav-item, .ui-nav-item:visited {
-    color: var(--clr-surface-a0);
+    color: var(--clr-on-accent);
 }
 .ui-nav-item:hover {
-    background-color: var(--clr-primary-a20);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    background-color: #ffab84;
+    box-shadow: 0 2px 10px rgba(255, 146, 96, 0.22);
 }
 .ui-nav-item:active {
     box-shadow: none;
 }
-.ui-page-bc-cont {
-/*    width: 700px; */
-}
 
-/** Breadcrumb **/
+/** Breadcrumb. Flat text with chevrons: the arrow tabs it replaces were the
+ * heaviest object on the page while saying the least.
+ **/
 .ui-page-breadcrumb {
+    display: flex;
     flex-direction: row;
-    border: 1px solid var(--bc-border);
-    border-radius: 0.3rem;
-    display: inline-flex;
-    overflow: hidden;
-    /* margin: 20px 10px; */
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
 }
-
 .ui-bc-item {
-    background: var(--bc-bg);
-    color: var(--bc-fg);
-    outline: none;
-    padding: 0.75em 0.75em 0.75em 1.25em;
-    position: relative;
+    padding: 2px 0;
     text-decoration: none;
-    transition: background 0.2s linear;
+    color: var(--bc-fg);
 }
 .ui-page-breadcrumb a, .ui-page-breadcrumb a:visited {
     color: var(--bc-fg);
 }
-
-.ui-bc-item:hover:after,
-.ui-bc-item:hover {
-    background: var(--bc-hover);
+.ui-page-breadcrumb a:hover {
+    color: var(--clr-link);
 }
-
-.ui-bc-item:focus:after,
-.ui-bc-item:focus,
-.ui-bc-item.is-active:focus {
-    background: #323f4a;
-    color: #fff;
+.ui-bc-item::after {                        /* The separator, on everything but the page itself */
+    content: "\203A";
+    color: var(--bc-sep);
+    padding: 0 0.55em;
 }
-
-.ui-bc-item:after,
-.ui-bc-item:before {
-    background: var(--bc-bg);
-    bottom: 0;
-    clip-path: polygon(50% 50%, -50% -50%, 0 100%);
-    content: "";
-    left: 100%;
-    position: absolute;
-    top: 0;
-    transition: background 0.2s linear;
-    width: 1em;
-    z-index: 1;
-}
-
-.ui-bc-item:before {
-    background: #cbd2d9;
-    margin-left: 1px;
-}
-
-.ui-bc-last {
-    border-right: none;
-}
-
 .ui-bc-item.ui-bc-last {
-    background: var(--bc-bg-last);
+    color: var(--bc-fg-last);
+    font-weight: 600;
+}
+.ui-bc-item.ui-bc-last::after {
+    content: none;
 }
 
 /** Menu.
- * Deliberately not styled like the page text: its own darker surface, a cooler
- * grey instead of the content's mint, and denser, smaller type - so it reads as
- * navigation rather than as part of the article.
+ * Deliberately not styled like the page text: its own darker surface, the
+ * display face instead of the article's serif, and denser, smaller type - so
+ * it reads as navigation rather than as part of the article.
  **/
 .ui-page-menu {
-    background: var(--clr-surface-a0);
-    border-right: 1px solid var(--clr-surface-a20);
+    background: var(--clr-bg-deep);
+    border-right: 1px solid var(--clr-rule);
 }
 .ui-menu {
-    font-size: 0.8125em;
-    line-height: 1.4;
-    padding: 10px 6px 20px 6px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    padding: 12px 8px 28px 8px;
 }
 .ui-menu-level {
     list-style: none;
@@ -282,65 +231,295 @@ a:visited {
     margin: 1px 0;
 }
 .ui-menu-item .ui-menu-level {
-    padding-left: 12px;
-    border-left: 1px solid var(--clr-surface-a10);
-    margin-left: 6px;
+    padding-left: 10px;
+    border-left: 1px solid var(--clr-rule);
+    margin-left: 7px;
 }
 .ui-menu-item > a {
     display: block;
-    padding: 3px 8px;
-    border-radius: 3px;
-    color: var(--clr-surface-tonal-a50);
+    padding: 4px 9px;
+    border-left: 2px solid transparent;
+    border-radius: 0 3px 3px 0;
+    color: var(--clr-muted);
     text-decoration: none;
 }
 .ui-menu-level-0 > .ui-menu-item > a {
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
 }
 .ui-menu-item > a:hover {
-    background: var(--clr-surface-a10);
-    color: var(--clr-primary-a30);
+    background: var(--clr-raised);
+    color: var(--clr-text);
 }
 .ui-menu-open > a {
-    color: var(--clr-primary-a20);
+    color: var(--clr-text);
 }
+/* The page you are on: an accent bar and a faint tint, not a filled slab */
 .ui-menu-current > a {
-    background: var(--clr-surface-tonal-a0);
-    color: var(--clr-primary-a0);
+    color: var(--clr-accent);
+    border-left-color: var(--clr-accent);
+    background: rgba(255, 146, 96, 0.10);
     font-weight: 600;
 }
 
-/** code tag **/
-code {
-    background: #121212;
-    /* border: 1px solid #ddd; */
-    border-left: 3px solid #f36d33;
-    color: #eee;
-    page-break-inside: avoid;
-    font-family: monospace;
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 1.6em;
-    max-width: 100%;
-    overflow: auto;
-    padding: 1em 1.5em;
-    display: block;
-    word-wrap: break-word;
+/** Article typography.
+ * Prose is capped at a comfortable measure; the things that need room -
+ * photos, tables, code, callouts - keep the full column width.
+ **/
+.ui-flex-content > p,
+.ui-flex-content > ul,
+.ui-flex-content > ol,
+.ui-flex-content > dl,
+.ui-flex-content > blockquote {
+    max-width: 74ch;
+}
+.ui-flex-content > p {
+    text-wrap: pretty;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--clr-head);
+    text-wrap: balance;
+}
+h1 {
+    font-size: 2.15rem;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    margin: 1.1rem 0 0.6rem;
+}
+/* h2 opens a section, so it gets a rule to sit under */
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    margin: 2.4rem 0 0.7rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--clr-rule);
+}
+/* h3 is a labelled sub-step within a section, not a smaller h2 */
+h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--clr-accent2);
+    margin: 1.7rem 0 0.5rem;
+}
+h4, h5, h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--clr-text);
+    margin: 1.4rem 0 0.4rem;
+}
+
+/* A heading that is a link is still a heading: it keeps the heading colour and
+   picks up an underline only on hover. */
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-underline-offset: 4px;
+}
+
+p {
+    margin: 0 0 0.9rem;
+}
+ul, ol {
+    margin: 0 0 0.9rem;
+    padding-left: 1.35rem;
+}
+li {
+    margin-bottom: 0.2rem;
+}
+li::marker {
+    color: var(--clr-muted);
+}
+
+/* Links are underlined as well as coloured, so they are findable without
+   relying on hue - which in turn lets the link colour stay quiet. */
+a {
+    color: var(--clr-link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(113, 188, 203, 0.38);
+}
+a:visited {
+    color: var(--clr-link);
+}
+a:hover {
+    text-decoration-color: currentColor;
+}
+a:focus-visible {
+    outline: 2px solid var(--clr-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+blockquote {
+    margin: 1.1rem 0;
+    padding: 0.2rem 0 0.2rem 1rem;
+    border-left: 3px solid var(--clr-accent2);
+    color: var(--clr-muted);
+    font-style: italic;
+}
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--clr-rule);
+    margin: 2rem 0;
+}
+
+strong {
+    font-weight: 600;
+    color: #f2ece2;
+}
+
+/** Figures. On a site that is mostly photographs of hardware, the frame and
+ * the caption do more work than any of the colours above.
+ **/
+.ui-figure {
+    margin: 1.5rem 0 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.ui-figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid var(--clr-rule);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .35), 0 12px 30px rgba(0, 0, 0, .22);
+}
+.ui-figure .ui-im-l {                       /* The link a scaled-down image is wrapped in */
+    display: block;
+    text-decoration: none;
+    align-self: flex-start;
+    max-width: 100%;
+}
+.ui-figure figcaption {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--clr-muted);
+    border-left: 2px solid var(--clr-accent2);
+    padding-left: 0.65rem;
+    max-width: 70ch;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/** Tables. Horizontal rules only: a border on every cell outshouts the data.
+ **/
+.ui-tbl {
+    border-collapse: collapse;
+    width: auto;                            /* Columns size to their content: these tables are mostly sparse */
+    max-width: 100%;
+    margin: 1.1rem 0 1.4rem;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+}
+.ui-tbl thead {
+    background: none;
+}
+.ui-tbl th {
+    padding: 0 0.9rem 0.45rem 0;
+    border: none;
+    border-bottom: 2px solid var(--clr-accent2);
+    text-align: left;
+    white-space: nowrap;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--clr-muted);
+}
+.ui-tbl td {
+    padding: 0.35rem 0.9rem 0.35rem 0;
+    border: none;
+    border-bottom: 1px solid var(--clr-rule);
+    vertical-align: top;
+}
+.ui-tbl tr:nth-child(even) {
+    background: none;
+}
+.ui-tbl tbody tr:hover td {
+    background: var(--clr-raised);
+}
+
+/** Code **/
+code {
+    font-family: var(--font-mono);
+}
+pre {
+    color-scheme: dark;                     /* Keep the horizontal scrollbar dark too */
+    background: var(--clr-bg-deep);
+    border: 1px solid var(--clr-rule);
+    border-left: 3px solid var(--clr-accent);
+    border-radius: 4px;
+    margin: 1.1rem 0 1.4rem;
+    padding: 0.9rem 1.1rem;
+    max-width: 100%;
+    overflow: auto;
+}
+pre code {
+    display: block;
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--clr-text);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+/* Inline code: a chip, not a block */
+:not(pre) > code {
+    background: var(--clr-raised);
+    border-radius: 3px;
+    padding: 0.1em 0.35em;
+    font-size: 0.86em;
+    color: var(--clr-text);
+}
+
+/** Notification / callout blocks **/
 .ui-not {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 0 20px;
+	gap: 0.9rem;
+	background: var(--clr-raised);
+	border-radius: 0 4px 4px 0;
+	margin: 1.1rem 0 1.4rem;
+	padding: 0.8rem 1.1rem;
 }
 .ui-not-icon {
+	flex: 0 0 auto;
 	width: 32px;
 	height: 32px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 }
 .ui-not-cnt {
-	padding: 0 20px;
+	padding: 0;
+}
+.ui-not-cnt > :last-child {
+	margin-bottom: 0;
 }
 
 .ui-not-warning .ui-not-icon {
@@ -356,24 +535,25 @@ code {
 	background-image: url(../img/notif-icon-info.png);
 }
 
-
 .ui-not-warning {
-	border-left: 5px solid #E7B600;
+	border-left: 3px solid #e0a53a;
 }
 .ui-not-error {
-	border-left: 5px solid #C20000;
+	border-left: 3px solid #d9534f;
 }
 .ui-not-success {
-	border-left: 5px solid #A4B123;
+	border-left: 3px solid #7fb069;
 }
 .ui-not-info {
-	border-left: 5px solid rgb(102, 209, 255);
+	border-left: 3px solid var(--clr-accent2);
 }
 
 /** Blog **/
 .blg-date {
-    color: var(--clr-surface-a50);
-    font-size: 0.9em;
+    font-family: var(--font-display);
+    color: var(--clr-muted);
+    font-size: 0.85em;
+    font-variant-numeric: tabular-nums;
     margin-right: 0.5em;
 }
 
@@ -385,10 +565,11 @@ code {
     gap: 1em;
     width: 1024px;
     max-width: 100%;
-    padding: 10px 0;
-    margin-bottom: 10px;
-    border-bottom: 1px solid var(--clr-surface-tonal-a20);
-    font-size: medium;
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--clr-rule);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
 }
 
 .ui-blog-nav-prev,
@@ -396,14 +577,14 @@ code {
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
-    color: var(--clr-primary-a30);
+    color: var(--clr-link);
     text-decoration: none;
 }
 
 .ui-blog-nav-prev:hover,
 .ui-blog-nav-next:hover {
-    color: var(--clr-primary-a0);
     text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .ui-blog-nav-next {
@@ -414,6 +595,18 @@ code {
 .ui-blog-nav-icon {
     font-size: 1.2em;
     line-height: 1;
+}
+
+/** Footer **/
+.ui-page-meta-date {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    color: var(--clr-muted);
+}
+.ui-page-copyright {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    color: #6f675d;
 }
 
 /** Printing.
@@ -427,29 +620,42 @@ code {
         margin: 15mm;
     }
 
+    :root {
+        color-scheme: light;
+    }
+
     html, body {
         height: auto;
         display: block;
         overflow: visible;
         color: #000;
         background: #fff;
-        background-image: none;
         font-size: 11pt;
     }
 
-    .ui-page-middle, .ui-page-content, .ui-page-top, .ui-page-bottom {
+    .ui-page-middle, .ui-page-content, .ui-page-top, .ui-page-bottom, .ui-page-nav {
         display: block;
         overflow: visible;
         height: auto;
+        background: #fff;
+        border: none;
+        padding: 0;
     }
 
     .ui-flex-content {
         width: auto;
         max-width: 100%;
     }
+    .ui-flex-content > p,
+    .ui-flex-content > ul,
+    .ui-flex-content > ol,
+    .ui-flex-content > dl,
+    .ui-flex-content > blockquote {
+        max-width: none;
+    }
 
     /* Screen-only navigation: useless on paper */
-    .ui-page-nav-end, .ui-page-menu, .ui-blog-nav {
+    .ui-page-nav-end, .ui-page-menu, .ui-blog-nav, .ui-page-header {
         display: none;
     }
 
@@ -458,11 +664,35 @@ code {
         break-after: avoid;
         page-break-after: avoid;
     }
+    h2 {
+        border-top: 1px solid #bbb;
+    }
+    h3 {
+        color: #333;
+    }
 
     a, a:visited,
     .ui-page-breadcrumb a, .ui-page-breadcrumb a:visited {
         color: #000;
         text-decoration: none;
+    }
+
+    strong {
+        color: #000;
+    }
+
+    /* Figures: a hairline instead of a shadow, kept with their caption */
+    .ui-figure {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    .ui-figure img {
+        border: 1px solid #bbb;
+        box-shadow: none;
+    }
+    .ui-figure figcaption {
+        color: #444;
+        border-left: 2px solid #bbb;
     }
 
     img {
@@ -472,18 +702,33 @@ code {
         page-break-inside: avoid;
     }
 
-    /* Code blocks: light background, wrap instead of scroll, allow page breaks */
-    code, pre {
-        background: #fff;
+    .ui-tbl th {
         color: #000;
+        border-bottom: 2px solid #555;
+    }
+    .ui-tbl td {
+        border-bottom: 1px solid #ccc;
+    }
+    .ui-tbl tbody tr:hover td {
+        background: none;
+    }
+
+    /* Code blocks: light background, wrap instead of scroll, allow page breaks */
+    pre {
+        background: #fff;
+        border: 1px solid #ccc;
         border-left: 3px solid #888;
         overflow: visible;
+        break-inside: auto;
+        page-break-inside: auto;
+    }
+    pre code, :not(pre) > code {
+        background: none;
+        color: #000;
         font-size: 8pt;
         line-height: 1.35;
         white-space: pre-wrap;
         word-wrap: break-word;
-        break-inside: auto;
-        page-break-inside: auto;
     }
 
     /* Dracula highlighting is unreadable on white */
@@ -492,37 +737,27 @@ code {
         background: transparent !important;
     }
 
-    /* Breadcrumb as plain text instead of dark arrow tabs */
-    .ui-page-breadcrumb {
-        display: block;
-        border: none;
-        overflow: visible;
-    }
-    .ui-bc-item {
-        display: inline;
+    .ui-not {
         background: none;
-        color: #000;
-        padding: 0;
+        border: 1px solid #ccc;
+        border-left: 3px solid #888;
     }
-    .ui-bc-item:before {
+    .ui-not-icon {
         display: none;
     }
-    .ui-bc-item:after {
-        content: " \203A ";
-        position: static;
-        background: none;
-        clip-path: none;
-        width: auto;
+
+    /* Breadcrumb as plain text */
+    .ui-page-breadcrumb {
+        display: block;
     }
-    .ui-bc-item.ui-bc-last {
-        background: none;
+    .ui-bc-item, .ui-bc-item.ui-bc-last {
+        color: #000;
     }
-    .ui-bc-item.ui-bc-last:after {
-        content: "";
+    .ui-bc-item::after {
+        color: #888;
     }
 
     .ui-page-copyright, .ui-page-meta-date {
         color: #555;
     }
 }
-
