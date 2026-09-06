@@ -2,7 +2,7 @@
 
 The UI now shows the Q registers and the flags from the board:
 
-![qregsandflags](qregsandflags.png)
+![The AluController window, now showing the Q register alongside r0 to r15 and the Z, C, N and O flags below them.](qregsandflags.png)
 
 and with that I can finally start to do more testing. One of the things that needs to become more clear is how the different parts of the am2901 interact with the clock signal, and I had a funny experience with that.
 
@@ -14,13 +14,13 @@ The am2901 datasheet states:
 
 The fun part happened when I was experimenting with the ADD operation. Adding r3 and r4, with values 1000_h_ and 5000_h_ worked fine, the result was this:
 
-![Adding 1](img5plus1.png)
+![Adding r3 and r4, 1000h and 5000h. r4 holds the result 6000h and all four flags are off.](img5plus1.png)
 
 The result was 6000_h_, as expected, and all flags are off.
 
 But when I pressed execute again, effectively adding 1000_h_ plus 6000_h_, the following showed:
 
-![Adding 2](img6plus1-1.png)
+![Pressing Execute again gives 7000h in r4, which is right, but N and O have come on.](img6plus1-1.png)
 
 The result was correct, 7000_h_, but both the N and the O flags were set?? This puzzled me for a while, but after reading the datasheet and looking at the code I saw I did this to do the operation:
 
@@ -36,6 +36,6 @@ The result was correct, 7000_h_, but both the N and the O flags were set?? This 
 
 I.e. I close the flags AFTER I reset the clock pulse to HIGH. And this caused that bug, because with the clock HIGH the register latch is open, and this means that the ALU now gets the NEW result, 7000_h_, as the B input. And 7000 + 1000 = 8000_h_, and that is indeed negative and an overflow. I could have seen that earlier if I paid attention to the debug display which actually showed that (immediately after the execute):
 
-![flagsdisplay](flags-disp.png)
+![The two debug displays right after the execute. They were already showing the answer, if anyone had been paying attention.](flags-disp.png)
 
 Moving the latch operation before upping the clock fixed the problem.

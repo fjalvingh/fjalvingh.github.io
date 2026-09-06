@@ -7,18 +7,18 @@ menu:
 This site is written and maintained by Frits Jalvingh. I am a software and infrastructure architect at a medium sized Dutch company. I am Dutch, but live most of the time in France.
 I currently work mostly with Java and Kotlin, SQL databases like Oracle and PostgreSQL. I write both frontend and backend code. I specialize in more complex material like metadata based processing and compiler writing.
 
-I am the principal author of a Java based UI framework called [DomUI](https://domui.atlassian.net/). This was open-sourced but did not become a success; to be useful you need to write documentation, lots of documentation... And currently people seem to prefer fragile solutions based on Javascript. I am writing *and maintaining* software for a living and for a long time; languages that are not strongly typed are a no-no for me, they are maintenance nightmares.
+I am the principal author of a Java based UI framework called [DomUI](https://domui.org/). This was open-sourced but did not become a success; to be useful you need to write documentation, lots of documentation... And currently people seem to prefer fragile solutions based on Javascript. I am writing *and maintaining* software for a living and for a long time; languages that are not strongly typed are a no-no for me, they are maintenance nightmares.
 
 ## About where I live
 When in France I live in Saint Laurent d'Agny. This is a quiet rural village in the Monts Lyonnais. Our house is on top of a hill with a magnificent view:
 
-![View from the garden](gardenview-1.png)
+![The view from the garden in Saint Laurent d'Agny, looking out over the valley towards the Monts Lyonnais.](gardenview-1.png)
 
-![More views](gardenview-2.png)
+![The same view earlier in the year, with the Alps just visible on the horizon at the left.](gardenview-2.png)
 
 On a good day we can even see the Mont Blanc:
 
-![Mont Blanc from La Chapelle](montblanc-1.png)
+![On a clear day Mont Blanc stands out above the alpine ridge, about 200 km away.](montblanc-1.png)
 
 I also live in the Netherlands every now and then, I have a house in Lelystad.
 
@@ -32,8 +32,9 @@ After that, infected by [CuriousMarc](https://curiousmarc.com), I started to col
 
 ## My lab in France
 I have a rather nice room downstairs in the house. It is about 6 x 3 m, and has a lot of nice tables:
-![Lab image 1](lab-1.png)
 
-![Lab image 2](lab-2.png)
+![The lab in France, with the vintage gear on the shelving at the left and the benches running down the far wall.](lab-1.png)
+
+![The other end of the same room: the desk, and the parts bins that fill the wall on the right.](lab-2.png)
 
 

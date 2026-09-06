@@ -6,7 +6,7 @@ This series uses card edge connectors all over the place.
 
 Most extension cards that have a cable will have a 2x24 pin card edge to connect the cables to. Cable connectors on these connectors must be placed with the cable exit to the RIGHT:
 
-![card cage back](card-cage-backside-view.png)
+![The back of the card cage, with the tape reader and bus input/output cable connectors fitted. The rail warns that boards go in component side up.](card-cage-backside-view.png)
 
 The edge connector needed for this has the following specs:
 
@@ -24,7 +24,7 @@ The pinout for the connector, as seen from the card, is as follows:
 
 Looking at an example board like this:
 
-![cableconnector layout](connector-1.png)
+![The BACI board layout with the edge fingers numbered: 1 and A at the top, 24 and BB at the bottom.](connector-1.png)
 
 the pinout is, from top to bottom of that image:
 

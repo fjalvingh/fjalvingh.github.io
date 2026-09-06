@@ -30,7 +30,7 @@ CP Hung?
 ```
 These are caused by the grant chain not being continued proper.
 
-![board layout](pdp-boards-initial.png)
+![The backplane as it arrived, seen from the top with the boards and their coloured handles in place.](pdp-boards-initial.png)
 
 The but-last slot has the NPG wire cut so it either requires a G7273 card or some extension card that does handle NPG proper, like the Unibone.
 

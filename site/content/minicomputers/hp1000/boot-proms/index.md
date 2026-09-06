@@ -175,7 +175,7 @@ It is supposed to be set correctly already from the IBL step, but check. If it i
 
 To actually start the load: press PRESET, RUN.
 
-![HP 2113B blinkenlights](blinkenlights-1.png)
+![The E-Series front panel, with the sixteen switch register keys along the top and RUN, PRESET and IBL/TEST at the bottom left.](blinkenlights-1.png)
 
 ## Trying the boot on my machine
 
@@ -185,7 +185,7 @@ I tried to boot off the RAID controller but that does not seem to do anything. H
 
 The schematic shows the following:
 
-![Loader ROMs](loader-roms-1.png)
+![The four loader ROMs in the schematic, U196, U216, U256 and U255, all addressed from IR0 to IR7 and enabled by IR14 and IR15.](loader-roms-1.png)
 
 Reading that schematic (and assuming the IR is not negated) the ROM decode should be the following;
 

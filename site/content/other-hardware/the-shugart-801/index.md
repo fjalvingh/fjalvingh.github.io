@@ -4,11 +4,11 @@ Let's try again.. I found a very curious device, a FAZ III microcomputer?, which
 
 Pictures:
 
-![The FAZ III](faz-iii-1.png)
+![The Periferic FAZ III cabinet the drives came in, with D0 and D1 stacked behind the front door.](faz-iii-1.png)
 
 The Shugart SA801:
 
-![Shugart PCB side](sa801-pcb-1.png)
+![Inside the SA801: the control board on the left, the spindle motor and drive belt on the right, with the Shugart serial plate beside it.](sa801-pcb-1.png)
 
 ## Initial work
 First work was to cleanup the drive. It was very dirty, and the drive belt, belt motor and stepper motors were all stuck. The belts needed to be removed carefully, and even though they were in quite OK condition they left residue on the wheels that needed mechanical cleanup (scraping off and sanding). The belts themselves cleaned up rather well, and worked without issue after.
@@ -121,7 +121,7 @@ Retries gave errors at the same location.
 
 I decided to try the newly written floppy anyway in the RX02, and voila:
 
-![booting from a new disk](rx02-new-boot.png)
+![RT-11SJ V05.03 booting off the newly written floppy in the RX02, with a clean directory of 16 files.](rx02-new-boot.png)
 
 So, the read+write basically works, once I get that track 57 issue fixed.
 

@@ -41,13 +41,13 @@ apt install ./libgconf-2-4_3.2.6-6ubuntu1_amd64.deb ./gconf2-common_3.2.6-6ubunt
 Untar the tar in a temp dir, cd into the directory and execute the .run file to install. It should say that all dependencies are OK. If not, fix them!
 When asked what to install I installed all packages.
 
-![Install packages](install-packages-cc.png)
+![The component selection step. Only the TM4C12x ARM Cortex-M4F family is actually needed for this board.](install-packages-cc.png)
 
 Install all debug probes
 
 I got this error:
 
-![error-1](install-cc-1.png)
+![The installer failing on ti_cgt_dmed with a child process exited abnormally. Leave the dialog on screen rather than answering it.](install-cc-1.png)
 
 This does not want to get fixed. Leave the error on the screen and open a console, then do this:
 

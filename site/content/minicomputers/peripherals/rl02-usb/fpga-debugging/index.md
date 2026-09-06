@@ -8,17 +8,17 @@ TODO
 
 After installation run a debug session by selecting "top_sch" in ISE, then in the "Processes" run:
 
-![Run a LA session](start-chipscope.png)
+![Analyze Design Using ChipScope at the bottom of the ISE process list for top_sch starts the session.](start-chipscope.png)
 
 This will start ChipScope. In ChipScope we set the triggers so that we can capture header related data. I set up the triggers as follows:
 
-![Initial triggers](triggers-1.png)
+![The trigger setup: decode_state fixed at 010, the header decode state, with dataOutReady triggering on the rising edge and two samples captured per trigger.](triggers-1.png)
 
 We only want the decode_state = 010 which is the header decode. In that state the decodeFSM part reads 48 bits of header information as three 16 bit words, and pushes each of them to the FIFO by asserting dataOutReady. The very first word contains the disk location (sector, head, track), and this word gets identified by setting bit 16 of the FIFO to 1. We trigger on that by requesting trigger on RISING.
 
 We collect 2 samples after every trigger. This should collect only the data when the data is actually latched, not data after. A result looks like this:
 
-![first la sample](first-la-sample.png)
+![The first capture. It opens correctly with 1000C, bit 16 set and a plausible location, followed by a zero word. But the checksum never arrives: the next sample already has bit 16 set again.](first-la-sample.png)
 
 I see odd things already. The start looks OK, the first word has bit 16 set indicating it is a header word, and it has a reasonable value (sector 12d on track 0 head 0). Second word is all zeroes, as expected. But the third word (checksum) is missing as the next sample starts with bit 16 set indicating a first header word. That is wrong.
 
@@ -35,12 +35,12 @@ and measuring again shows the same problem: intermediary words are missing from 
 
 Looking for sector 21 in the data shows this:
 
-![Sector 21 1st occurrence](sector-21-1.png)
+![Sector 21 does turn up, arrowed at 10015, but it is one of the cases where no further words follow it.](sector-21-1.png)
 
 It is found, but it is one of the cases where no other words follow.
 
 Something else that really does not seem correct:
 
-![Too many decode words](decode-words-too-many.png)
+![A proper header word, a zero word and a correct F005 checksum, and then three more words with bit 16 clear. The last two look like checksums too, and decode_state moves from 2 to 3, which should not be possible.](decode-words-too-many.png)
 
 This starts with a proper header word (with bit16=1) followed by a zero word and a checksum word (f005) which is correct. But after that we see three other words without the 1st one having the 16th bit set, and the two last words seem to be checksums as we also see the decode_state changing from 2 to 3. That should not be possible!?

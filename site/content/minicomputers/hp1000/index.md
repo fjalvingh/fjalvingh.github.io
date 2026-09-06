@@ -13,21 +13,21 @@ This is a 16 mit minicomputer from around 1976. I got it complete in a rack, tog
 * Paper tapes
 
 
-![Nice rack!](nice-rack-1.png)
+![The HP 1000 in its rack, with the front panel switch register in the middle and the tape and disc units below it.](nice-rack-1.png)
 
 The whole rack weights a tonne; it is all solid steel. It was a bit of work to move it, many thanks to my friend Marc for his help!
 
 The machine's serial number is 1905F01347:
 
-![serial number and model](serial.png)
+![The identification plate: a 2113 B, serial 1905F01347, option 015, made in France.](serial.png)
 
 It has a few installed options:
 
-![installed options](options.png)
+![The firmware and expansion list that came with it: the 02113-80006/7/8 base set with EIG and FPP, plus DMS and FFP expansions.](options.png)
 
 The CPU cage holds the following:
 
-![cpu cage](cpucage-1.png)
+![The CPU cage with the boards in place, the memory arrays under their heatsink covers at the left and the slot labels running down the edge.](cpucage-1.png)
 
 It holds the following boards:
 

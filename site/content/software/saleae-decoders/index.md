@@ -6,11 +6,11 @@ I needed this decoder to help with debugging a Dec RL02/RL11 pair. The disk driv
 
 The decoder has only a few settings:
 
-![syncserial options](options.png)
+![The decoder settings: which channel carries the clock, which carries the data, and which clock edge samples it.](options.png)
 
 Their usage should be obvious. The decoder produces output like this:
 
-![syncserial example output](output.png)
+![The decoder in DSView, showing the clock and data channels with the decoded bit stream and the nibbles assembled from it underneath.](output.png)
 
 As I did not want to set things like bit rates the decoder assumes a few things. Firstly it will calculate the average bit length from the data, and it will assume that this length does not vary a lot. It uses this bit length to force an end to the last bit in a bit train: if no edge is coming within 4* the average bit length then it ends the last bit at that interval (this is why the last bit trails a lot). This also resets the code that collects the nibble data so that it is easier so see the actual data.
 

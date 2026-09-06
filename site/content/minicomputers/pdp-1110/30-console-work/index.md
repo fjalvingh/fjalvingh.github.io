@@ -6,7 +6,7 @@ deposit and examine work.
 
 Entering a pattern in the switches and clicking "Load address" works, but only after using "start" once after powerup:
 
-![Load address](load-addr-1.png)
+![The switch pattern coming back on the ADDRESS/DATA lamps after Load Address, though only once START has been pressed after power-up.](load-addr-1.png)
 
 Rather good sign as this is handled by microcode, and that means that we have a bit working at least!
 
@@ -24,6 +24,13 @@ We can [actually run a program there](https://retrocomputing.stackexchange.com/q
 | 177701 | R1 | 000777 | BR.-1* |
 
 !i For a program running from the scratchpad registers the PC increments by 1! The registers are addressed sequentially by addresses incremented by 1, despite the registers being words!
+
+This showed an error: depositing the 240 actually deposited 540. Next try: deposit all zeroes in 177700 showed 400; repeated tries always showed that. And it persists: repeating deposit several times shows the same bit set; examine several times also shows it set (the address increment seems to work because the pattern changes after a few clicks). Bit 8 is really stuck, somehow. Not in the console shift regs because load addr sets it to zero.
+
+## The path from switches to scratch register
+
+The console switches are each connected, via the console cable, to the ALU board's "Switch reg mux", made up out of 4x 8266 quad 2-to-1 multiplexers (E33..E36). This multiplexer selects either the switch value (A ports) or the 7489 scratchpad RAM outputs to the ALU's "A" input.
+
 
 
 

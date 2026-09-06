@@ -2,7 +2,7 @@
 
 The next round is to fix ZRLGE0 test 33. This reports:
 
-![test result](test33-result.png)
+![Test 33 failing over and over with a sector address out of sequence. Each time the sector received is exactly one higher than the one expected.](test33-result.png)
 
 The test does the following:
 
@@ -13,7 +13,7 @@ In our failed test we often get a sector that is one more than the sector expect
 
 With this the test works:
 
-![Test ZRLG works!!](zrlg-works.png)
+![With direct memory access enabled on the Unibone, ZRLG completes two passes with no errors at all.](zrlg-works.png)
 
 The drive makes a bit of noise doing the seek tests so even those parts seem to be fine!
 
@@ -21,7 +21,7 @@ The drive makes a bit of noise doing the seek tests so even those parts seem to 
 
 The final test is ZRLH, this one runs without problems:
 
-![zrlh test results](test-zrlh.png)
+![ZRLH, which tests write data, read data and write check, runs three passes clean as well.](test-zrlh.png)
 
 
 Wheehaw ;)

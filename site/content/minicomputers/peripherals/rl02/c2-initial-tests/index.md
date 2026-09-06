@@ -14,14 +14,14 @@ ERR HLT
 ```
 The fiche for the test is:
 
-![Fiche test32-1](fiche-32-1.png)
-![Fiche test32-2](fiche-32-2.png)
+![The fiche for test 32, which checks that the header CRC can be read back after a READ HEADER and that it is correct.](fiche-32-1.png)
+![It reads the header word, calls SIMBCC over 16 bits, repeats that for the second word, then compares the calculated CRC against the third word from the MP silo.](fiche-32-2.png)
 
 The test executes a READ HEADER command. It then reads the 1st two words from the MP register (the cylinder/track count in the first word and the second word is all zeroes). It calculates a checksum from these two words (in code) and the reads the 3rd word and compares it with the checksum. These should be equal but clearly are not.
 
 This is hard to debug from just the LA trace, so I made a protocol decoder for Sigrok: [syncserial](../../../../software/saleae-decoders/index.md). This decoder decodes the data from the serial data stream so that we can more easily understand what we see. One such trace looks like this:
 
-![read header trace 1](la-readheader-1.png)
+![A read header decoded by the syncserial protocol decoder. The first word is 0xA000, the second all zeroes, the third the CRC at 0x0033.](la-readheader-1.png)
 
 We can see that the first word (sector/track) is 0xA000, the second word is all zeroes (which is according to spec) and the third word, the CRC, is 0x0033. This should translate to sector 320, head 0, sector 0.
 
@@ -151,7 +151,7 @@ i.e. the sum is 21000, or 0x2200. I validated it with a Java program that implem
 
 To make sure that I understand what's happening I decided to trace the now working controller too. As this passes the tests it should show us traces where we can check the checksum. This is one:
 
-![la trace working controller](la-hdr-trace-working.png)
+![The same trace taken from the working controller #1, decoding as A1FE, 0000 and 182B.](la-hdr-trace-working.png)
 
 But if we calculate the checksum with the code we still have a mismatch: calculating the sum for A1FE 0000 returns 0a60... I'm lost now..
 
@@ -171,7 +171,7 @@ In the end that was easy: the syncserial decoder was reading the bits in the opp
 
 Adding an option to revert the interpreted bit order shows that the last trace is actually correct:
 
-![la trace with bits interpreted in reverse order](la-bits-reversed-now-ok.png)
+![The same capture with the bit order reversed in the decoder. The words now read 0024, 0000 and F00A, which match what the code calculates. The 9403 FIFOs put the first bit of the train on D0, so the first bits are the least significant ones.](la-bits-reversed-now-ok.png)
 
 One mystery solved.
 
@@ -179,7 +179,7 @@ One mystery solved.
 
 Let's try the bad controller again. This is the new trace:
 
-![la trace bad controller with bits in order](la-bad-bits-ordered-correct.png)
+![Controller #2 with the corrected bit order: 0010, 0000 and F005. The CRC on the serial bus is right, so the fault is in reading that value back off the 9403.](la-bad-bits-ordered-correct.png)
 
 The error message from the test read:
 ```
@@ -194,7 +194,7 @@ The CRC that we actually see on the serial bus is 0xf005 which is 170005 ~oct~, 
 
 Next step: does the 9403 that holds the upper values actually report that value to the bus when queried? This is the highest nibble which comes from E106. We need to probe that one. This shows the following when the test runs:
 
-![la trace of 9403 data outputs](la-9403-data-out.png)
+![The data outputs of E106, the 9403 holding the top nibble. The drive answers on channels 0 and 1 and OE pulses low several times, but d0 to d3 never leave zero. The chip is dead.](la-9403-data-out.png)
 
 This is zoomed out; we see the drive sector response on channel 0 and 1, and a lot later we see OE going down a few times - but all that time the data lines remain at zero. Conclusion: that 9403 is dead..
 
@@ -202,13 +202,13 @@ This is zoomed out; we see the drive sector response on channel 0 and 1, and a l
 
 I could not find a 9403 on Ebay (it turned out I made an error searching for it, and apparently the real code is N9403). But there is a replacement: the 74F403 is the same chip. I found two of those on Ebay, in Germany, and ordered those. I removed the dead one and added a handcrafted socket because I had none for the odd form factor of this chip:
 
-![removed 9403](9403-removed.png)
+![The dead 9403 lifted out, with the pads cleaned up ready for a socket.](9403-removed.png)
 
-![new socket](9403-socket.png)
+![A socket built up by hand, since nothing off the shelf fits this chip's odd form factor.](9403-socket.png)
 
 Running the test however returned this:
 
-![error after replacement](error25-after-replacement.png)
+![After the swap the run stops at test 025 instead: a GET STATUS that timed out, with COMP and OPI set in the RLCS.](error25-after-replacement.png)
 
 This is a test of the GET STATUS command, and it caused a timeout. I checked the chip again with the logic analyzer (but forgot to make the proper trace) and found out that the command was sent correctly, and the drive answered, but the CPSI clock signal on the 9403's never stopped pulsing. This was because the IRF output (pin 1) of the new 74F403 never signaled that the data was received. Actually, that output was flapping around in the breeze at high speed. Clearly this chip was bad. Sadly enough the same happened with the second one...
 Back to Ebay, and now to order a real 9403 from the States, a 4 week wait, sigh.
@@ -218,7 +218,7 @@ Back to Ebay, and now to order a real 9403 from the States, a 4 week wait, sigh.
 After a few weeks of waiting I got a few real N9403's. These looked like the Real Deal, so I had high hopes. But when I replaced the 74F403 with them I saw the exact same thing..
 So, back to the logic analyzer for apparently a new fault.. The trace showed this:
 
-![replacement 9403](9403-replaced-bad-1.png)
+![The IRF outputs of all four FIFOs in the chain. The chips reset cleanly and the GET STATUS goes out, but e106p1 never falls, so the state machine never sees a complete word and the input clock runs on forever.](9403-replaced-bad-1.png)
 
 I added the IRF signals of the other 9403's starting at pin 6 (the lsb) and going on to the higher nibbles. We can see the following:
 

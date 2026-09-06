@@ -33,11 +33,11 @@ These are executables that we cannot use under Linux, but they can be unpacked u
 
 After that start ccstudio, open the project, go to the RL02 controller project, use the right mouse and select Properties and change the include paths:
 
-![Include paths](includepaths.png)
+![The RL02Controller project properties in Code Composer Studio, with the unpacked usb and drivers directories added to the include search path.](includepaths.png)
 
 After that add the paths also to the linker settings:
 
-![linker paths](linkerpaths.png)
+![The same again for the linker: driverlib.lib and usblib.lib added to the file search path.](linkerpaths.png)
 
 
 ### Building the code
@@ -62,7 +62,7 @@ Once set do a "Rebuild all", which will take forever (about 8 minutes on my 48CP
 
 To flash the uC you need a tool that will let you. I used the Blackhawk xds100v2 tool. This needs to be connected to the board as follows:
 
-![flash tool connection](uc-flash-conn.png)
+![The Blackhawk XDS100v2 on the board's JTAG header. The arrow marks JP1, the strap that lets the 5V USB power reach the board.](uc-flash-conn.png)
 
 To program you need to power both the flasher and the board. To power the board make sure to place a strap on jp1, otherwise the 5V USB power will not reach the board, see the arrow in the above picture.
 
@@ -70,11 +70,11 @@ To program you need to power both the flasher and the board. To power the board 
 
 Run the Uniflash tool, select the correct controller and device (TM4C1232C3PM):
 
-![flash tool config](flashtoolconfig.png)
+![UniFlash with the TIVA TM4C1232D5PM and the XDS100v2 debug probe selected.](flashtoolconfig.png)
 
 After that press "Next", then select the compiled file:
 
-![selected build](flashtoolselectbuild.png)
+![RL02Controller.bin loaded into UniFlash at 19.31 KB, ready for Load Image and then Verify Image.](flashtoolselectbuild.png)
 
 Make sure the board has its own USB connection powered too otherwise you will get a "powerloss" warning when programming.
 Now press the "Load Image" button, and if successful press the "Verify image" button.
@@ -87,7 +87,7 @@ Round 1: the tool said flashing was successful; the verify worked too, but after
 
 Start ISE, then select "Open Project" and select the project file in the FPGA directory. This should open the project without too much trouble. After that do the build steps by selecting the top module, then with the right mouse button select "run":
 
-![Synthesize design](fpga-implement.png)
+![The ISE process tree for the top module. Implement Design runs translate, map and place and route in turn.](fpga-implement.png)
 
 The next step is to generate the programming file using the same right mouse -> run step, followed by "Configure target device". This should open a tool called "iMPACT", which should be able to program the FPGA.
 
@@ -95,7 +95,7 @@ The next step is to generate the programming file using the same right mouse -> 
 
 Use "Open Project", and load the impact file from the FPGA directory. This should show the basic configuration:
 
-![initial impact after load](fpga-impact-1.png)
+![iMPACT after loading the project: the xc3s50a sits in the boundary scan chain with the SPI flash shown dashed above it.](fpga-impact-1.png)
 
 Next step is to try "program". That failed on my machine because the Xilinx USB Platform cable was not recognized. To make this work (Ubuntu Linux 25.04) do the following.
 
@@ -139,11 +139,11 @@ The uC code checks the header bit when it needs to know the current sector. It w
 
 After flashing I connected the pcb to the RL02 by opening up the RL02, removing the flat cable from the two connectors at the back and inserting that flat cable into the PCB:
 
-![connected the pcb to the rl02](pcb-to-rl02.png)
+![The board in place inside the RL02, with the drive's own flat cable moved off the two rear connectors and onto it.](pcb-to-rl02.png)
 
 Connecting the USB cable to the PC initially does nothing. This is as expected because the code inside the uC first waits for the FPGA to signal that it has found the drive AND that it has a drive ready signal. Only then will the uC register the USB mass storage device. Switching on the drive does show that:
 
-![USB drive registered](usbregistered-1.png)
+![Switching the drive on registers the mass storage device: 20480 blocks of 512 bytes, 10.5 MB.](usbregistered-1.png)
 
 Sadly enough no I/O could be done to the device. I tried an fdisk but that hung, so something is wrong.
 
@@ -168,7 +168,7 @@ I downloaded the files "uartstdio.h" and "uartstdio.c" by searching for them on 
 ```
 This nicely outputs "Initialized" to the UART, which can be seen by attaching an TTY-to-USB serial adapter on P20 pin 1 (the pin more to the "inner" side of the board):
 
-![tty-to-usb connection](tty2usb-1.png)
+![The serial adapter tapped onto P20 pin 1 and ground, both arrowed, to pick up the UART debug output.](tty2usb-1.png)
 
 With that we can insert a lot more debugging info into the code, hopefully enough to get an idea about the issue.
 

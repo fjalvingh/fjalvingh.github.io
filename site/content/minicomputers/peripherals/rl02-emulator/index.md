@@ -9,7 +9,7 @@ The PCB is rather easy to do. What was slightly problematic was the USB connecto
 time to find the right one and soldering it was a bit challenging. The same went for the SD card
 connector. I opted to add the optional LEDs for the dip switches so I mounted those at the bottom.
 
-![The completed board](board-1.png)
+![The finished board with the DE0-Nano FPGA module seated on top, and the LEDs for the dip switches fitted along the bottom.](board-1.png)
 
 ## Programming the device
 

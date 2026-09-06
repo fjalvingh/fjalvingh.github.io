@@ -2,16 +2,16 @@
 
 This is a taxi fare meter from the 1970's, containing an Intel 4004 CPU ;)
 
-![Front image](front.png)
+![The meter as it was advertised: a Kienzle ARGO with LIBRE and four tariff positions, still labelled for a Paris taxi firm.](front.png)
 
 If it works it would look something like this:
 
-![Four working meters](fourworking.png)
+![Four of the meters lit and running, showing FAHRPREIS and ZUSCHLAG in Deutschmarks on their orange displays.](fourworking.png)
 
 
 The electronics are three stacked boards. The CPU board contains the P4004 and some support chips like the P4002-1 (RAM/IO) and the P4308 (?):
 
-![cpu board](cpuboard-1.png)
+![The CPU board. The P4004 sits in the middle of the lower edge with the P4002-1 RAM/IO above it and the P4308 ROM below, all dated 1974.](cpuboard-1.png)
 
 ## Connections / installation manual
 

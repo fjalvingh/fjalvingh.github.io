@@ -10,23 +10,23 @@ After a while I also got the RL11 (M7762) controller and cables that go with it,
 
 The RL02 drive is an impressive beast:
 
-![rl02 and disk pack](rl02-1.png)
+![The RL02 with a disk cartridge sitting on top of it. The second button on the front is the drive number, here a 2.](rl02-1.png)
 
 It opens at the top to insert the cartridges:
 
-![alt text](rl02-open.png)
+![The lid opens at the top to take the cartridge, exposing the spindle and the head area below it.](rl02-open.png)
 
 The heads were protected during the trip by this little plate:
 
-![headprotect](rl02-headprot.png)
+![The plate that held the heads in place during the trip.](rl02-headprot.png)
 
 Opening the back panel exposes the motor and the power supply:
 
-![opened backpanel](rl02-backpanel.png)
+![Behind the back panel: the power supply board at the top, the drive motor below it.](rl02-backpanel.png)
 
 And the back panel itself holds the controller PCB:
 
-![Controller pcb](rl02-cvtrl.png)
+![The back panel itself carries the drive's own controller board.](rl02-cvtrl.png)
 
 ## The Drive number button
 
@@ -44,7 +44,7 @@ To make sure we have a properly working drive [we need to do some measurements a
 
 The controller for this device is the RL11 (M7762). I have two of them, this is the first one:
 
-![m7762 rl11 controller](rl11-1.png)
+![The first M7762 RL11 controller, with the usual green engineering-change wiring across the component side.](rl11-1.png)
 
 The controller was defective so it needed repairs.
 
@@ -64,7 +64,7 @@ But a few months later the controller (or the drive) has a problem again...
 
 The second controller had a "defective module" label:
 
-![rl11-2](rl11-2-label.png)
+![The second M7762, still carrying its 2008 Defective Module tag. The fault description says it died in use and suspects the electrolytics.](rl11-2-label.png)
 
 This also needed repairs, which was quite interesting.
 

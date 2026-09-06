@@ -4,7 +4,7 @@ To test I need to run xxdp on the PDP11/44. This is done the easiest using the U
 
 It seems important to place the Unibone __after__ the RL11 controller, because this makes the NPR and grant lines go directly to the controller without the Unibone in between which would introduce a delay. The disk tests are often quite time-critical.
 
-![Unibone placement](unibone-placement.png)
+![The Unibone sitting behind the RL11 in the backplane, so the NPR and grant lines reach the controller without passing through it first.](unibone-placement.png)
 
 ## Controller 2
 
@@ -26,23 +26,23 @@ The RL11 takes 10 (oct) bytes of I/O window (4 registers of 2 bytes each). The v
 
 For this we need to change the dip switches. First the vector address which is encoded as follows:
 
-![vector address encoding in switches](vector-sw.png)
+![The vector address scheme from the manual. Address 160 wants W3, W4 and W5 in with W1, W2 and W6 out, so moving to 164 means putting W2 in as well.](vector-sw.png)
 
 This shows that we need to switch W2 to jumpers IN. These are not DIP switches but actually 0ohm resistors soldered to the board:
 
-![jumper resistors for the vector address](vector-resistors.png)
+![The vector jumpers are not DIP switches but zero-ohm resistors soldered to the board, the dark red ones here. The arrow marks the position that has to change.](vector-resistors.png)
 
 The tech drawings show that the jumpers are from W6 at the top downwards to W1 at the bottom:
 
-![Jumper numbers](jumper-nrs.png)
+![The technical drawings number the jumpers from W6 at the top down to W1 at the bottom, which puts W2 second from the bottom.](jumper-nrs.png)
 
 So we need a jumper on the 2nd thingy from the bottom. I decided to add a small switch for that so that we can easily revert without soldering on these fragile board too much:
 
-![vector address switch W2](vector-switch-w2.png)
+![A small switch fitted in the W2 position instead of a soldered link, so the setting can be reverted without working on the board again.](vector-switch-w2.png)
 
 The CSR address needs to be set using the following schema:
 
-![CSR address](csr-doc.png)
+![The base address scheme. 774400 has W12, W16 and W7 in; reaching 774410 means switching W13 on as well.](csr-doc.png)
 
 We will need to toggle W13 ON. I added the same switch there after removing the wire wrap posts from that location.
 
@@ -50,13 +50,13 @@ We will need to toggle W13 ON. I added the same switch there after removing the 
 
 ### ZRLG
 
-![zrlg-11](zrlgresult.png)
+![ZRLG on controller 2: one pass, no errors at all.](zrlgresult.png)
 
 ### ZRLH
 
 This test fails:
 
-![zrlh failure 1](zrlh-fail-01.png)
+![ZRLH stops in test 002 with a device fatal error. RLCS reads 112313, with composite error, operation incomplete and header not found all set.](zrlh-fail-01.png)
 
 cs 112313 (94cb h):
 - composite error (15)
@@ -69,7 +69,7 @@ cs 112313 (94cb h):
 
 ### ZRLJ
 
-![zrlj failure 1](zrlj-fail-01.png)
+![ZRLJ fails its seek test at test 007, sub 153, with the read header reporting cylinder 637.](zrlj-fail-01.png)
 
 ## Controller 1
 
@@ -155,34 +155,34 @@ I tried several other packs, but they all failed in the same way (I have only 2 
 
 A tip from vfced was to try ZRLM, this contains a full disk scan:
 
-![zrlm step 1](zrlm-1.png)
+![ZRLM, the utility that formats bad sector files. Option 4 verifies the pack read-only.](zrlm-1.png)
 
 Running option 4 delivered first:
 
-![result 1](zrlm-2.png)
+![The first full read: the pack completes in 1 minute 48 with no soft and no hard errors.](zrlm-2.png)
 
 After that retrying causes an odd error:
 
-![zrlm restart does not work](zrlm-3.png)
+![Retrying reports a soft error at cylinder 511, sector 63, head 1, followed by two ILL INTER 100 traps.](zrlm-3.png)
 
 Restarting the machine and re-running reports an error now:
 
-![zrlm error](zrlm-4.png)
+![After a restart the same error at the same address, but now at a time of 00:00:00 instead of after a complete read.](zrlm-4.png)
 
 Completely switching off and retrying made the read run successfully twice, after that there was another error:
 
-![zrlm soft error](zrlm-5.png)
+![After a full power cycle the read runs twice, then reports that same cylinder 511, sector 63, head 1 error at 3 minutes 30.](zrlm-5.png)
 
 Trying option 5, "Write pack with worst case data pattern" failed with:
 
-![zrlm write](zrlm-6.png)
+![Option 5, the worst case write, gives up after one second at cylinder 001, sector 63, head 1.](zrlm-6.png)
 
 What is also odd: running ZRLGE0 after all this also aborts immediately:
 
-![zrlg dies](zrlg-1.png)
+![ZRLG now aborts on startup with ILL INTER 100 traps, before it runs a single test.](zrlg-1.png)
 
 Restarting the whole bunch and running zrlg:
 
-![zrlg again](zrlg-2.png)
+![After restarting everything ZRLG reaches test 037 and fails on the difference word: 000400 expected, 000000 present.](zrlg-2.png)
 
 Something is rotten in the state of Denmark..

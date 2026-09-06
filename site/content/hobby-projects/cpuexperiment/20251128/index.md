@@ -2,7 +2,7 @@
 
 To test and get to actually know the 2901's I need to be able to send signals to the board. To do that I have an Arduino Meta 2560, and I connect that to the Arduino using a piece of cabling connected to pin headers:
 
-![alu board connections](aluconnections.png)
+![The ALU board wired to an Arduino Mega 2560 with individual dupont leads. Breadboard wire had been tried first and failed badly.](aluconnections.png)
 
 The initial attempt was with breadboard wires but that failed terribly.
 
@@ -41,7 +41,7 @@ Even with this communication fails the first time after the Arduino is programme
 
 In the current invocation the GUI does not exactly look impressive:
 
-![initial gui](initial-gui.png)
+![The first version of the GUI: sixteen register fields and nothing else, showing the values the Arduino sets at startup.](initial-gui.png)
 
 It shows the register values as they are set by the Arduino at startup.
 

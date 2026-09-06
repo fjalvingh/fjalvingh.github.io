@@ -4,4 +4,4 @@ There were a few errors in the schematic which I fixed. The ALU latch had its OE
 
 Added SLAVE commands to set all registers, and to execute an ALU operation, and added buttons for re-getting and setting the registers to the UI:
 
-![ui for setting registers](ui-setregisters.png)
+![The GUI with Read from ALU and Send to ALU added, so the registers can be written as well as read.](ui-setregisters.png)

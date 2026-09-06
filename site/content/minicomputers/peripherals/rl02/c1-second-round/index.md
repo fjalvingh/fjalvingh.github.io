@@ -26,8 +26,8 @@ I had the same type of failure on the 2nd controller. There might be an issue wi
 
 The second error, where the head is not on track#0, is informative. It comes from this piece of code:
 
-![zrlg-37-1](zrlg-37-1.png)
-![zrlg-37-2](zrlg-37-2.png)
+![Test 37 from the fiche. It reads the header, and if the drive is not on track zero it masks out the sector bits, loads the cylinder as the difference word, issues a SEEK, and reads the header again to check the head arrived at cylinder 0.](zrlg-37-1.png)
+![A few lines further on comes the failure branch, ERRDF 43, which is the error actually reported when that second read does not show cylinder 0.](zrlg-37-2.png)
 
 It starts by reading the header word and then checks that it is on cylinder 0. In this case it isn't as I manually moved the head.
 After that it uses the cylinder read from the header and puts that as the "difference" to move for the seek command, then it issues the seek. This should move the head back to cylinder 0. To test that it reads again the drive status and checks the cylinder.
@@ -59,7 +59,7 @@ We also know that manually moving the head and then starting the test fails at t
 
 The command word sent to the RL02 over the command serial line has the following format:
 
-![command word format](command-word-format.png)
+![The command word sent over the serial line. Bits 7 to 15 are the cylinder difference, bit 4 selects the head and bit 2 the direction; with GS set everything above bit 1 is zero.](command-word-format.png)
 
 The GS bit is 1 for a "get status" command; in that case all other bits (except bit 0 and 1) will be zero. With GS = 0 we have a seek. We should mostly see SEEK commands there.
 
@@ -71,7 +71,7 @@ The READ HEADER action is initiated on the controller, not the drive. It clocks 
 
 The header data word has the following format:
 
-![header data](header-data-1.png)
+![The header data word: the cylinder address in CA8 to CA0, the head in HS, and the sector in SA5 to SA0. Dividing the word by 128 gives the sector number.](header-data-1.png)
 
 * SA = sector address
 * HS = Head number
@@ -86,7 +86,7 @@ Dividing the header word by 128 delivers the sector #.
 
 I put the logic analyzer on the serial input of the SILO (9304) chips, and on the command data and clock. We see the following in the trace from the last few read header commands:
 
-![trace-data-1](trace-data-1.png)
+![The decoded serial data from the last few read header commands, arriving in groups of three: the header word, the always-zero word, and the checksum.](trace-data-1.png)
 
 These come in pairs of 3: the header word, the always-zero word and the checksom. Decoding these delivers:
 

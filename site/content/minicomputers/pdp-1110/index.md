@@ -9,7 +9,7 @@ I got this beauty from Geert again, thanks a lot!
 This is one of the earliest PDP 11's. The type was introduced in 1972. The 11/10 is the exact same machine as the 11/05; only the printed label on the console changes, nothing else. The 11/10 was meant for end users while the 11/05 was for the OEM market. All documentation refers to the 11/05.
 Mine is one of the early models in a 5 1/4" box:
 
-![pdp 11/10](1110-1.png "One of the early models in a 5 1/4\" box. The 11/10 badge on the right is the only thing separating it from an OEM 11/05.")
+![An early 11/10 in the 5 1/4" box. The badge on the right is the only thing that separates it from an OEM 11/05.](1110-1.png)
 
 The machine came empty, but with a full set of cards (see [pdp card inventory](../pdp-common-info/unibus-board-list/index.md)).
 
@@ -61,11 +61,11 @@ The user manual I have (DEC-11-H05AA-A-D_1105um) is for the 1973 revision (A-D).
 
 The 11/05 uses a current loop for the console. The following old schematic is a conversion from current loop to RS232 and vice versa:
 
-![Current loop converter](current-loop-1.png)
+![The Electronic Systems part no. 600 card: one half converts RS-232 to a 20 mA current loop, the other half converts back. Note the warning that the legend is wrong on some boards.](current-loop-1.png)
 
 Further study actually shows that the 11/05 also exposes the RS232 signals as TTL level signals on the BERG connector at the back. There is one oddity: the RXD signal (receive input) is inverted inside the 11/05, so it needs to be inverted before being fed in. I made a small adapter using an FTDI converter:
 
-![rs232 FTDI converter](FTDI-converter.png)
+![The adapter I made: an FTDI board wired to a BERG header, with a 2N7000 FET under the shrink tube to invert TXD into the ~{RXD} the 11/05 expects.](FTDI-converter.png)
 
 The black shrinktube hides a 2N7000 FET which handles the inversion of the TXD signal from the FTDI adapter into ~{RXD} for the 11/05.
 

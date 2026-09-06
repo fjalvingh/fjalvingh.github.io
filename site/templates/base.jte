@@ -6,6 +6,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta charset="utf-8"/>
 <title>${model.getTitle()}</title>
 <link rel="icon" href='${model.siteURL("favicon.ico")}' sizes="16x16 32x32 48x48"/>
 <link rel="icon" type="image/png" sizes="192x192" href='${model.siteURL("img/favicon-192.png")}'/>

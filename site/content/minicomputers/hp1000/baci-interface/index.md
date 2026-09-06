@@ -8,7 +8,7 @@ I am using a manual with the name "12966-90001_BACCI_Apr84". This seems to descr
 
 For a normal serial interface I think we need the following:
 
-![wiring diagram](rs232-wiring-1.png)
+![Table 4-10, the wire list for the 12966-60015 interface cable, giving the hood connector jumpers and which P1 pins carry the EIA signals.](rs232-wiring-1.png)
 
 ## Bit (Baud) rate
 
@@ -24,7 +24,7 @@ F/8 is the Qc output of a 74293 counter. This counter gets fed from a crystal os
 
 The 7.373MHz divided by 8 (Qc) = 921.625KHz. This is the input for the [MM5307](mm5307.pdf) which uses that clock to generate the following bit rates:
 
-![Baud rate table from datasheet](mm5307-bitrates.png)
+![The MM5307 rate table for a 921.6kHz master clock. The A to D control pins select the divisor, so 1011 gives 2400 baud on the AA output.](mm5307-bitrates.png)
 
 ### Looking at the cable diagram: external selection.
 

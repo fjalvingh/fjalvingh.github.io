@@ -64,15 +64,15 @@ DR>
 ```
 Apparently this is error 300 of subtest 025 at pc=015454. Looking up the fiche in the fiche database on retrocmp.com:
 
-![zrlge0 fiche](fiche1-1.png)
+![The controller error routine from the fiche. It walks the CS bits in turn and appends COMP, DRV, NXM, OPI, HCRC, HNF, DCK or DLT to the message, ending in the ERRDF 300 that was reported.](fiche1-1.png)
 
 From that we learn that we have a "composite error", and "OPI" is set. OPI means:
 
-![opi error definition](opi-error-1.png)
+![Section 4.4.1: OPI is bit 10 of the CSR, and means the command did not finish inside the timer period, which is 200ms on an RL11.](opi-error-1.png)
 
 The failing test is test#25. That reads as follows:
 
-![test 25 from fiche](test25code.png)
+![Test 25 sets the get status and marker bits in the RLDA, issues the function and waits 200ms for controller ready. It should work whether or not a drive is loaded.](test25code.png)
 
 ## Second try
 
@@ -114,6 +114,6 @@ DR>
 
 Looking at test 27:
 
-![Test 27](fiche-test27-1.png)
+![Test 27 sets the marker bit but deliberately leaves the get status bit out, and expects the controller to answer with an OPI error. It is the first test that actually talks to the drive.](fiche-test27-1.png)
 
 This seems to be the first test that actually talks with the disk drive- and it is not answering..

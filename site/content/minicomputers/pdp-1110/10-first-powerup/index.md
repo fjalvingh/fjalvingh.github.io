@@ -12,7 +12,7 @@ This is done with a M7261F board, so I use the 1976 drawings.
 
 I removed all but the two CPU boards from the machine, and installed an extender:
 
-![2 boards on extender](extender-1.png)
+![Everything removed but the two CPU boards, with the M7261F on an extender so the test points can be reached while it runs.](extender-1.png)
 
 ### Clock
 First measurement was the clock. This requires that the HALT switch is active; this should keep the clock running despite not having any memory. The 7413 (U29) shows a 5MHz (ugly) clock signal, but this might be the cheap scope (my real one's not here).
@@ -28,7 +28,7 @@ Looking at the console schematic, the 74193 counters are clocked by a pair of 74
 
 This signal arrives from the BERG connector, of course, which resides on the M7260. There is no exact match for this signal on the drawing, but Data Path DPE shows a signal DPE PUP L from E089 which seems to be the one; it is marked as BERG T on both schematics. That sounds like it's not the same signal, but there is this cable drawing in the console part:
 
-![console cable](console-cable.png)
+![The console cable drawing, whose connector legends show how the pins map end to end: T on the M7260 side comes out as CC on the console side.](console-cable.png)
 
 In there you can see that T on the M7260 side maps to CC on the console side. That took an hour or so, sigh. Measuring E089P6 (a 7437) shows it is L, which is incorrect; it should be high under normal operation. Pin 4+5 are 1, so the 7437 is ok. These come from CON H PROC INIT H.
 

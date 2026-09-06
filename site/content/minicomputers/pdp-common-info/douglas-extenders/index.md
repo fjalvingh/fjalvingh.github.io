@@ -10,4 +10,4 @@ I ordered two:
 
 Both can be ordered with connectors. They are a bit expensive, but they are of good quality.
 
-![Image](extenders.png)
+![Two Douglas extenders, the 6-DE-8 quad and the 6-DE-11 dual, one pair fitted with connectors and one bare.](extenders.png)

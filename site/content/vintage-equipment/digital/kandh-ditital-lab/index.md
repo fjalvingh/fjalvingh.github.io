@@ -2,7 +2,7 @@
 
 Found on Leboncoin, this is a rather nice experimentation tool:
 
-![overview](device.png)
+![The IDL-800 opened up: function generator, DVM and the 8-bit and 2-digit displays in the lid, and the patch area with its replacement breadboards below.](device.png)
 
 It was very dirty and the breadboard area was gone. I just cleaned it up and taped on some Chinese breadboards I had lying around.
 

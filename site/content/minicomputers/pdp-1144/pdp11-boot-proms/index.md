@@ -4,7 +4,7 @@
 
 The user manual describes this for the boot command:
 
-![boot info](manual-boot-info.png)
+![The manual's procedure: examine 773024, where 165XYZ means boot to console mode and 173XYZ boot to a selected device, and the remaining three octal digits map onto switch pack E28.](manual-boot-info.png)
 
 On my 11/44 the poked memory addresses show the following:
 
@@ -19,18 +19,18 @@ On my 11/44 the poked memory addresses show the following:
 
 The auto-boot mode is controlled on the M70 Unibus module:
 
-![UBI module 1](ubi-boot-1.png)
+![Section 3.3.3.2: the UBI module has five 16-pin sockets, one CPU diagnostic ROM and four device bootstrap ROMs. S1 chooses console mode or a selected-device ROM.](ubi-boot-1.png)
 
-![UBI Module 2](ubi-boot-2.png)
+![S2 enables or disables the internal UBI boot logic, and S3 to S10 are bits 08:01 of the bootstrap starting address. The ROMs have to sit in sequence from BT1 to BT4.](ubi-boot-2.png)
 
-![UBI Module 3](ubi-boot-3.png)
+![Table 3-22, which maps each ROM location to its starting address. Socket E48 is device 1, E49 device 2, E50 device 3 and E59 device 4, with the CPU diagnostic in E58.](ubi-boot-3.png)
 
 My machine was auto-booting from socket E48, second device (apparently a MS device).
 
 
 There is also an odd switch on the M7095:
 
-![boot auto](boot-auto.png)
+![Figure 3-12: the M7095 control module also carries a bootstrap control switch, S1, where ON means boot enable.](boot-auto.png)
 
 
 
