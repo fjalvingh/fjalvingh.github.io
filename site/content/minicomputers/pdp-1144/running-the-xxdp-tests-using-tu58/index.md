@@ -21,25 +21,25 @@ To enter the boot loader the tu58fs program needs to know the actual console typ
 
 The speed for the TU58 interface is set on the MFM board (M7096) on switch E7:
 
-![](image-20230603-134045.png)
+![The M7096 board layout from the manual. E7 is the switch pack at the right that sets the TU58 rate; E6 and E79 set the console and printer rates.](image-20230603-134045.png)
 
 On my machine they were set as follows:
 
-![](image-20230603-134315.png)
+![E7 as found, with switches 1 and 4 off and 2 and 5 on.](image-20230603-134315.png)
 
 which according to the following table:
 
-![](image-20230603-134401.png)
+![Table 3-16: switches 1 and 4 on give 38400, 2 and 5 on give 9600, and 3 and 6 on follow the console rate. Switch 7 is unused.](image-20230603-134401.png)
 
 means it was set to 9600bps. Setting it to 38400 did not work, and switching it back to 9600bps now also failed.. Measuring the switch showed that several of the switches failed to make contact, so I decided to replace the switch. Desoldering the thing showed something special:
 
-![](image-20230604-150842.png)
+![The switch desoldered. The arrows point at two green wires tacked to the underside, so somebody has been in here before.](image-20230604-150842.png)
 
 clearly some rework has been done on the board at some time.
 
 I did not have a 7 switch DIP switch so I had to use an 8 switch one and cut of the legs of the 8th switch:
 
-![](image-20230604-151009.png)
+![The 8-way replacement above the original 7-way part. The eighth switch has had its legs cut off so it cannot connect to anything.](image-20230604-151009.png)
 
 I could now switch to 38400bps for the TU58 which helps a lot with load speed of these diagnostics :wink: (do notice that the above image is still for 9600bps, though).
 
@@ -259,7 +259,7 @@ Enter the following to show the CPU error register:
 
 The format of the error register is this:
 
-![](image-20230527-183120.png)
+![The CPU error register at 17777766, bit by bit. Bit 00, CIM PWR FAIL, is the one the supply problem sets.](image-20230527-183120.png)
 
 which means we have the following bits set:
 
@@ -280,7 +280,7 @@ This error *appears* to cause the POWER MONITOR BIT FOUND SET error during the Z
 
 The tests usually abort to console if something serious happens. This will show the program counter at the error at the console. But the tests will also leave information in memory at given addresses:
 
-![](image-20230528-091634.png)
+![The APT mailbox layout at 000300: the fatal error number, test number, pass count and unit number that the tests leave behind in memory.](image-20230528-091634.png)
 
 This data can be used together with the test listing to find out what was really wrong. These test listings were available on microfiche, and a DEC engineer had a suitcase with a reader and those fiches. The listings, of course, depend on the exact version of the test used, so you need the correct set of fiches for the test you are executing.
 
@@ -298,7 +298,7 @@ This test got back to the console with the following:
 
 The 17.777.707 address is the PC register and the 041740 value is the actual program counter location of the fault. This must be looked up in the fiche library. That shows the following:
 
-![](image-20230528-095123.png)
+![The fiche for test 340, the CPU error register bit 0 check. It halts if the bit is set, meaning one or more of the supplies is out of specification.](image-20230528-095123.png)
 
 It is clearly $DEITY 's wish to fix that power supply…
 
@@ -317,7 +317,7 @@ Also failed with this:
 
 Exact version of the fiche not found, but the KKABD0 version reads:
 
-![](image-20230528-095822.png)
+![The equivalent code in the KKABD0 version: it tests bit 0 of CPUERR first thing and halts on a fatal error if it is set.](image-20230528-095822.png)
 
 so I’m going to assume it’s the same issue (power monitor bit set).
 

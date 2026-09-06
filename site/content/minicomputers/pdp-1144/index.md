@@ -37,7 +37,7 @@ What I learned about this machine while getting it running again..
 
 First powerup with only 5 cards (M7094..M7098):
 
-![](image-20230329-200202.png)
+![The VT320 on the first power-up with only five cards fitted: the console answers, and 17777707 reads back 000006.](image-20230329-200202.png)
 
 Useful tools:
 

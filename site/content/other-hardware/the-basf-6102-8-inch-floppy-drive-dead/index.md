@@ -7,17 +7,17 @@
 
 It was a long search but I finally managed to get a “standard” 8” floppy drive! I found it on Leboncoin for a reasonable price (75 EUR). It came in what seemed to be its original foam packaging:
 
-![image-20241231-171913.png](image-20241231-171913.png)
+![The drive as it arrived, still in its foam packing. The spindle motor is at the top right, the head stepper below it.](image-20241231-171913.png)
 
-![image-20241231-171946.png](image-20241231-171946.png)
+![The rating plate: BASF 6102, 220V 50Hz, 0.3A, built in February 1981.](image-20241231-171946.png)
 
 It is a single side drive since it has but a single head:
 
-![image-20241231-172044.png](image-20241231-172044.png)
+![The single head assembly on its arm, with the load solenoid and the lead screw behind it. One head means one side.](image-20241231-172044.png)
 
 The controller board has a 50 pin edge connector:
 
-![image-20241231-172144.png](image-20241231-172144.png)
+![The controller board, with the 50-pin edge connector along the top and the silkscreened block names marking out the read logic, separator, stepper logic and power transistors.](image-20241231-172144.png)
 
 This will require a converter board to connect it using the more usual 34pin cable. This board can be ordered from [Tindy, here](https://www.tindie.com/products/siliconinsider/8-floppy-disk-interface-50-pin-to-34-pin-adapter/). More information on 8” floppy drives can be seen on several CuriousMarc video’s.
 
@@ -32,7 +32,7 @@ The device came with original documentation, 6 pages which I scanned to PDF: [ba
 
 The drive has some special form MOLEX connectors. I could not find these, so I decided to 3D print them:
 
-![image-20250109-215316.png](image-20250109-215316.png)
+![The Molex housings printed to replace ones that could not be sourced, next to an original in orange.](image-20250109-215316.png)
 
 This should make it easier to power the thing..
 
@@ -42,11 +42,11 @@ I tested the drive by putting it on my lab PSU. After switching the power on the
 
 I measured the resistance of the 24V rail to GND which was 0.2ohm, really too low. Then I noticed the plethora of tantalums… I switched on the PSU again and quickly took a picture with the thermal camera:
 
-![image-20250109-215006.png](image-20250109-215006.png)
+![The FLIR image with the 24V rail up. The bright column across the middle is a row of tantalums running well above the 15.5C of the board around them.](image-20250109-215006.png)
 
 The hot spots corresponded to some of the tantalums. I decided to replace them all:
 
-![image-20250109-215053.png](image-20250109-215053.png)
+![The tantalums that came off, laid out on the schematic. One 33uF 35V had to be replaced with a low ESR electrolytic instead.](image-20250109-215053.png)
 
 There was one 33uF 35V that I did not have, I replaced that with a low ESR electrolytic one. After that the 24V rail behaved.
 
@@ -54,7 +54,7 @@ There was one 33uF 35V that I did not have, I replaced that with a low ESR elect
 
 I was hopeful after replacing the Tantalum caps. But after fully powering up the drive I again had a 2A current draw at the 24V line. Removing the connector for the stepper motor fixed that, so apparently something is wrong in driving that. The schematic around that is depressingly simple:
 
-![image-20250111-153736.png](image-20250111-153736.png)
+![The stepper drive: the FDD-LSI at 2C feeds phases A, B and C through 7406 open-collector inverters into the TIP32 transistors Q7, Q8 and Q9.](image-20250111-153736.png)
 
 IC 2C, a large LSI of unknown type, drives a set of 7406 inverters (high voltage open collector). These in turn drive a set of PNP transistors. Measuring the outputs of the transistors showed that they all were driven LOW at the same time. Not a Good Plan(tm) because that energizes all coils in the stepper which serves nothing - but it explains the current draw.
 

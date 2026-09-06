@@ -2,25 +2,25 @@
 
 Another amazing gift from Geert, this is my first real DEC peripheral for the PDP 11/44!! Yay!
 
-![image-20241109-174925.png](image-20241109-174925.png)
+![The RX02 as it arrived: a dual 8 inch drive in a DEC desktop cabinet, both slots empty.](image-20241109-174925.png)
 
 The controller for this is the M8256:
 
-![image-20241110-171944.png](image-20241110-171944.png)
+![The M8256 controller. The ribbon at the top right runs to the RX02, and the red stripe has to line up with the pin marked A on the connector.](image-20241110-171944.png)
 
 The band cable at the left is the cable going to the RX02. The red wire at the top needs to go to the A pin of the connector (written on it).
 
 The RX02 has a nice construction which should make it more easy to repair. There are two main circuit boards. The top board, for which you see the back when you look inside the machine, is called the M7744:
 
-![image-20241110-175038.png](image-20241110-175038.png)
+![The solder side of the M7744, which is what faces you when the machine is opened. The board is hinged along its left edge.](image-20241110-175038.png)
 
 This is a rather complex board which actually implements a processor in discrete hardware! It uses two AM2901 bit slice processors and three AM2909 sequence generators. The CPU is a microcode based CPU with the microcode in PROMs. These PROMs are Harris 7643 PROMs:
 
-![image-20241110-170244.png](image-20241110-170244.png)
+![The cross-reference for the microcode PROMs: the Harris 7643 is a 1024x4 tri-state part, equivalent to the Signetics 82S137 and the National 74S573 among others.](image-20241110-170244.png)
 
 Anyway, by just releasing two screws you can flip that entire board up, so that you can access both its component side and the components on the analog board:
 
-![image-20241110-175159.png](image-20241110-175159.png)
+![Two screws let the M7744 hinge right up, putting its component side and the whole analog board underneath within reach at the same time.](image-20241110-175159.png)
 
 Very nicely done, it reminds me of early HP equipment like the HP 9825A which also used something similar. If only machines nowadays would pay similar attention on how to be repaired…
 
@@ -28,7 +28,7 @@ Very nicely done, it reminds me of early HP equipment like the HP 9825A which al
 
 The machine was cleaned as much as possible, and the large capacitors were reformed during about 4 hours. The power cord of the device was broken, so it was replaced with a new cord and a new grommet:
 
-![image-20241110-165126.png](image-20241110-165126.png)
+![The replacement mains cord and grommet fitted at the supply end. The rating plate gives the H771-D supply, 200 to 264 volts.](image-20241110-165126.png)
 
 The main circuit breaker also had a problem: it would not make contact properly when switched on. This could have become a bit of a problem as the thing seemed to be riveted close, but luckily applying some Deoxit in different nooks and crannies of the switch made it work properly again,
 
@@ -36,25 +36,25 @@ The main circuit breaker also had a problem: it would not make contact properly 
 
 I inserted the M8256 controller in an Unibone testbed ([see here how to set that up](../../unibone/using-the-unibone-as-a-stand-alone-machine/index.md)):
 
-![image-20241110-171428.png](image-20241110-171428.png)
+![The M8256 in the Unibone testbed, with the Unibone itself on the left and the UniProbe board on the right.](image-20241110-171428.png)
 
 The controller must be put in an SPC slot, i.e. connectors C-F. It needs the NPG line to be cut as it uses DMA. A way to see that this is probably the case is by looking at the edge connector for slot C of the card (component side):
 
-![image-20241110-172027.png](image-20241110-172027.png)
+![The slot C fingers on the component side, arrowed. They are joined to each other, and they are the NPR grant pins, which is the giveaway that the card does DMA and needs the NPG line cut.](image-20241110-172027.png)
 
 These fingers are actually connected, and these are the NPR signals they connect to - indicating that they need them.
 
 I then started the cpu20\_xxdp\_rl0\_dl11.sh script to get the Unibone to emulate a CPU and a DL11 serial port. This now boots xxdp. I then start ZRXFB0.BIC which should test the controller:
 
-![image-20241109-214837.png](image-20241109-214837.png)
+![XXDP booted from DL0 on the emulated CPU, with ZRXFB0.BIC loaded and waiting at the supervisor prompt.](image-20241109-214837.png)
 
 This test starts by calling the Supervisor. This prompt takes [a set of possible answers explained here](https://www.pdp-11.nl/peripherals/xxdp-supervisor.html). After answering STA/FLAGS:HOE (start test, halt on error) the test reports the following:
 
-![image-20241109-215156.png](image-20241109-215156.png)
+![The first run stops in test 011 with a system fatal error: AC LOW FATAL ERROR, on the CSR bits logic test.](image-20241109-215156.png)
 
 This error complains about AC LOW. The M8256 (RX211) actually has a bit in its status register that gets set when it detects that the RX02 does not have power:
 
-![image-20241110-170954.png](image-20241110-170954.png)
+![Paragraph 4.3.2.8: RX AC LO is bit 03 of the RX2ES error and status register, which is what the test is reading.](image-20241110-170954.png)
 
 Not so surprising we get this error considering that the RX02 is not connected to the controller at this point…
 
@@ -64,11 +64,11 @@ If you ever get a “real” error: look in Jörg Hoppe’s [fantastic diagnosti
 
 Inserting the cable in the controller, and switching on the RX02, after that we run the same test. Initially without a floppy inserted, which does not make it happy:
 
-![image-20241110-174544.png](image-20241110-174544.png)
+![With the RX02 connected but no floppy loaded the run gets as far as test 017 before reporting a drive not ready error.](image-20241110-174544.png)
 
 After that I inserted a floppy, and got:
 
-![image-20241110-174657.png](image-20241110-174657.png)
+![With a floppy in, the run gets through several passes but keeps stopping on CSR errors in test 011, five in total.](image-20241110-174657.png)
 
 This was accompanied by a lot of “clacking” sounds, probably the heads being lowered on the disk?
 
@@ -76,7 +76,7 @@ This was accompanied by a lot of “clacking” sounds, probably the heads being
 
 The second test was even less successful: the drive kept repeating there was an AC LOW FATAL ERROR. Apparently something broke… This seems to be done by this part of the circuit on the M7744 board:
 
-![image-20241113-185706.png](image-20241113-185706.png)
+![The AC detect circuit on the M7744. The 10V feed reaches Q2 through the R22/R23 ladder with a 1N746A 3.3V zener on its emitter, and Q1 pulls DRV AC L high through the open-collector 8881 at E7.](image-20241113-185706.png)
 
 The 8881 is an equivalent of the 7439, and is open collector. I measured the signal on pin 4 of E7, and that remained at 0V, i.e. this circuit registered the AC failure, indeed. I also checked the 10V input, and that was fine.
 
@@ -88,19 +88,19 @@ If the 10V is present (at least high enough) the emitter of Q2 will be around 3.
 
 Next step is to measure the voltages around Q2:
 
-![image-20241113-190603.png](image-20241113-190603.png)
+![The base does sit above 5V, but the cursors put the collector and emitter of Q2 9V apart, both far above the 3.3V the zener should be holding. The zener has given up.](image-20241113-190603.png)
 
 Yellow = E7 Pin 4 (DRV AC L), light blue=collector Q2, purple=emitter, dark blue=base Q2
 
 We see that the base is indeed > 5V, but collector and emitter of Q2 are both way above 3.3V. This indicates that the 3.3V zener has given up. After replacing the zener we have a proper signal when the test runs:
 
-![image-20241114-183029.png](image-20241114-183029.png)
+![With a new zener fitted, both pins of E7 now show a clean pulse as the test runs instead of sitting at 0V.](image-20241114-183029.png)
 
 Light blue is the signal on pin 6 E7, yellow is the signal on pin 4.
 
 After this, and after messing with some floppies I got this:
 
-![image-20241114-185511.png](image-20241114-185511.png)
+![Pass 6 completes without adding to the error count, arrowed: the five errors shown are all from the earlier passes.](image-20241114-185511.png)
 
 It looks like an entire pass tested OK :wink:
 
@@ -108,7 +108,7 @@ It looks like an entire pass tested OK :wink:
 
 Running the test with both drives filled with a properly filled floppy shows:
 
-![image-20241114-211001.png](image-20241114-211001.png)
+![The same test set up for two units with a good floppy in each: one full pass, no errors at all.](image-20241114-211001.png)
 
 ## Making a bootable RX11 disk and booting from the RX02
 
@@ -184,7 +184,7 @@ cd ~/10.03_app_demo/5_applications/cpu
 
 Now start the script we’ve just created. It should start the emulated CPU, and after the “p c 1” command it should boot into RX11 from the RL0 disk image:
 
-![image-20241122-193747.png](image-20241122-193747.png)
+![RT-11FB V05.03 running off the RL image on the Unibone, which is where the floppy gets built.](image-20241122-193747.png)
 
 We now create a RX02 boot disk, as follows:
 
@@ -323,6 +323,6 @@ Serial port ttyS2 opened by UniBone
 
 Enter DY0 (uppercase) after the @ to use the DY boot rom and boot off the RX02:
 
-![image-20241122-195100.png](image-20241122-195100.png)
+![Answering DY0 at the M9312 prompt boots RT-11SJ V05.03 from the real RX02: 16 files, 384 blocks used, 590 free.](image-20241122-195100.png)
 
 It works :wink:

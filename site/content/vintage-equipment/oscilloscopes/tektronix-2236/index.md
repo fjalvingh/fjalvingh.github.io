@@ -13,15 +13,15 @@ Pressing the “beam find” button DOES show something in the screen, and it ev
 
 Following the trigger circuitry:
 
-![](image-20221117-190052.png)
+![Diagram 3, the triggering section, from the A trigger comparators through U460 to the A TRIGGER output at P2500.](image-20221117-190052.png)
 
 Checking U480D pin 15 does indicate that triggers are detected although something seems off: the trigger signal (a square wave) on XXXX rides on a high DC voltage which seems odd:
 
-![](image-20221117-190434.png)
+![Triggers are being detected: a 1.44V square wave at 1ms per division. The trace sits high up the screen, well off the zero marker at the left.](image-20221117-190434.png)
 
 Checking the Z drive circuitry with trigger pulses present:
 
-![](image-20221117-185930.png)
+![Diagram 7, power supply, Z axis and CRT. Q825 is at test point 46 near the top left, where the Z drive starts.](image-20221117-185930.png)
 
 Looking at Q825 (MP 46) shows a constant voltage of around 1.4v This voltage nicely jumps when BEAM FIND is pressed to around 4.3v. Cleaning the intensity pots fixed that, and with that there IS a trace, on both channels. Yippy :wink:
 
@@ -39,16 +39,16 @@ To fix this I need to remove the DMM board. First remove all buttons from it (us
 
 Images for the wiring around the DMM board:
 
-![](image-20231217-140242.png)
+![The scope opened with the DMM board still fitted, seen from above with the CRT neck at the bottom right.](image-20231217-140242.png)
 
-![](image-20231217-140432.png)
+![The two ribbon cables that have to come off the DMM board, at the front edge behind the button row.](image-20231217-140432.png)
 
-![](image-20231217-140304.png)
+![The main board underneath once the DMM board is out, with the hysteresis pot and the ribbon that runs up to it.](image-20231217-140304.png)
 
-![](image-20231217-140329.png)
+![The DMM board from the side, showing the standoffs it sits on and the yellow connector block at its lower edge.](image-20231217-140329.png)
 
-![](image-20231217-140449.png)
+![The adjustment plate below it: R25 VAR BAL, R33 and R83 DC BAL, and the C26 and C76 2mV PEAK trimmers.](image-20231217-140449.png)
 
-![](image-20231217-140500.png)
+![Looking along the gap between the two boards to see how they stack and where the loom passes between them.](image-20231217-140500.png)
 
-![](image-20231217-140513.png)
+![The same plate from the other side, with the grey and rainbow looms routed over it and R76 2mV GAIN at the bottom right.](image-20231217-140513.png)

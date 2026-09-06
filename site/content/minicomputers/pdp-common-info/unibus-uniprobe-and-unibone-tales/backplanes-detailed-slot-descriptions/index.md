@@ -269,13 +269,13 @@ I got the following to work with the connectors:
 
 - TE Connectivity 163304-2 Krimpcontact MATE-N-LOK, female pin, max 15A, 17 AWG Max, 20AWG Min, min dwarsdoortsnede 0.5mm2, max 1.0mm2
 
-![](image-20230528-110236.png)
+![The TE customer drawing for the 163304 pocket MATE-N-LOK, the female pin: 0.5 to 1.0mm2 wire, for a 2.1mm diameter pin.](image-20230528-110236.png)
 
 The corresponding pin seems to be this:
 
 - [TE Connectivity 163558-2 Krimpcontact MATE-N-LOK](https://www.conrad.nl/nl/p/te-connectivity-163558-2-krimpcontact-mate-n-lok-totaal-aantal-polen-1-1-stuk-s-1422684.html), 15A, max 18AWG, min 22AWG,
 
-![](image-20230528-110600.png)
+![The matching 163558 male pin from AMP, in the metric drawing: 0.3 to 0.75mm2 wire and 1.4 to 2.4mm insulation.](image-20230528-110600.png)
 
 A male housing that is not fully compatible but which has at least proper spacing seems to be this:
 

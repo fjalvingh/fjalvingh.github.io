@@ -1,6 +1,6 @@
 # PDP-11 Backplane layout
 
-![](image-20230326-202401.png)
+![The 11/44 as it arrived, sitting on a trolley with the front grille and PDP11/44 badge still in place.](image-20230326-202401.png)
 
 ## Backplane layout
 
@@ -76,7 +76,7 @@ The first slot must be filled, the other three slots are optional.
 
 Actual placement should be [(pdp-11.nl)](http://pdp-11.nl):
 
-![](image-20230329-193350.png)
+![The reference layout from pdp-11.nl: M7090 through M8722 down the rows, with the M7091 and M7092 of the KE44-A marked as the pair that is missing here.](image-20230329-193350.png)
 
 I do not have the KE44-A (2 boards, the M7091 and M7092) hence the open slot.
 

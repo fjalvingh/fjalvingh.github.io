@@ -1,10 +1,10 @@
 # Tektronix 2465A Oscilloscope
 
-![image-20240717-195743.png](image-20240717-195743.png)
+![The 2465A front panel, serial 132712, still carrying its Tektronix calibration sticker.](image-20240717-195743.png)
 
 I got this for a reasonable price from Marktplaats. The scope worked out of the box but had lost its cal as the internal battery was completely flat. I replaced the battery with something new:
 
-![image-20240717-195824.png](image-20240717-195824.png)
+![The board with the new 3.6V cell hot-glued in at the right, next to the two 160-3302 and 160-3303 firmware ROMs.](image-20240717-195824.png)
 
 A 3.6V cell hotglued in.
 

@@ -2,7 +2,7 @@
 
 I got this as a gift from Rik Bos, thanks a lot, Rik!
 
-![](image-20220605-163837.png)
+![The 7470A with its dust cover in place. The two pen stalls sit under the transparent lid at the top.](image-20220605-163837.png)
 
 The device needs a bit of cleaning, and whether it works is currently unknown.
 

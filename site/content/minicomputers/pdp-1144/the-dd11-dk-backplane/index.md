@@ -4,7 +4,7 @@
 
 The DD11-DK backplane is a generic 9 slot Unibus backplane:
 
-![image-20241124-205818.png](image-20241124-205818.png)
+![The DD11-DK on the bench with the Unibone at the left and the UniProbe at the right. The tall card standing in the middle is an NPG and bus grant continuity board, with four G727A grant cards in front of it.](image-20241124-205818.png)
 
 It has the following configuration:
 
@@ -75,21 +75,21 @@ P4 Connector: Amp 15 pin MATE-N-LOC
 
 Connecting +5V to this backplane can be done as follows, on P2:
 
-![image-20241124-205927.png](image-20241124-205927.png)
+![P2 with the +5V feed on red and ground on black. Both 5V pins and both grounds are used, because a single pin will not carry the current.](image-20241124-205927.png)
 
 Make sure this is P2; it should be written on the plug itself, if not take good note of the pin layout.
 
 Connecting -15V (for the Delua controller) must be done on P4, as follows:
 
-![image-20241124-210340.png](image-20241124-210340.png)
+![P4 with the pins that matter arrowed: two grounds at the top right and -15V at the bottom, which is what the DELUA needs.](image-20241124-210340.png)
 
-![image-20241124-210403.png](image-20241124-210403.png)
+![The same connector with the clips on, ground black and -15V red, alongside the +5V pair already fitted on P2.](image-20241124-210403.png)
 
 ## The DD11-CK backplane
 
 This backplane is a generic 4 slot backplane:
 
-![image-20241129-192751.png](image-20241129-192751.png)
+![The DD11-CK, the four slot version of the same idea, with its power harness leaving at the right-hand end.](image-20241129-192751.png)
 
 The slots are numbered 1 to 4, starting the closest to the edge of the table. Connectors A are to the right; F is to the left. It has the following configuration:
 
@@ -102,11 +102,11 @@ The slots are numbered 1 to 4, starting the closest to the edge of the table. Co
 
 This backplane has two connectors for power:
 
-![image-20241129-210237.png](image-20241129-210237.png)
+![The first of the CK's two power connectors, with pins 1 and 3 arrowed at the top and 4 below them.](image-20241129-210237.png)
 
 and
 
-![image-20241129-193115.png](image-20241129-193115.png)
+![The second connector, a six-way with three pins fitted along the bottom row.](image-20241129-193115.png)
 
 Power connector pinout:
 

@@ -10,11 +10,11 @@ This uses DC100 tapes that must be preformatted. I have a set of “new old stoc
 
 First thing to attack is the drives themselves. Their capstan will have turned to very sticky and almost fluid goo. We need to remove the drives and scrape off the old rubber, and clean the metal part. The latter can be done with a bit of acetone, and you can use the motor of the drive as a small “lathe” by connecting it to a power supply. After that the capstan looks at least clean:
 
-![image-20241102-114940.png](image-20241102-114940.png)
+![The capstan after the perished rubber was scraped off and the metal cleaned with acetone, spinning the drive's own motor to use it as a lathe.](image-20241102-114940.png)
 
 Next part is to replace the rubber. For this I 3D printed a ring in TPU with the inner diameter smaller than the capstan as to have a tight fit on it, making the drives look quite hip:
 
-![image-20241102-115051.png](image-20241102-115051.png)
+![Both drives with new capstan rings printed in TPU. The inner diameter is deliberately undersized so the ring grips the capstan.](image-20241102-115051.png)
 
 ## Testing the unit
 
@@ -32,7 +32,7 @@ Next round was to test the device. For that we would need a PDP-11 or so, and th
 
 To test the device I wrote some Java code to talk with the serial port using the protocol described in the TU58 user guide. This worked fine, see the initial parts of the initialization here:
 
-![image-20241102-120056.png](image-20241102-120056.png)
+![The exchange captured on an HP 4951C protocol analyzer. The long run of Et characters at the left is the TU58 sending INIT continuously before anything has been asked of it.](image-20241102-120056.png)
 
 You can see the initial stream of INIT characters (the Et’s above) sent by the TU58. My program then sends a BREAK (represented as Nu) and two INIT characters to initialize the TU58 to which it responds with a CONT (the Dl). I then send a GET STATUS command packet which responds with SUCCESS, unit 0.
 
@@ -49,13 +49,13 @@ While it answers this nothing happens: the motor is not running at all. So, some
 
 For this we need part of the schematic which can be found in the field maintenance print set for the device:
 
-![image-20241103-160006.png](image-20241103-160006.png)
+![The drive electronics from DEC print set 54-13489. The motor bridge transistors Q13 to Q16 are on the right, with the tacho amp and the servo amp along the bottom centre.](image-20241103-160006.png)
 
 Click the image for a large presentation.
 
 Putting an oscilloscope on drive 1’s motor shows the following when we run the program:
 
-![image-20241102-122024.png](image-20241102-122024.png)
+![Both sides of drive 1's motor during a read. The two pulse trains reach about the same 12V, where one should sit higher than the other, so one half of the winding is never driven.](image-20241102-122024.png)
 
 This looks like one side of the motor is not being driven: both pulses are at about 12V; we would expect one to be at a higher voltage than the other.
 
@@ -65,7 +65,7 @@ Next step is to follow the signals. To help with this I run the “read” comma
 
 ### Oscilloscope measurements
 
-![image-20241102-120928.png](image-20241102-120928.png)
+![The moment the read command is issued: E10 pin 3 drops, which drives Q15 and puts the black motor lead at +12V, while F H and R H agree the drive wants to reverse.](image-20241102-120928.png)
 
 Yellow: Base of Q15.
 
@@ -83,7 +83,7 @@ Considering the schematic the opposite side should drive Q13 through Q14. These 
 
 Next image:
 
-![image-20241102-123624.png](image-20241102-123624.png)
+![The other half of the bridge. The base of Q13 never leaves zero and E8 pin 10 barely moves, so the reverse side of the motor is never switched on at all.](image-20241102-123624.png)
 
 Yellow: base of Q13, stays at 0 → this means the - side of the reverse action is not driven as we saw.
 
@@ -93,7 +93,7 @@ Purple: Pin 10 of E8, driving the transistors.
 
 For some reason we do not get pin 10 of E8 high. Looking at the schematic there is a single circuit that controls the voltage on all outputs of E8 which is related to the speed control. The output of E15 pin 7 (called “Servo Amp”) is connected to a 2.4/2.4K network to all outputs. If this remains low it might cause this problem, so let’s take a look at its in- and outputs.
 
-![image-20241102-160256.png](image-20241102-160256.png)
+![The servo amp's own pins. The + input sits clearly above the - input, yet the output stays down where it should be swinging high.](image-20241102-160256.png)
 
 Yellow: E15 pin 5 :heavy_plus_sign:
 
@@ -105,19 +105,19 @@ It looks like the + line here is at quite a higher voltage than the - line - so 
 
 Let’s try to cut R64 to remove the feedback loop and see if this makes the motor run.. This resistor is not numbered correctly (apparently) on the component overview; it can be found immediately under C46 between the two resistor arrays.
 
-![image-20241102-162531.png](image-20241102-162531.png)
+![With R64 cut the picture barely changes: the Q13 base still does nothing, so the feedback loop was not the cause.](image-20241102-162531.png)
 
 Dark blue is now the basis of Q13. Cutting the resistor had no effect, sigh.
 
 Checking E8 pin 10 again at least shows something (purple trace):
 
-![image-20241102-162745.png](image-20241102-162745.png)
+![E8 pin 10 does lift a little once the command runs, but nowhere near far enough to turn the transistors on.](image-20241102-162745.png)
 
 Still a very low voltage,
 
 Putting the yellow trace on the collector of E14. This should show the +12V voltage from the “other” side switching on, and it does:
 
-![image-20241102-163306.png](image-20241102-163306.png)
+![The collector of E14 on the yellow trace, switching up as the command runs. That side of the drive works.](image-20241102-163306.png)
 
 Next part is to find out why the output of pin 10 stays so low. What I tried:
 
@@ -128,7 +128,7 @@ Then the cluestick hit me. I cut R64, because I saw that the LM324 tacho amplifi
 
 To test I disconnected R64 from the LM324 side, and put a constant 5V on it. That shows this:
 
-![image-20241103-103842.png](image-20241103-103842.png)
+![With R64 disconnected from the LM324 and held at a constant 5V, both traces rise and the motor runs. The abrupt end is the power going off once the sound made clear how fast it was going.](image-20241103-103842.png)
 
 Yellow: P10 of E8, blue: base of Q13. This made the motor run like mad :wink:
 
@@ -136,7 +136,7 @@ Yellow: P10 of E8, blue: base of Q13. This made the motor run like mad :wink:
 
 Now we know that the tacho part is not working, it is always-low while it should be high initially. Redoing an earlier image that already showed a problem by putting probes on all ports of the LM324 (pin 5, 6, 7):
 
-![image-20241103-110135.png](image-20241103-110135.png)
+![All three LM324 pins together. Pin 6 sits above 2V and pin 5 around 1.9V, which should send the output to +5V; it never moves.](image-20241103-110135.png)
 
 It seems very clear that the chip is dead here; pin 6 :heavy_plus_sign:
 
@@ -146,13 +146,13 @@ It seems very clear that the chip is dead here; pin 6 :heavy_plus_sign:
 
 With the resistor still cut this shows a lot more promise:
 
-![image-20241103-112953.png](image-20241103-112953.png)
+![With a new LM324 and R64 still cut, the output swings high the instant the command runs, exactly as the inputs call for.](image-20241103-112953.png)
 
 The output swings high immediately, as it show considering the inputs :wink:
 
  Let’s try with R64 connected..
 
-![image-20241103-113217.png](image-20241103-113217.png)
+![R64 reconnected. The output now rises and falls with the motor rather than sitting still, which is the speed control finally doing its job; the tail at the right is the motor spinning down.](image-20241103-113217.png)
 
 That fixed it :wink:
 
@@ -174,7 +174,7 @@ Both drives share the read and write logic, so we can continue with just drive 1
 
 Looking at the following oscilloscope image:
 
-![image-20241103-160415.png](image-20241103-160415.png)
+![At 2ms per division, just after the motor starts reversing. The head amplifier on the bottom trace is picking up signal and the strobe and data lines above it are toggling.](image-20241103-160415.png)
 
 Yellow: pin 6 of E28 “AMP”, the 1st exit of the amplified head signal.
 
@@ -188,7 +188,7 @@ This is the start of the run, i.e. after the motor just started reverseing.
 
 Another run:
 
-![image-20241103-162346.png](image-20241103-162346.png)
+![The same signals at 20ms per division across a whole attempt: a rewind, then a reverse, then a short forward read before the drive gives up.](image-20241103-162346.png)
 
 This looks like it is rewinding, then reversing and trying a forward read and then giving up.
 
@@ -204,25 +204,25 @@ These can easily have to do with the quality of the tapes…
 
 I have found a set of new old-stock tapes:
 
-![image-20241103-165028.png](image-20241103-165028.png)
+![The new old stock: a DEC Mini Cassette Case, part EO-TU58-KF.](image-20241103-165028.png)
 
-![image-20241103-165102.png](image-20241103-165102.png)
+![Inside the case the cartridges are still sealed in their cellophane.](image-20241103-165102.png)
 
-![image-20241103-165134.png](image-20241103-165134.png)
+![A DECtape II certified data cartridge, part TU58-K, format dated 1978, with its record tab still in place.](image-20241103-165134.png)
 
 These tapes, however, were produced in the 80’s, so they are more than 40 years old.. The tape contains a rubber band which moves the tape when the capstan wheel moves:
 
-![image-20241103-165451.png](image-20241103-165451.png)
+![The cartridge opened up. The arrows follow the rubber band, which runs from the capstan around both idlers and presses on the tape packs to move them.](image-20241103-165451.png)
 
 This rubber band has gone bad an damaged the tape surface as can be seen here:
 
-![image-20241103-165558.png](image-20241103-165558.png)
+![The tape pack seen edge on, with the mark the perished band has left across the tape surface.](image-20241103-165558.png)
 
 This means the magnetic layer will have trouble there. It does not end there though; the magnetic layer itself has not really survived well either so it’s not that likely that we can actually read data off the tape. This is made worse by the fact that DEC TU58 tapes cannot be formatted: they came preformatted from the factory, and the TU58 firmware does not have any code in it that can format a tape. There is supposed to be firmware called tu58-i which can format- but the Internets do not seem to have it.
 
 Let’s finish with some more images. This is a read that did several retries but ended with a seek error:
 
-![image-20241103-170329.png](image-20241103-170329.png)
+![A read that retried several times before ending in a seek error. The head amplifier does pick up bursts of something, so there is data of a sort down there.](image-20241103-170329.png)
 
 The device does things, and there seems to be some “data”..
 
@@ -234,7 +234,7 @@ There has been some discussion about whether a TU58 can be “updated” with ne
 
 This, however, seems unlikely to me. The tape units in the tu58 do not have any optical sensors for the BOT and EOT tape holes, i.e. these:
 
-![image-20241103-173022.png](image-20241103-173022.png)
+![The hole in the leader, arrowed, that marks the end of the tape. The TU58 has no optical sensor to see it, which is what makes formatting impossible.](image-20241103-173022.png)
 
 In other tape drives, like the HP drives used in the 9825A/B/T and the HP-85A, there is an optical sensor which can detect these holes. The TU58 cannot. And when the tape is rewound too far it will come loose from the wheel, as the tape is not glued or hard fixed on it: the tape gets stuck to the wheel solely by being wound on it.
 

@@ -11,7 +11,7 @@ There are multiple parts inside an Unibus:
 
 In addition, there are two versions of Unibus. Normal Unibus and modified Unibus. **These are not compatible!** In “newer” PDP-11’s both of these are present on the backplane, and it is a bad idea to use boards meant for the one in the other.
 
-![](image-20230410-143835.png)
+![From retrocmp: a backplane with the three regions colour coded, standard Unibus in red at the bottom, modified Unibus in blue above it, and the SPC slots in yellow.](image-20230410-143835.png)
 
 Picture [from here, where there is also way more information](http://retrocmp.com/tools/uniprobe/292-uniprobe-standard-unibus-modified-unibus).
 
@@ -41,13 +41,13 @@ This is a special backplane for the 11/44's KD11-Z processor. It is a 14-row bac
 
 To test the Unibone we need it in a terminated backplane like the DD11-CK:
 
-![](image-20230422-101852.png)
+![The Unibone seated in the DD11-CK with the BeagleBone on top, the M930 terminator visible in the slot at the right, and a PC supply standing by for power.](image-20230422-101852.png)
 
 We need two passive terminators (M930, donated by Geert):
 
-![](image-20230422-102210.png)
+![One of the two M930 terminators, component side, with the CTS resistor packs and the 13-12628 arrays that do the terminating.](image-20230422-102210.png)
 
-![](image-20230422-102243.png)
+![The solder side of the same board, where the BUS TERMINATOR M930 legend is etched into the copper.](image-20230422-102243.png)
 
 Login to the Unibone with:
 

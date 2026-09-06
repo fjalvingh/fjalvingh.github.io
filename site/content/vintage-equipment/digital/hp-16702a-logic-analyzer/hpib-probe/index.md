@@ -6,7 +6,7 @@ It uses the HP 01650-63203 isolation adapter which uses a 2x20 pin connector whi
 
 The device’s pin assignments are as follows:
 
-![](image-20230311-204125.png)
+![The format screen with the pod assignment: STAT on B1[7:0], DATA on B1[15:8] and the dummy ADDR label on B2[0] that the inverse assembler insists on.](image-20230311-204125.png)
 
 The “ADDR” label is strange here, but it is required to exist for the inverse assembler to work. It just has a dummy assignment to an unused pod.
 
@@ -50,7 +50,7 @@ A similar program for the HP 85A would be:
 
 An example trace from the 1st program looks as follows:
 
-![](image-20230311-204912.png)
+![The decoded trace: LAG_03 makes device 3 the listener, then ID 5 3 8 5 A goes out, and the timings run out to 88ms.](image-20230311-204912.png)
 
 It starts by sending a COMMAND LAG\_03. This makes device 3 the LISTENER (the 5384).
 
@@ -68,7 +68,7 @@ cat ":D700"
 
 which looked like this:
 
-![](image-20230311-211353.png)
+![Nine parallel polls in a row, each answered with FF. The HPDISK device should be pulling bit 0 low and is not.](image-20230311-211353.png)
 
 This repeatedly does a parallel poll. That parallel poll should have been answered by the HPDISK device by pulling bit 0 of the data lines LOW. This does not happen, and that does seem to be at least the first cause.
 
@@ -76,7 +76,7 @@ After the poll it UNLISTENs and UNTALKs; the other commands I do not yet know :w
 
 Another try delivered this:
 
-![](image-20230312-135749.png)
+![Another attempt, sixteen polls this time, still all FF, followed by a run of NUL bytes before the addressing starts again.](image-20230312-135749.png)
 
 More info on HP-IB:
 

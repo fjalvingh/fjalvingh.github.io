@@ -14,7 +14,7 @@ I wrote a simple command line tool to handle this in Java ([https://github.com/f
 
 The first part of the transfer works OK. I need to send a 'T' to start the process. Then I need to wait for a confirmation sent by the device. The device checks which slots contains EPROMs and checks their type which takes about 5 seconds. After that I receive either a SOH (0x01) indicating all is well, or a CAN indicating there is some error. That all works.
 
-![](image-20220925-203605.png)
+![The programmer next to the 4951B analyzer used to watch the line. The display reads RECEIVE and the analyzer shows the record going out, so the first handshake works.](image-20220925-203605.png)
 
 After that I should start sending Intel HEX records one by one; after each record I should receive either a NAK or an ACK. This part, however, never works… The device always remains with “RECEIVE” on its display and that is the end of things.
 
@@ -40,17 +40,17 @@ After I found the code the upload stuff was quite easy to understand. It was rea
 
 So, next step: logic analyzer
 
-![](image-20220925-203515.png)
+![The bench setup: the GangPro on its side with the 16702A behind it, ribbon cables running from the EPROM socket up to the analyzer pods.](image-20220925-203515.png)
 
 ## The logic analyzer
 
 I connected my 16702A to the EPROM so that I could read what the device was doing. As an initial test I measured what the thing did when it was at RECEIVING and not doing anything else anymore. The LA display showed this:
 
-![](image-20220925-182037.png)
+![The analyzer listing while the device sits at RECEIVE: it cycles between 3273, 3274 and 3275 at 2.5us a state, doing nothing but waiting.](image-20220925-182037.png)
 
 It nicely shows the cycle type for the instructions (2.5us), and it corresponds to this part of the disassembly:
 
-![](image-20220925-182423.png)
+![The matching disassembly. The arrow marks 3273, the two-instruction wait_startbit_initial loop the trace is stuck in.](image-20220925-182423.png)
 
 Ghidra unhelpfully truncates comments, I could not find a way to stop that idiotic behavior.
 
@@ -62,7 +62,7 @@ Next step is to send actual data and try to capture the way it reads the serial 
 
 Next step is to try to trigger at the end of a record, which is at 31cf (check\_checksum\_correct). This did not trigger. So: try try starting here at 3187:
 
-![](image-20220925-183908.png)
+![The code that reads an Intel hex record. After the record type is read at 3197 a zero should jump to LAB_CODE_019e; instead it falls through to 319b, so the device is not seeing a type of zero.](image-20220925-183908.png)
 
 This worked. It called serial\_read\_hex\_byte, and then called it again to read the high address, the low address, and the record type byte at 0x3197. After its return however it moved to 319b- which means it saw the record type as something else than zero. That is a good reason for a problem 8-(
 
@@ -74,10 +74,10 @@ So, let’s start sending a record with all zeroes:
 
 No effect whatsoever. Whatever I do it always does this sadly enough:
 
-![](image-20220925-203324.png)
+![Triggering at 3187 does catch a record. The arrow marks the entry, and from there it runs on into the branch that treats the record as something other than data.](image-20220925-203324.png)
 
 Next try is to ensure that the data on the 8243 port 7 is correct (probe on the 8243 P7 bit 0):
 
-![](image-20220926-200947.png)
+![The Rigol decoding what actually leaves the PC: 3A then eighteen 30s then 0D 0A, which is the all-zero record exactly as intended. The device still ignores it.](image-20220926-200947.png)
 
 That really is what I’m sending right now; zero after zero, and still the bloody thing does not see them 8-(

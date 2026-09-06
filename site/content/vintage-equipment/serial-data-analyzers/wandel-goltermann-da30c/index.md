@@ -1,10 +1,10 @@
 # Wandel & Goltermann DA30C
 
-![image-20240714-135549.png](image-20240714-135549.png)
+![The DA-30C open on the bench: the screen dead as advertised, with the trackball keyboard folded down in front of it.](image-20240714-135549.png)
 
 I got this for 50 euro’s from EBay. The device was reported as “powering up but display stays black”. It is worse than that really: there is no activity at all from the CPU board. The device came with all usable slots filled:
 
-![image-20240714-135705.png](image-20240714-135705.png)
+![The back, with every slot filled. The labels read off left to right: two BN9305/00.26 protocol analyzers, the /00.35 FDDI module across two slots, the /00.17 2Mbps WAN module and the /00.08 Ethernet interface.](image-20240714-135705.png)
 
 - BN9305/00.26 Protocol Analyzer module, 2x (but slightly different boards)
 - BN9305/00.35 16MB FDDI Analysis module, a 2-slot part
@@ -26,13 +26,13 @@ Opening up the device showed its interior. It consists of a device specific back
 
 It is very well constructed but a terrible amount of work to get things to a state where I can actually measure what is happening; I needed to completely remove everything from the frame so that in the end I’m left with this:
 
-![image-20240714-140524.png](image-20240714-140524.png)
+![Stripped down to what is needed to measure: the supply at the top, the bare backplane behind, and the CPU board lying in front.](image-20240714-140524.png)
 
 The power supply seemed to be in good condition; no leaking capacitors and all voltages seemed fine. It outputs +/- 5V and +/- 12V.
 
 Next thing to check is the PC board:
 
-![image-20240714-140633.png](image-20240714-140633.png)
+![The CPU board. The VL82C486 is the large VLSI part in the middle, the Dallas DS12887 clock module above it, the Cirrus CL-GD6215 video controller at the top right, and the two crystal cans sit just right of centre.](image-20240714-140633.png)
 
 According to the only datasheet I could find ( [Wandel_Goltermann_DA-30C-06-60-61-69.pdf](Wandel_Goltermann_DA-30C-06-60-61-69.pdf)
  ) this board should contain:
@@ -83,19 +83,19 @@ So, next round was to try to save the software as it cannot be found on the Inte
 
 The drive would not start; it would just give clicking noises even though the platter was spinning up, and after four retries the drive switched itself off. As nothing I did helped and it seemed like a physical problem I placed the drive on an 2.5 to 3.5 IDE converter, connected it to an old PC and opened the drive:
 
-![image-20240807-194330.png](image-20240807-194330.png)
+![The 2.5 inch drive opened on its IDE adapter, so the head arm can be nudged by hand while the platter spins up.](image-20240807-194330.png)
 
 When starting the PC I could see that the drive had trouble moving its heads; it seemed like they were stuck not to the platter but by something when they were in an extreme position. Gently pushing the head arm while starting actually made the drive start up normally, and that allowed me to dump an image from it.
 
 But trying to read that partition on Linux failed with errors like “invalid media code 0xb8”. I then dumped the strings from the files and that looked like this:
 
-![image-20240807-194442.png](image-20240807-194442.png)
+![Strings from the dumped image. It should read Copyright, but bit 6 is zero in every byte, so the text comes out mangled.](image-20240807-194442.png)
 
 The first text should read “Copyright “, but characters are mangled. In fact bit 6 in all data is zero, and that is what now causes issues.
 
 Luckily, wriggling all connectors everywhere a little bit fixed the issue, so I could now mount:
 
-![image-20240807-194515.png](image-20240807-194515.png)
+![After reseating every connector the partition mounts cleanly: AUTOEXEC.BAT, the DA31_SYS and FDDIEEPM directories and the rest of the DOS install, all dated 1993 and 1994.](image-20240807-194515.png)
 
 It is a total of 55MB in files on the file system.
 
@@ -106,7 +106,7 @@ The disk image can be found here: [da30c-partition-backup.zip](da30c-partition-b
 
 As I was waiting for a replacement for the drive I decided to see if I could save the drive, as it did seem to work. The actual problem was that the head arm got stuck when the arm was in one of the extreme positions. I opened up the drive again and removed the plate over the head arm joint. The plate looks like this:
 
-![image-20240807-194954.png](image-20240807-194954.png)
+![The plate from over the head arm joint. The post at the top carried the rubber band the arm strikes at full deflection; here it has already been cleaned off.](image-20240807-194954.png)
 
 That stand at the top has a rubber band around it, and it is this band that the head arm hits in one of the extreme positions. The rubber has almost liquefied, and is very sticky. When the arm hits it it gets stuck, and the drive does not have enough power to get it free again and this causes the failure.
 
@@ -130,7 +130,7 @@ There are several web pages that deal with this disaster on 24 feet, and I encou
 - I drilled through the pins to disconnect them from the defunct battery
 - I then soldered a new battery holder on the pins and glued it on top of the device:
 
-![image-20240807-195121.png](image-20240807-195121.png)
+![The CR2032 holder glued on top of the Dallas module and soldered to pins 16 and 20, which were drilled through to cut the dead cell loose.](image-20240807-195121.png)
 
 This made the machine remember its drive settings and the time.
 
@@ -138,4 +138,4 @@ This made the machine remember its drive settings and the time.
 
 With these repairs the machine passed its selftests:
 
-![image-20240807-195151.png](image-20240807-195151.png)
+![The hardware test after the repairs: every slot passes, and the machine identifies itself as a DA-30 protocol analyzer running software version 3.4.](image-20240807-195151.png)

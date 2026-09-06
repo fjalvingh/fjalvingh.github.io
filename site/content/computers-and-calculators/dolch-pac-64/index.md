@@ -6,7 +6,7 @@ I got this machine through Marktplaats, a Dutch consumer auction and secondhand 
 
 The machine is a beautiful rugged “lugtop” from around 1990.
 
-![](image-20230903-091817.png)
+![The PAC 64 open, booting Windows 2000 Professional off the recovered image, with the second keyboard in front of it.](image-20230903-091817.png)
 
 The machine was originally a Network General Sniffer. These were immensely expensive machines at the time, containing different kinds of hardware to allow “sniffing” on different communication networks. Mine came with a 3com FDDI card (3c996-SX), a 3com 1GB ethernet card (3c996-T) and a WAN card (a Network General L2000).
 
@@ -35,7 +35,7 @@ This machine came with a dead battery, and it causes boot failures.
 
 The battery is embedded in a “chip” like thing that contains a real-time clock, memory and the battery, all helpfully enclosed in an epoxy layer - so the battery cannot be replaced. The type of the thing is Odin oec12c887a. A replacement for this, the Dallas ds12C887A is still available but sourcing a new one is hard.
 
-![](image-20230903-092659.png)
+![The part that holds the battery: an Odin OEC12C887A, a clock, memory and cell all potted in one epoxy block.](image-20230903-092659.png)
 
 I attempted to repair the module by adding an external battery as found out by other courageous people. Links:
 
@@ -44,15 +44,15 @@ I attempted to repair the module by adding an external battery as found out by o
 
 As the device is not socketed I decided to use a soldering iron to chip away the exterior to expose the pins that need to be connected to the new cr3032 cell:
 
-![](image-20230828-192348.png)
+![The retrofit drawing for the equivalent Dallas DS1287, showing where to cut through to the two battery pins.](image-20230828-192348.png)
 
 That resulted in this:
 
-![](image-20230828-192605.png)
+![The epoxy chipped away with a soldering iron. The arrows point at the two exposed battery connections.](image-20230828-192605.png)
 
 These are the connections to the expired cell. Next step is to add the new cell battery:
 
-![](image-20230831-161231.png)
+![The CR2032 holder taped to the chassis and wired back to those two pins, with the AI5TV motherboard above it.](image-20230831-161231.png)
 
 And with that the machine could remember its settings :wink:
 
@@ -74,7 +74,7 @@ Both harddisks were unreliable: after fixing the battery the machine would rando
 
 These are IDE disks. To make recovery easy I got an USB3 to IDE converter. The mode, I got was this one:
 
-![](image-20230903-083045.png)
+![The USB 3.0 to IDE and SATA adapter used for the recovery. It takes 3.5 and 2.5 inch drives and powers them itself.](image-20230903-083045.png)
 
 The device is very complete; it comes with USB cable and an adapter, accepts both 3.5 and 2.5 IDE connectors and SATA, and can power the disk drive by itself, making it the perfect tool.
 
@@ -88,7 +88,7 @@ This will show the kernel log buffer messages as they appear during the process.
 
 After switching on the converter the drive should start up. I needed to do that a lot, at first, as the drives really did not want to, but after some time they at least came up reliably. This shows in dmesg something like this:
 
-![](image-20230903-084007.png)
+![dmesg as the drive spins up: a Quantum Fireball ST2.1A, 4124736 blocks of 512 bytes, attached as sdc.](image-20230903-084007.png)
 
 In this message you also see the drive name (sdc) which needs to be used for the recovery.
 
@@ -111,7 +111,7 @@ This limits retries to 1 (-r 1) because the drive and the OS are both already re
 
 This should start the process of recovery, and it shows info while it trundles along:
 
-![](image-20230903-084624.png)
+![ddrescue partway through, reading backwards: 1814MB rescued, 86.21% done, 33 bad areas so far.](image-20230903-084624.png)
 
 If you hit a bad spot you will hear the drive retrying. If that works things move on without errors, but if it fails you might find that the process actually hangs without doing a lot. To work around that I found that the best way is the following:
 
@@ -141,7 +141,7 @@ I decided to replace the IDE disks with a single IDE to SDCARD converter. I migh
 
 I used the following converter:
 
-![](image-20230903-090250.png)
+![The IDE to SD card converter that replaced both drives, an SD35VC0.](image-20230903-090250.png)
 
 The type seems to be an “SD35VC0” (the 0 is either a zero or the letter O.
 
@@ -186,11 +186,11 @@ Once saved replace the disk with the SDcard thing again. It should now boot.
 
 Next was the damaged keyboard. I ordered some replacement switches (Cherry MX Blue) and replaced the damaged switch:
 
-![](image-20230903-093526.png)
+![The broken switch under the left control key, with the stem snapped away and the contact exposed.](image-20230903-093526.png)
 
-![](image-20230903-093600.png)
+![The keyboard opened up: a Cherry matrix board with the controller on a separate strip along the top.](image-20230903-093600.png)
 
-![](image-20230903-093641.png)
+![The replacement Cherry MX Blue soldered in, still without a cap.](image-20230903-093641.png)
 
 I did of course not have the original keycap so I reused one from an old set of PC keycaps.
 

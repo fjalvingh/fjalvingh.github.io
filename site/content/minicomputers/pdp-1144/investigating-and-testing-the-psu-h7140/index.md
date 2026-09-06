@@ -15,17 +15,17 @@ There are two models:
 
 This is marked on the label of the device:
 
-![](image-20230529-203939.png)
+![The label on the supply that came with the machine: H7140-B, 220V to 240V at 9A, 1200 watts.](image-20230529-203939.png)
 
 Geert got me another power supply as a spare, and the idea was to first check that supply and see whether it provides the correct voltages; if it does we could swap supplies before repairing the other one.
 
 The second supply however had a different marking:
 
-![](image-20230529-204221.png)
+![The spare Geert supplied is marked H7140 AA/BA, 120V at 15A, so on the face of it the wrong one.](image-20230529-204221.png)
 
 Luckily enough there is a small detail that helps:
 
-![](image-20230529-204330.png)
+![The detail that saves it, arrowed: a slide switch under a glued-on cover that selects 120V or 230V.](image-20230529-204330.png)
 
 That little thing is a switch, and if you remove the cover there (it is glued) it switches between 120V and 230V. This means that as long as you keep the cover bent you can switch to 230V. I spend a bit of time confirming this on the schematic diagram of the thing.
 
@@ -50,15 +50,15 @@ The first step was to make sure I could create a load on the PSU; the +5V must h
 
 To connect this I dismantled a PC power supply Molex connector and removed the pins; these are the same size as the MATE-N-LOK connectors used on the H7140. With this I connected the electronic load:
 
-![](image-20230529-205950.png)
+![The 150W electronic load wired to the supply through pins robbed from a PC Molex connector, which are the same size as the MATE-N-LOK ones.](image-20230529-205950.png)
 
 The pins were inserted in the connector as follows:
 
-![](image-20230529-210121.png)
+![The pins seated in the connector shell: red and yellow bridged as +5V, both blacks as ground. The blue Berg connector below is J1.](image-20230529-210121.png)
 
 The red+yellow are connected together and are the +5V, both blacks are ground. This is according to the following part of the schematic:
 
-![](image-20230530-182910.png)
+![The connector part of the schematic. J2, J3 and J4 all carry +5V on pins 1 and 4 and ground on 7 and 8, with +15V on pin 2 and -15V on pin 13.](image-20230530-182910.png)
 
 J2, J3 and J4 are the 15 pin MATE-N-LOK connectors that accept the connectors from the backplane, and as can be seen 1+4 are +5v and 7+8 are ground.
 
@@ -81,27 +81,27 @@ The trick is that initially the net power goes through a resistor. This resistor
 
 To be able to test the CPU we need to act as if the key is moved to the LOCAL setting. This comes in on the PSU on connector J1 on the PSU’s motherboard: the blue Berg connector that can be seen in the picture above. Following the schematic and the signals it looks to me like the signal we need is called DC ON (L), which comes in from pin 5 of that connector. To be able to play with that we need something to do that:
 
-![](image-20230529-212150.png)
+![The switch made up to pull DC ON (L) low: a toggle on flying leads with a ribbon header for J1 at the other end.](image-20230529-212150.png)
 
 ## Testing the PSU
 
 With all of this in place it is now time to start testing.. Add test leads in the +15V and -15V sockets:
 
-![](image-20230530-184545.png)
+![Test leads pushed into the +15V and -15V sockets of the third connector, with the DC ON lead plugged into J1 alongside.](image-20230530-184545.png)
 
 Switch on the electronic load to 6A constant current:
 
-![](image-20230530-184809.png)
+![The electronic load set to 6A constant current, still switched off: the minimum the +5V rail wants to see.](image-20230530-184809.png)
 
 And then switch on the power and switch the “DC ON (L)” switch.. We need to be quickish because there is no cooling of the PSU…
 
 The PSU switches on (Yippee) and the electronic load shows:
 
-![](image-20230530-185315.png)
+![The load running: 5.255V at 5.997A, 31.5W. Slightly high against the 5.1V +/- 0.1V spec, but this is only the minimum load.](image-20230530-185315.png)
 
 The voltages of the +15V and -15V rails are:
 
-![](image-20230530-185349.png)
+![The two rails on the bench meters: +14.998V and -14.9875V. Both are fine, so this spare supply is good.](image-20230530-185349.png)
 
 These seem to be fine, but the +5V rails seems to be slightly high. It should be 5.1V +/- 0.1V, but I will assume this to be fine considering we will have loss on the internal wiring and we’re only pulling 6A of load (which is the minimum for this PSU).
 

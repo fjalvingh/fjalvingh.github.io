@@ -6,7 +6,7 @@ Sadly enough the thing did not work out of the box, so let’s debug..
 
 The problem seems to be with the I2C communications. Some oscilloscope traces:
 
-![](image-20230628-192504.png)
+![Both ends decoding the same Write:20, but the panel end acknowledges with ACK:0 while the Unibone end reads ACK:1. The bus is not being pulled down far enough.](image-20230628-192504.png)
 
 The clock is yellow, taken from the i2c panel 1st MCP23017. The blue trace is SDA as seen on the I2C board. The purple trace is SDA as seen on the Unibone.
 
@@ -18,4 +18,4 @@ This nicely explains why we see the UP going NAK (purple): there is a 10K resist
 
 After fixing that we have a working tool:
 
-![](image-20230628-204848.png)
+![After the fix the exchange runs through cleanly: Write:21, then Data:13, each properly acknowledged.](image-20230628-204848.png)

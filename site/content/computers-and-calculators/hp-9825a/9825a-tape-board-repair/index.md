@@ -4,7 +4,7 @@ After adding the tape drive I got from Rik Bos I tried to send the rew command t
 
 First step is to see whether we have communications working with the tape board. I measured U4 pin 12 (INT\_, yellow) and U4 pin 8 (purple). U4 is a 74LS20, dual 4 in NAND gate of which pin 8 is an output and pin 12 is one of the inputs. When I start the machine (and when I send the REW command) I see this:
 
-![](image-20220712-180425.png)
+![U4 pin 12 on yellow at 20us per division. A single narrow dip is all the activity there is, at 185kHz.](image-20220712-180425.png)
 
 U4 pins measured:
 
@@ -21,19 +21,19 @@ In our case PA3\_ being 0 and p13 also being 0 seems to be an issue.
 
 Next measure: PA1\_ (U5P1, purple) and PA0\_ (U10P11, blue):
 
-![](image-20220712-183623.png)
+![PA1_ and PA0_ at 50ms per division: PA1 sits near zero while PA0 hovers halfway up, which is what raised the suspicion.](image-20220712-183623.png)
 
 PA1 is zero’ish, but PA0 (blue) is hovering in the middle.
 
 Next measurement: on CPU board, measure U1P4 (PA0 cpu, yellow), U1P6 (PA0 buffered out, purple) and Tape board U10P11 (PA0 directly from CPU U1P6 (resistance 1.6 ohm):
 
-![](image-20220712-192045.png)
+![The same signals taken at the CPU board instead. Everything sits cleanly high, so the earlier reading must have been a measurement error.](image-20220712-192045.png)
 
 All nice voltages and all nicely 1, oddly enough, so the earlier measurement must have been in error 8-(
 
 Sending a “REW” with the same assignments does drop PA0 and this percolates proper:
 
-![](image-20220712-192408.png)
+![Sending a REW: a single clean drop appears on all four traces at once, so PA0_ does fall and does reach the tape board.](image-20220712-192408.png)
 
 Remember logic is inversed, so addr 0x1 would indeed need to drop PA0\_- as it seems to do.
 

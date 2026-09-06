@@ -12,7 +12,7 @@ The connectors used on the M7090 are called “Berg connectors”. We need to ma
 
 The pinout for the serial console cable (J2) to DB25 is as follows. Take the following image as an indication of the numbering scheme on the 20 pin connector:
 
-![](image-20230401-153515.png)
+![The numbering scheme for the 40-way connector, viewed from the front: position 1 at the top left, 2 below it, and position 20 blocked by the key.](image-20230401-153515.png)
 
 We’re looking at the FRONT and number from left to right.
 
@@ -43,4 +43,4 @@ Pin 9 (mantle) to pin 5
 > [!WARNING]
 > WATCH OUT: The original connector LOOKS like a 24 pin connector, but the FIRST and LAST columns are empty, and the receiving connector has no pins there!!
 
-![](image-20230401-171817.png)
+![The finished console cable: the ribbon header at one end, a DE-9 at the other.](image-20230401-171817.png)

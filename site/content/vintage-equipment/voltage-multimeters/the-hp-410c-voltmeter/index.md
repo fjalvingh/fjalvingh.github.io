@@ -2,13 +2,13 @@
 
 Got this for a very good price in what appeared quite good state:
 
-![](image-20231217-142845.png)
+![The 410C as bought, with the function and range switches and the meter scale all in good order.](image-20231217-142845.png)
 
-![](image-20231217-142924.png)
+![The probes that came with it: the DC probe with its clip lead, and the AC probe with the detector in the barrel.](image-20231217-142924.png)
 
 The device was missing its power cord which is not a very common type (anymore): a PH-163 type connector:
 
-![](image-20231217-143033.png)
+![The PH-163 connector it needs, female and male, from madrona.ca. The scale underneath is in centimetres.](image-20231217-143033.png)
 
 (stolen, with thanks, from [http://madrona.ca/e/powerConn/index.html](http://madrona.ca/e/powerConn/index.html))
 
@@ -40,15 +40,15 @@ There was only one voltage wrong: pin 9 on A3 was shown to be +6.3V but I measur
 
 Next step was the chopper. Both neon bulbs light up, and I could change the frequency of the oscillation to the 85Hz.
 
-![image-20240204-175613.png](image-20240204-175613.png)
+![The A3 amplifier assembly. The neon subassembly and its OSC FREQ ADJ are at the top left, feeding the photocell choppers that follow.](image-20240204-175613.png)
 
 Step after was to provide 0.5V at the input, set mode to +V, and set range to 0.015v. This should show the following waveform at \*1:
 
-![image-20240204-175459.png](image-20240204-175459.png)
+![What the manual says should appear at *1: a 0.13V sawtooth, rising slowly and falling back sharply.](image-20240204-175459.png)
 
 I tried to see that with my Rigol MSO5000 but it was a flat and noisy line:
 
-![image-20240204-182421.png](image-20240204-182421.png)
+![What the Rigol actually shows there: 38.96mV peak to peak buried in noise, with no sawtooth to be seen.](image-20240204-182421.png)
 
 The voltage at the input of the chopper goes up to 19.3mV after 1 minute, instead of the 15mV expected. Problem here is that I am pretty sure my Rigol cannot measure that signal; it is known to be very noisy.
 
@@ -56,6 +56,6 @@ I then disconnected A3C1 and A3C2, cut the connection from A3C4 to the tube, and
 
 I then put the .5V directly on the input of the chopper (at the +15mv point) and measured the signal at \*1 which at least now shows the correct waveform:
 
-![image-20240204-175943.png](image-20240204-175943.png)
+![With the 0.5V put straight onto the chopper input the waveform appears properly, 341.7mV at 83.1Hz. The chopper is fine, so the fault is further along.](image-20240204-175943.png)
 
 This does seem to indicate that the chopper circuit is OK, and that something is off in the amplifier section.

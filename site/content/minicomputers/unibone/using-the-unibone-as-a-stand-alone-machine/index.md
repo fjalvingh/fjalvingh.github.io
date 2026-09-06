@@ -2,11 +2,11 @@
 
 This works if you have a “normal” backplane, like the DD11-DK (9 slots) or a DD11-CK:
 
-![image-20241108-213153.png](image-20241108-213153.png)
+![A bare DD11 backplane on the bench, seen from the connector side with the power harness coming off the right-hand end.](image-20241108-213153.png)
 
 The type can be read from the label:
 
-![image-20241108-213307.png](image-20241108-213307.png)
+![The label on the end of the backplane, arrowed: OPTION DD11-CK, part number 70-11528.](image-20241108-213307.png)
 
 > [!WARNING]
 > Make very sure it is a “generic” backplane, not a device-specific one.
@@ -18,33 +18,33 @@ On your desk, place the backplane with the power connectors facing to the right.
 
 Check which slots have the NPR line cut. These are on connector C, pins A1 and B1:
 
-![image-20241108-213653.png](image-20241108-213653.png)
+![The wire-wrap side. The three arrows point at the short diagonal links between C-A1 and C-B1 that carry the NPR line; a slot whose link is missing has its NPR cut.](image-20241108-213653.png)
 
 They can sometimes be recognized because of the little “diagonal” wire between the pins. To check use a multimeter in continuance test mode. If a NPR line is open in any other position than the Unibone it should be closed (unless you use another card in there that requires DMA) by inserting an “NPG AND BUS GRANT CONTINUITY” card in connector C of the open position:
 
-![image-20241108-214053.png](image-20241108-214053.png)
+![An NPG AND BUS GRANT CONTINUITY card going into connector C of slot 8, which is where the NPR was cut in this backplane. The arrows mark the pin 1 to 2 link, which has to face forward.](image-20241108-214053.png)
 
 In this backplane slot 8 had a NPR cut (this appears to be common for that slot in these backplanes). The grant card needs to be inserted correctly; make sure the connection between pin 1 and 2 faces **forward** as indicated in the photo.
 
 Second is to close all bus grant lines using the small G727A grant continuation boards. These go in connector D, with the copper lines facing **backwards**:
 
-![image-20241108-214410.png](image-20241108-214410.png)
+![A G727A grant continuation board in connector D, copper facing backwards. One goes in every slot that is not carrying a card.](image-20241108-214410.png)
 
 We also need two M930 terminators on both sides of the bus: insert them in connector A 1 (first one at the front at the right) and A 9 (last one), with the components facing **forward**:
 
-![image-20241108-214600.png](image-20241108-214600.png)
+![An M930 terminator in connector A with its components facing forward. The second one goes in the far slot, so the bus is terminated at both ends.](image-20241108-214600.png)
 
 Put the Unibone in an early slot, i.e. slot 2 or slot 3, and make sure that THAT slot has its NPR jumper cut.
 
 The Unibone goes into slots C..F (the SPF slots):
 
-![image-20241108-214827.png](image-20241108-214827.png)
+![The Unibone seated across connectors C to F with the BeagleBone on top. The grey ribbon at the right is the UART2 lead, and the note on the board itself repeats that it may only go in SPC rows C-F with CA1-CB1 NPG open.](image-20241108-214827.png)
 
 The last thing to manage is to provide power to the whole rigmaroo. Power needs to be applied to the Unibus backplane, it is **not** enough to power the Beagleboard using the barrel connector!!!
 
 The power connector on these backplanes looks as follows:
 
-![image-20241108-215001.png](image-20241108-215001.png)
+![The MATE-N-LOK power connector: the two pins on the red wire are +5V and the two black ones ground. Both 5V pins and at least two grounds have to be connected to carry the current.](image-20241108-215001.png)
 
 Make sure to use the connector that looks exactly the same (i.e. the one with three pins at the bottom)!!
 
@@ -100,13 +100,13 @@ In general those names mention the devices that are being **emulated** by the Un
 
 Running the script shows a lot of logging and ends with:
 
-![image-20241108-221430.png](image-20241108-221430.png)
+![The tail of the script output. It reports the emulated DL11 at 177650 on UART2, warns that the physical CPU must be disabled, and waits for ENTER.](image-20241108-221430.png)
 
 Press ENTER to actually start the processor.
 
 Nothing happens on the ssh console anymore; the real work is happening on the backplane and its effect can be seen on the terminal connected to ttyS2 (uart) on the Unibone:
 
-![image-20241108-221628.png](image-20241108-221628.png)
+![The TeleVideo 910+ on UART2 doing the real work: XXDP-XM refuses the emulated 11/20, so the small monitor boots from DL0 instead with 28KW of memory.](image-20241108-221628.png)
 
 ## Running xxdp tests
 
@@ -122,7 +122,7 @@ Let’s start with VRLAC0.BIN, a diskless test for the RLV11 RLx controller. Use
 
 This should trundle along for a while, and after that it shows:
 
-![image-20241108-223515.png](image-20241108-223515.png)
+![VRLAC0.BIN loaded and handing over to the supervisor: CVRLAC, the diskless RLV11 RL01 diagnostic, sitting at the DR prompt.](image-20241108-223515.png)
 
 This thing saying “DR” is called the “SUPERVISOR”, some tests start with that. In that case you have the following commands:
 
@@ -155,14 +155,14 @@ IDU    inhibit dropping of units by diagnostics
 
 A session of this test:
 
-![image-20241108-224239.png](image-20241108-224239.png)
+![Answering STA and then working through the hardware questions: not an 11/23, bus address 174400, vector 160, drive 0, BR level 5.](image-20241108-224239.png)
 
 After a while this goes clearly south:
 
-![image-20241108-224312.png](image-20241108-224312.png)
+![The first failures arrive: forced OPI errors in tests 028 and 029 that report no expected errors found, and then an OPI timing error in test 031.](image-20241108-224312.png)
 
 and after 20 seconds more the excrement really hits the rotary device:
 
-![image-20241108-224402.png](image-20241108-224402.png)
+![Twenty seconds later the same errors are scrolling past continuously, now starting from a bit-set instruction on RLBA in test 017 that returned the wrong result.](image-20241108-224402.png)
 
 Well, press CTRL+C to stop the test, and enter EXIT to exit the SUPERVISOR.

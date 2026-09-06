@@ -23,7 +23,7 @@ all ok
 
 Looking at the phase comparator I see pin 11 around 3.3v, with the 100kHz pulses riding on top:
 
-![](image-20220512-200337.png)
+![Pin 11 of the phase comparator at 50ns per division. The cursors put the pulse at 3.133V above the baseline and 178.9ns wide.](image-20220512-200337.png)
 
 The pulse level is around 4V, this seems to be correct as per the description in the “Phase Comparator” explanation on P253 (the pin voltage is biased to just below the ECL transition level of < 3.3v).
 

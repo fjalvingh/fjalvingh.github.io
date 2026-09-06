@@ -29,19 +29,19 @@ From [the HP Computer Museum](http://www.hpmuseum.net/display_item.php?hw=1123) 
 
 From the 4951C service manual (page 210), these are J2’s pin assignments on the device:
 
-![](image-20211121-114633.png)
+![The J2 line identifiers from the service manual, with the direction of each signal: pin 26 carries ~DTRA from the 4951 to the pod.](image-20211121-114633.png)
 
-![](D37male.gif)
+![The 37-pin sub-D numbering seen from the rear, male above and female below, for working out which physical pin is which.](D37male.gif)
 
 The schematic for the CPU and DLC part of the analyzer is this (figure 8-14):
 
-![](a1-2-cpu-and-dlc.png)
+![Figure 8-14, the A1-2 CPU and DLC board. The Z8530 SCC is in the lower middle, with the pod latches and the data selector multiplexer feeding J2 along the top.](a1-2-cpu-and-dlc.png)
 
 The information on the 18179A RS232 POD starts around page 350 in the service manual. The interface connector there is called J1 and it has the following assignments visible:
 
-![](18179-60001-a1-schematic.png)
+![The 18179A pod, sheet 1: the line receivers at the left, the K100 to K300 latching relays in the middle, and the breakout box switch matrix on the right.](18179-60001-a1-schematic.png)
 
-![](18179-60001-a1-schematic-2.png)
+![Sheet 2, the transmitter and receiver section. Each control line gets its own mark and space comparator pair driving an indicator LED.](18179-60001-a1-schematic-2.png)
 
 This seems to be a straight-through cable. Sadly enough the EXT test still fails with such a cable installed 8-/
 
@@ -49,17 +49,17 @@ The SCC seems the most likely problem. This is a [Zilog Z8530](https://en.wikipe
 
 ## Pictures
 
-![](DSC_0001.JPG)
+![The analyzer opened up, with the CRT at the right and the CPU board carrying MEM PROM 1 and the two TAPE SM PROMs at the left.](DSC_0001.JPG)
 
-![](DSC_0002.JPG)
+![The same board closer in: the NEC D80C39C at the top left, the NSC810AN-4I RAM/IO below it, and the 04951-10008/10009 tape state machine PROMs at the bottom.](DSC_0002.JPG)
 
-![](DSC_0004.JPG)
+![A second board with an HD6350P and a 1820-1779 in the middle, and the ribbon to the front panel connector at the left.](DSC_0004.JPG)
 
-![](DSC_0009.JPG)
+![The solder side of the top board, showing how little is actually on it.](DSC_0009.JPG)
 
-![](DSC_0011.JPG)
+![The memory board lifted out: four MEM PROMs and six HM6264LP static RAMs, with the keypad resting alongside.](DSC_0011.JPG)
 
-![](DSC_0014.JPG)
+![The board carrying the fault. The purple ceramic Zilog Z8530CS SCC sits at the left of centre, next to the MC68A45P CRT controller and the two CHAR ROMs.](DSC_0014.JPG)
 
 ## Fixing the issue
 

@@ -2,7 +2,7 @@
 
 This beautiful device is a 16 bit calculator from 1976. Its CPU is a work of art, as are the internals of the machine.
 
-![](image-20220514-090753.png)
+![The 9825A on the bench, with the keyboard and printer assembly from a second machine opened up beside it.](image-20220514-090753.png)
 
 ## Parts:
 

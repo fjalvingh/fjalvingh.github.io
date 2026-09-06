@@ -55,18 +55,18 @@ But there is a way to do this in bulk [as described here](https://en.dlyang.me/g
 
 Before changing, the reference symbol looks like:
 
-![](image-20230520-154724.png)
+![Before: every footprint shows both its reference and its value, so the board is buried under R14, 10k, C1, 10nF and the rest.](image-20230520-154724.png)
 
 Step 1. Open ‘Edit’ -> ‘Edit Text & Graphic Properties…’
 
-![](image-20230520-154759.png)
+![The Edit Text and Graphic Properties dialog as it opens, with nothing selected in Scope and no filters set.](image-20230520-154759.png)
 
 Step 2. Select ‘Reference Designators’ on the top left panel; check the filter as ‘F.silkscreen’; Specify the footprint you want to change in ‘Filter items by parent footprint reference’, e.g. ‘R\*’, ‘C\*’.
 
 Step 3. \[The most important one\] **Uncheck the ‘Visible’** in the ‘Action’ panel.
 
-![](image-20230520-154930.png)
+![The four things to change, arrowed: tick Reference designators, filter by layer F.Silkscreen, put R* in the parent reference filter, and uncheck Visible in the Action panel.](image-20230520-154930.png)
 
 Step 4. Done. Here is how it looks after editing:
 
-![](image-20230520-155002.png)
+![After: the references are gone from the silkscreen and only the values remain, which leaves the layout readable.](image-20230520-155002.png)

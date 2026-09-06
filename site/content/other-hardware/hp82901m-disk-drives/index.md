@@ -23,7 +23,7 @@ The first one, for the first drive, did do something: it played with the drive f
 
 The second one reported a D0 most of the time, but sometimes something else. Time to open up the box :wink:
 
-![](image-20221206-202640.png)
+![The drive box opened. The controller board is at the right with the MC6802P, the MB8866 floppy controller and the D8291 talker/listener; one drive lies removed at the left.](image-20221206-202640.png)
 
 The control board uses an MC6802P processor, a MB8866 floppy controller and the D8291 GP/IB Talker/Listener.
 

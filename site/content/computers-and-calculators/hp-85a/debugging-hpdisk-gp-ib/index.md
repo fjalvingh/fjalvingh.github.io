@@ -6,7 +6,7 @@
 
 Some traces of the Amigo protocol between a HP 85A and an 82901M dual floppy drive. Following the info about the Amigo protocol [from here](https://www.hp9845.net/9845/projects/hpdrive/)..
 
-![](image-20230319-174516.png)
+![The decoded HP-IB lines during an Amigo identify: Untalk, then Secondary 0, and the device answering 01 04 with EOI on the last byte.](image-20230319-174516.png)
 
 This looks like the Amigo “Identify” sequence: Untalk, Secondary 0 in which the device answers 01 04, which is the 82902M.
 

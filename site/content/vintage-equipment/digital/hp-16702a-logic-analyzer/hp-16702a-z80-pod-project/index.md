@@ -4,7 +4,7 @@ Plan is to create a Z80 pod that can be inserted in a Z80 socket.
 
 The pinout of a HP probe connector is as follows:
 
-![](image-20221012-214718.png)
+![The 40-pin probe pinout from HP's custom probing guide: odd pins carry the clock and D0 to D15 with +5V at 1 and 39, even pins are all ground.](image-20221012-214718.png)
 
 The configuration of the HP pod looked as follows according to this link:
 
@@ -67,7 +67,7 @@ This is what I found out later; other posts were a bit less clear which led to:
 
 Schematic diagram:
 
-![](image-20221012-210324.png)
+![The pod schematic. The Z80 socket is at the left, the two 20-way headers in the middle, and each signal gets an 8.2pF and 91K network before reaching pods 1 and 2.](image-20221012-210324.png)
 
 The 1st version of the pod has some issues. The pin assignments were not very clear, and I found out only later what the real assignments were.
 
@@ -105,7 +105,7 @@ and we focus on this part of the trace. In this the following signals are invert
 - WR (1 signals a write)
 - MREQ (1 signals a memory access)
 
-![](image-20221012-212510.png)
+![The problem in one screen: at the ld (hl),a write, WR falls before MREQ does, so the state is sampled while the bus is still settling.](image-20221012-212510.png)
 
 Let’s look at the instruction at 0869 which is “ld (hl),a” - clearly a write. We are focusing on the “write” part here and that shows the problem: WR is going down earlier than MREQ falls, so it gets sampled when it is not asserted even when there was a write. The difference in timing (g2 - g1) is about 5ns.
 

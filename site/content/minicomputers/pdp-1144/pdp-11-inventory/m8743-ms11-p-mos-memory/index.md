@@ -2,9 +2,9 @@
 
 Pictures:
 
-![](image-20230416-200905.png)
+![The M8743 component side: eight rows of NEC dynamic RAMs on the right, control logic and the two switch packs on the left.](image-20230416-200905.png)
 
-![](image-20230416-200945.png)
+![The same board from the other angle, showing the four edge connector fingers and the two purple ceramic parts among the control logic.](image-20230416-200945.png)
 
 From [gunkies](https://gunkies.org/wiki/MS11-P_MOS_memory):
 
@@ -20,7 +20,7 @@ It is a hex-height card, the M8743, and holds 1 Mbyte when fully populated with 
 
 ## Switches and jumpers
 
-![](image-20230518-162640.png)
+![Figure 2-1 from the manual: the CSR switchpack above and the MSA switchpack below it, with the red uncorrectable error and green battery LEDs on the handle.](image-20230518-162640.png)
 
 The MSA switchpack selects the start address for the memory.
 
@@ -29,10 +29,10 @@ The MSA switchpack selects the start address for the memory.
 
 Warning: “ON” represents a logical 0.
 
-![](image-20230518-163209.png)
+![Table 2-1, the starting address switches. S1 to S3 set the EUB group and S4 to S8 the Unibus group, with C for closed and O for open.](image-20230518-163209.png)
 
 The CSR switches control the address of the “control registers” for the memory board:
 
-![](image-20230518-163349.png)
+![Table 2-2, the CSR switches: sixteen module numbers from 17772100 upward, selected on A1 to A4.](image-20230518-163349.png)
 
 - [Technical manual](https://bitsavers.org/pdf/dec/pdp11/memory/EK-MS11P-TM-001_Tech_Oct82.pdf)

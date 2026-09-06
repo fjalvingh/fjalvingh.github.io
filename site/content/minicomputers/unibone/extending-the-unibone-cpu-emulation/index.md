@@ -69,13 +69,13 @@ Looking at the EXEC parts we can see the instructions being executed and their a
 
 The fiche database only contains a fiche for “DFKACA”, and I cannot match the above execution with its content:
 
-![image-20241206-213339.png](image-20241206-213339.png)
+![The DFKACA listing around 000620. The instruction at that address is MTPS, which does not match the run at all.](image-20241206-213339.png)
 
-![image-20241206-213254.png](image-20241206-213254.png)
+![Further down the same listing, at 000710, is the ASH the test actually executes, shifting R1 into R0.](image-20241206-213254.png)
 
 But there is an instruction there with the same opcode, at 000620: MTPS. Which is according to the docs a LSI11 only instruction which moves a word to the PSW. It has an accompanying read called MFPS. This is odd because the 11/34 is not a LSI11 CPU, but the test’s documentation says:
 
-![image-20241206-213942.png](image-20241206-213942.png)
+![The header confirms it: this is the 11/34 extended instruction set test, covering ASH, ASHC, MUL and DIV, modified from the LSI-11 EIS test.](image-20241206-213942.png)
 
 > [!INFO]
 > It later appeared that this fiche (MD-11-DFKAC-A\_\_PDP11-34\_\_EIS\_INSTRUCTION\_TEST\_\_EP-DFKAC-A-DL-A\_\_OCT\_1977\_bw.pdf), which dates from 8-sep-76 and which is called DFACA is not the right one for FKACA0. There is a better PDF (MAINDEC-11-DFKAC-A-D\_1134-EIS-Instruction-Tests\_Dec75.pdf) in the Diagnostics database which stems from 4-AUG-77 and which matches the module.
