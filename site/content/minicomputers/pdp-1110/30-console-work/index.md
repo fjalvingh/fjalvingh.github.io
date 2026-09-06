@@ -31,7 +31,29 @@ This showed an error: depositing the 240 actually deposited 540. Next try: depos
 
 The console switches are each connected, via the console cable, to the ALU board's "Switch reg mux", made up out of 4x 8266 quad 2-to-1 multiplexers (E33..E36). This multiplexer selects either the switch value (A ports) or the 7489 scratchpad RAM outputs to the ALU's "A" input.
 
+The load-addr process [is described here](../99-schematic-notes/index.md). The microcode:
 
+```
+CL-1   BA ← K[207].BAR ; DATI ; CKOFF
+CL-2   B ← UNIBUS DATA
+CL-3   R[17] ← B ; GOTO H-2
+```
+
+puts the switch data into scratchpad RAM at address R17 (177717). The console shows the data as being correct, but the console gets that data from the BREG flipflops. These will have been filled by step CL-2, and do not represent the actual content of the scratchpad RAM. But this does tell us which parts of circuit do seem ok:
+
+* The switch reg mux (E34)
+* The ALU (E25)
+* The ALU output switch (E08)
+* The B register (E13)
+* The BLEG MUX (E19).
+
+Reasoned because these are the full path from switches to console display.
+
+What it leaves as possible culprits are:
+
+* The 7489 Scratchpad RAM (E13)
+ 
+!i To be continued..
 
 
 
