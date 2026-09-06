@@ -4,14 +4,7 @@ Another gift from Geert (thanks)!
 
 This uses DC100 tapes that must be preformatted. I have a set of “new old stock” tapes still in cellophane, but it is more than likely that these tapes have completely perished by now. Despite that I would like to get the drive at least in technical good state again :wink:
 
-- [Cleaning and repairing the cassette drives](#cleaning-and-repairing-the-cassette-drives)
-- [Testing the unit](#testing-the-unit)
-- [Getting the motor to run..](#getting-the-motor-to-run)
--   [Oscilloscope measurements](#oscilloscope-measurements)
-- [Looking into the seek error](#looking-into-the-seek-error)
-- [TU85 Tape problems](#tu85-tape-problems)
-
-- [Formatting TU58 tapes](#TheTU58tapeunit-FormattingTU58tapes)
+[TOC]
 
 ## Cleaning and repairing the cassette drives
 

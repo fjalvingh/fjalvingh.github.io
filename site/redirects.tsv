@@ -2,6 +2,14 @@
 # Maintained automatically from the renames git detects, and used to
 # generate redirect pages at the old locations. Hand edits are kept;
 # commit this file.
+#
+# An optional '#moves' line says which of the renames git detects are
+# recorded here, and so get a redirect page keeping their old url alive:
+#   #moves off              none of them, while a site is being restructured
+#   #moves since <commit>   only the renames made after <commit>
+#   #moves all              every rename in the history (the default)
+# The moves already listed below keep working whatever it says, and stale
+# links in the markdown sources are repaired from every rename regardless.
 about.md	about/index.md
 amplifiers/index.md	hobby-projects/amplifiers/index.md
 component-details/index.md	tips-and-tricks/components-and-datasheets/index.md
@@ -187,8 +195,10 @@ kicad-tips-and-tricks/index.md	tips-and-tricks/kicad-tips-and-tricks/index.md
 kienzle/index.md	other-hardware/kienzle/index.md
 led-matrix-fun/index.md	hobby-projects/led-matrix-fun/index.md
 mini-fast-pulse-generator/index.md	hobby-projects/mini-fast-pulse-generator/index.md
+minicomputers/pdp-1110/first-powerup/index.md	minicomputers/pdp-1110/10-first-powerup/index.md
+minicomputers/pdp-1110/power-supply/index.md	minicomputers/pdp-1110/20-power-supply/index.md
 pdp-1110/index.md	minicomputers/pdp-1110/index.md
-pdp-1110/power-supply/index.md	minicomputers/pdp-1110/power-supply/index.md
+pdp-1110/power-supply/index.md	minicomputers/pdp-1110/20-power-supply/index.md
 pdp-1144/cipherf890/index.md	minicomputers/peripherals/cipherf890/index.md
 pdp-1144/convert-bic-files-to-straight-binary-files/index.md	minicomputers/pdp-common-info/convert-bic-files-to-straight-binary-files/index.md
 pdp-1144/decalphabet/index.md	minicomputers/pdp-common-info/decalphabet/index.md

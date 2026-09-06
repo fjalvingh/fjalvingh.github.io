@@ -80,3 +80,4 @@ Replacing the capacitor with a new one (47uF, which was the only one I had, and 
 
 And that, in turn, solved the console clock problem: there is now data on E006P10 (74150, the console mux).
 
+I was led in the wrong direction because the DC LO L signal measured at around 4V; I did not consider using a scope on it.
