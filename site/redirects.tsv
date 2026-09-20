@@ -195,10 +195,12 @@ kicad-tips-and-tricks/index.md	tips-and-tricks/kicad-tips-and-tricks/index.md
 kienzle/index.md	other-hardware/kienzle/index.md
 led-matrix-fun/index.md	hobby-projects/led-matrix-fun/index.md
 mini-fast-pulse-generator/index.md	hobby-projects/mini-fast-pulse-generator/index.md
-minicomputers/pdp-1110/first-powerup/index.md	minicomputers/pdp-1110/10-first-powerup/index.md
-minicomputers/pdp-1110/power-supply/index.md	minicomputers/pdp-1110/20-power-supply/index.md
+minicomputers/pdp-1110/10-first-powerup/index.md	minicomputers/pdp-1110/20-first-powerup/index.md
+minicomputers/pdp-1110/20-power-supply/index.md	minicomputers/pdp-1110/10-power-supply/index.md
+minicomputers/pdp-1110/first-powerup/index.md	minicomputers/pdp-1110/20-first-powerup/index.md
+minicomputers/pdp-1110/power-supply/index.md	minicomputers/pdp-1110/10-power-supply/index.md
 pdp-1110/index.md	minicomputers/pdp-1110/index.md
-pdp-1110/power-supply/index.md	minicomputers/pdp-1110/20-power-supply/index.md
+pdp-1110/power-supply/index.md	minicomputers/pdp-1110/10-power-supply/index.md
 pdp-1144/cipherf890/index.md	minicomputers/peripherals/cipherf890/index.md
 pdp-1144/convert-bic-files-to-straight-binary-files/index.md	minicomputers/pdp-common-info/convert-bic-files-to-straight-binary-files/index.md
 pdp-1144/decalphabet/index.md	minicomputers/pdp-common-info/decalphabet/index.md

@@ -52,8 +52,8 @@ The user manual I have (DEC-11-H05AA-A-D_1105um) is for the 1973 revision (A-D).
 
 ## Getting the machine to work (in progress)
 
-* [The power supply](20-power-supply/index.md)
-* [First power-up](10-first-powerup/index.md)
+* [The power supply](10-power-supply/index.md)
+* [First power-up](20-first-powerup/index.md)
 - [Working with the console](30-console-work/index.md)
 
 
