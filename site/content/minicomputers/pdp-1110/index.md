@@ -55,6 +55,7 @@ The user manual I have (DEC-11-H05AA-A-D_1105um) is for the 1973 revision (A-D).
 * [First power-up](20-first-powerup/index.md)
 * [Getting the console to work](30-console-work/index.md)
 * [Trying memory to respond](40-memory/index.md)
+* [The SCL system console](42-scl-console/index.md)
 
 
 ## The status of the different boards
@@ -68,17 +69,6 @@ I have about 4 copies of every board. Which one of them works and which ones do 
 The 11/05 uses a current loop for the console. The following old schematic is a conversion from current loop to RS232 and vice versa:
 
 ![The Electronic Systems part no. 600 card: one half converts RS-232 to a 20 mA current loop, the other half converts back. Note the warning that the legend is wrong on some boards.](current-loop-1.png)
-
-Further study actually shows that the 11/05 also exposes the RS232 signals as TTL level signals on the BERG connector at the back. There is one oddity: the RXD signal (receive input) is inverted inside the 11/05, so it needs to be inverted before being fed in. I made a small adapter using an FTDI converter:
-
-![The adapter I made: an FTDI board wired to a BERG header, with a 2N7000 FET under the shrink tube to invert TXD into the ~{RXD} the 11/05 expects.](FTDI-converter.png)
-
-The black shrinktube hides a 2N7000 FET which handles the inversion of the TXD signal from the FTDI adapter into ~{RXD} for the 11/05.
-
-Links to the information:
-
-* [Ronald's RS232 interface for the 11/05](https://github.com/Roland-Huisman/RS232_converter_for_PDP11)
-* [Joerg Hoppe's interface description](https://retrocmp.com/how-tos/interfacing-to-a-pdp-1105)
 
 
 ## Links to documentation
