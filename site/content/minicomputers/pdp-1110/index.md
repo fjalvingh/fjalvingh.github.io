@@ -49,13 +49,19 @@ There have been multiple revisions of this machine's internals. I found the foll
 The user manual I have (DEC-11-H05AA-A-D_1105um) is for the 1973 revision (A-D).
 
 
-
 ## Getting the machine to work (in progress)
 
 * [The power supply](10-power-supply/index.md)
 * [First power-up](20-first-powerup/index.md)
-- [Working with the console](30-console-work/index.md)
+* [Getting the console to work](30-console-work/index.md)
+* [Trying memory to respond](40-memory/index.md)
 
+
+## The status of the different boards
+
+I have about 4 copies of every board. Which one of them works and which ones do not:
+
+* [Per-board operating status](98-board-statuses/index.md)
 
 ## Current loop converter and hidden 5V RS-232
 
@@ -68,8 +74,6 @@ Further study actually shows that the 11/05 also exposes the RS232 signals as TT
 ![The adapter I made: an FTDI board wired to a BERG header, with a 2N7000 FET under the shrink tube to invert TXD into the ~{RXD} the 11/05 expects.](FTDI-converter.png)
 
 The black shrinktube hides a 2N7000 FET which handles the inversion of the TXD signal from the FTDI adapter into ~{RXD} for the 11/05.
-
-
 
 Links to the information:
 
