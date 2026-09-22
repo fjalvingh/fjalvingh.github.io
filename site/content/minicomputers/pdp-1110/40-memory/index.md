@@ -58,5 +58,23 @@ Looking at D0 while the examine takes place shows that the databus is not stuck,
 
 Clearly this board needs repair. For now I tried switching it with the other G110 boards I have. Only board#1 seems to work: a deposit followed by an exam reads the same values from address 0. Yay!
 
+## Running a program from memory
+
+Next try is to run a program from memory. I deposited just a 000777 (br .-2) at address 1000, then started from there. This did not work: the run light stayed off. I then checked 177707 (the PC) which read 000000. Not very informative. I then set the following:
+
+| Address | Value | Why |
+| ------ | ----- | ----- |
+| 4 | 000006 | Bus error goes to address 6, halts, PC should show 10 |
+| 6 | 000000 | Target of trap 4, halt instruction |
+| 10 | 000012 | Target of illegal instruction trap, when taken PC should show 14 |
+| 12 | 000000 | Target of illegal instruction trap, nop |
+| 177706 | 1000 | Stack pointer, set to 1000 |
+
+And of course the branch at 1000.
+
+This still produced a PC = 0
+
+
+
 
 
