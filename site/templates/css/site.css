@@ -140,9 +140,18 @@ body {
     padding: 10px 22px;
 }
 
-/* The About button: the only action in the top bar, so it is styled as one -
-   the accent colour on a dark ground rather than another grey box. */
+/* The buttons at the right of the top bar. About carries the accent colour;
+   the links out to the other sites each get their own muted pastel, so they
+   read as buttons without competing with it. */
+.ui-page-nav-end {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 .ui-nav-item {
+    --nav-bg: var(--clr-accent);
+    --nav-bg-hover: #ffab84;
+    --nav-glow: rgba(255, 146, 96, 0.22);
     display: inline-flex;
     align-items: center;
     font-family: var(--font-display);
@@ -155,15 +164,30 @@ body {
     text-decoration: none;
     white-space: nowrap;
     border-radius: 4px;
-    background-color: var(--clr-accent);
+    background-color: var(--nav-bg);
     transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
 .ui-nav-item, .ui-nav-item:visited {
     color: var(--clr-on-accent);
 }
 .ui-nav-item:hover {
-    background-color: #ffab84;
-    box-shadow: 0 2px 10px rgba(255, 146, 96, 0.22);
+    background-color: var(--nav-bg-hover);
+    box-shadow: 0 2px 10px var(--nav-glow);
+}
+.ui-nav-tools {                             /* Sage */
+    --nav-bg: #a8c3a0;
+    --nav-bg-hover: #bdd3b6;
+    --nav-glow: rgba(168, 195, 160, 0.22);
+}
+.ui-nav-sortiment {                         /* Dusty blue */
+    --nav-bg: #9fb8cc;
+    --nav-bg-hover: #b6cadb;
+    --nav-glow: rgba(159, 184, 204, 0.22);
+}
+.ui-nav-domui {                             /* Lavender */
+    --nav-bg: #bcaacb;
+    --nav-bg-hover: #cdbfd9;
+    --nav-glow: rgba(188, 170, 203, 0.22);
 }
 .ui-nav-item:active {
     box-shadow: none;

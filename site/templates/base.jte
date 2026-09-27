@@ -40,6 +40,15 @@
             </div>
         </div>
         <div class="ui-page-nav-end">
+            <a href="https://tools.etc.to/" target="_blank" rel="noopener" class="ui-nav-item ui-nav-tools">
+                <span>Tools</span>
+            </a>
+            <a href="https://parts.etc.to/" target="_blank" rel="noopener" class="ui-nav-item ui-nav-sortiment">
+                <span>Sortiment</span>
+            </a>
+            <a href="https://domui.org/" target="_blank" rel="noopener" class="ui-nav-item ui-nav-domui">
+                <span>DomUI</span>
+            </a>
             <a href='${model.siteURL("about/index.html")}' class="ui-nav-item">
                 <span>About</span>
             </a>
