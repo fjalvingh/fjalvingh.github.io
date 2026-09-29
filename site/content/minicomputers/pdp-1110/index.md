@@ -56,6 +56,7 @@ The user manual I have (DEC-11-H05AA-A-D_1105um) is for the 1973 revision (A-D).
 * [Getting the console to work](30-console-work/index.md)
 * [Trying memory to respond](40-memory/index.md)
 * [The SCL system console](42-scl-console/index.md)
+* [The M9312 bootstrap terminator](44-m9312-console/index.md)
 
 
 ## The status of the different boards

@@ -39,12 +39,8 @@ This needs to be toggled in at address 1000~oct~. It did not run with M7261#1, b
 
 First, the UART clock. On the Rev.E (1973) this comes out of E100P6. This shows a 38.6KHz signal. This goes to a 74197, a divider, then a multi-select switch with select 1 using the full 38KHz, then that enters the UART (P40) as the clock. The bitrate is the UART clock / 16, so 38KHz would give about 2400bps. The rotary switch turned completely anti-clockwise selects that speed.
 
-Serial data enters on P20, and that arrives as expected: high signal, with bits going low.
+Serial data enters on P20, and that arrives as expected: high signal, with bits going low. I then measured the exit, P25, which contained the data too.
 
-
-
-
-
-
+I rechecked the wiring on the plug, and after a reseat I got the echo from the program ;)
 
 
