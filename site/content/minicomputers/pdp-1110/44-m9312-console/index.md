@@ -79,4 +79,13 @@ All PROMs are 4 bit proms. Their outputs are connected to E12, a 74LS374 latch. 
 
 This forms a shift register where every clock shifts the existing data 4 bits upward while clocking in the data from the PROMs. The first 2 address bits of each PROM are fed by a byte counter which increments the address while the bus address remains the same; this shifts all nibbles into the latches, forming the actual data word to be read by the CPU.
 
+A07 H and A05 H come directly from the Unibus receivers:
+- A07 H from E18; P5 is the bus, P6 is the output.
+- A05 H from E18; P13 is the bus, P12 is the output.
+
+The LA shows that there is indeed a problem, when examining 165200:
+
+![The trace shows that the inverting driver does not react at all to a signal](la-driver-stuck-1.png)
+
+This one needs a replacement.
 
