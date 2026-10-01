@@ -87,5 +87,11 @@ The LA shows that there is indeed a problem, when examining 165200:
 
 ![The trace shows that the inverting driver does not react at all to a signal](la-driver-stuck-1.png)
 
-This one needs a replacement.
+This one needs a replacement. I actually have them in stock for a change :wink:. Desoldering was a crime but in the end it worked and I placed a low profile socket with a new DS8837, and lo and behold - 165000 read 165000, and 165200 read 112702.
+
+## Retrying the console..
+
+With the replacement the PROMs look OK, and indeed: starting it at 165144 shows:
+
+![The m9312 is sending data to the SCL serial connection!!](m9312-works.png)
 
