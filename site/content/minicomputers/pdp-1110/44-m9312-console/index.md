@@ -95,3 +95,53 @@ With the replacement the PROMs look OK, and indeed: starting it at 165144 shows:
 
 ![The m9312 is sending data to the SCL serial connection!!](m9312-works.png)
 
+## Auto-starting the console PROM
+
+Auto-booting the console PROM from the M9312 requires the following settings in S1:
+
+ON ON OFF OFF ON ON OFF OFF ON OFF
+
+This should define the console PROM without diagnostics. Sadly enough nothing happens when I set that, so there's another issue.
+
+Auto boot works by recognizing the CPU's reset sequence. After reset the CPU fetches PC and PSW from address 24~oct~ and 26~oct~ normally. But when auto boot is enabled the M9312 forces additional address lines HIGH during RESET causing the addresses to be read to be 773024~oct~ and 773026~oct~. I checked reading data at 173024, which according to the docs should return the PC that the machine should use, but that just causes a bus error.. What should live at that address?
+
+These addresses actually fall within the address range of boot PROM 1:
+
+![The memory map for the boot PROMs](bootprom-mmap.png)
+
+and when you look at the boot prom format description it has this suspicious information:
+
+![The manual has some unexpected information about what needs to be in a boot PROM...](bootprom-format-1.png)
+
+This leads me to believe that this boot process will ONLY work when at least one PROM is present.. I have a TU80 boot PROM (23-764A9) from the 11/44 M7098 Unibus adapter that I cannot use. Dumping that PROM shows that it does obey that format:
+
+```
+173000: 046523 000176 000660 012301
+173010: 000000 012701 172123 010305
+173020: 103462 000411 173000 000340 <-- last two words
+173030: 142010 000000 000000 001000
+173040: 140004 001012 000000 010402
+173050: 010303 012705 001022 014644
+173060: 105705 001774 006702 006702
+173070: 060700 010102 005343 105711
+173100: 100376 005436 000000 012313
+173110: 001010 111502 100376 010113
+173120: 105711 100376 032711 000012
+173130: 001346 012715 140400 105502
+173140: 100366 010113 105711 100376
+173150: 005711 100401 005406 012715
+173160: 161400 105502 100366 000727
+173170: 000536 165165 000000 140327
+```
+
+Placing the prom in E35 (the open slot at the top of the adapter, closest to the handle) indeed makes the machine boot into the console program.
+
+## Making the machine work with pdp11javagui
+
+I rewrote [PDP11Gui in Java](https://github.com/fjalvingh/pdp11javagui) because I refuse to use Windows. Next round it to make it connect to the 11/05 and make it do something.. It works nicely:
+
+![PDP11JavaGui showing results from talking to the 11/10 using the M9312 console PROM](pdp11javagui-1.png)
+
+
+
+
