@@ -142,6 +142,8 @@ I rewrote [PDP11Gui in Java](https://github.com/fjalvingh/pdp11javagui) because 
 
 ![PDP11JavaGui showing results from talking to the 11/10 using the M9312 console PROM](pdp11javagui-1.png)
 
+I loaded the example tic-tac-toe game and this works as hoped:
 
+![tic-tac-toe on the 11/10](tic-tac-toe.png)
 
 
