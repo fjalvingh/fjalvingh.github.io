@@ -2,6 +2,8 @@
 
 Using [PDP 11 Java GUI](https://github.com/fjalvingh/pdp11javagui) I deposited and ran test ZQKCF0. This test, according to its documentation, is suitable for the 11/20 and the 11/05. Run the test initially with all switches off, because setting switches changes how the test works.
 
+[The listing for this test can be found here](https://www.bitsavers.org/pdf/dec/pdp11/microfiche/Diagnostic_Program_Listings/Listings/MD-11-DZQKC-F__PDP11__INSTRUCTION_EXERCISER__EP-DZQKC-F-DL-A__NOV_1976_bw.pdf).
+
 The test halted with the following on the display: 10~oct~, which is the PC address. The console showed:
 
 ```
