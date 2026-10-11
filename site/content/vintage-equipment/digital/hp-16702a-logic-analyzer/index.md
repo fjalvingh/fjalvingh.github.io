@@ -1,8 +1,10 @@
 # HP 16702A Logic Analyzer
 
-Bought from Ebay, in good state.
+Bought from Ebay, in good state. It came with:
 
-Replaced harddisk with an SCSI2SD card.
+* 2x HP 16556A analyzer cards
+
+I replaced its harddisk with an SCSI2SD card.
 
 ## Projects
 
