@@ -43,7 +43,7 @@ Having fun with electronics and old computers..
 - [8-bit 7-segment bus display board](https://github.com/fjalvingh/8bit-busdisplay)
 - [PDP KM11 debugging board](https://github.com/fjalvingh/km11)
 - [PDP 11 Inverse Assembler for the HP 16702 (and older) logic analyzers](https://github.com/fjalvingh/pdp11-reverse-assembler)
-- [Unibus terminator and HP 16702 logic analyzer probe](https://github.com/fjalvingh/unibus-ai-terminator)
+- [Unibus terminator and HP 16702 logic analyzer probe](https://github.com/fjalvingh/unibus-la-terminator)
 - [The DomUI user interface framework](https://domui.org/)
 - [The new QUniBone software: QUniLator!](https://github.com/QUniBone/QUniLator)
 - [PDP11GUI in Java](https://github.com/fjalvingh/pdp11javagui)
