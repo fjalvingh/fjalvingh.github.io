@@ -136,8 +136,17 @@ PASS    8: ADDRESS INVERSE ZEROS ONES CHECKER  ERRORS:    0, IN ALL:    0
 
 This means relocation has something to do with the failures.
 
+## The big iron...
 
+Next is to use the HP 16702A analyzer while the test runs:
 
+![The desktop with PDP 11 Java GUI and the logic analyzer with the PDP11 disassembler](desktop-1.png)
+
+The "good" news is that the test now ran for 2 hours without any issue, sigh. One confusing thing: Usually a XXDP test sends a BELL when a test passes. This test does not; it ends CR space CR.. Pretty useless.. But I had heaps of those.
+
+I then used the F1 version of that same test, and that one at least reports something reasonable:
+
+![xxdp second round of tests with a newer version of zqkc](zqkcf1-output.png)
 
 
 
