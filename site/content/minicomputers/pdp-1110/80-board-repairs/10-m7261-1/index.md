@@ -50,5 +50,39 @@ Next test: see whether the CPU can do Unibus reads. Deposit the following:
 
 Running this shows that R3, after the run, holds 123456 which means that the CPU CAN read Unibus memory.
 
+## Microstepping the code
 
+I put a BR .-2 (000777) at address 1000, then microstep it using my [km11 replica](https://github.com/fjalvingh/km11).
 
+Step F-2 shows correctly: the lamps show 000001, which is in preparation for doing the PC = PC + 2. The ALU op should be A + B + Carry, bringing PC + 1 + 1.
+
+F3 should show the new PC value on the AMUX lines, i.e. 1002. Instead it shows 000777, the instruction at 1000. This sounds like the AMUX is not working correctly. As all values are coming from the bus this is not one of the 8266 multiplexers but probably the selection signal from pin 9 called CONA ENAB ALU H. This signal is L.
+
+The signal comes from the M7261, this part:
+
+![The location where the control signal gets generated](cona-enab-alu-l-source.png)
+
+E66, 7402 (NOR gate) shows pin 1 LOW, pin 2 HIGH, Pin 3 LOW. For pin 1 to be HIGH both pin 2 and 3 need to be low. Pin 2 is CONA ENAB ALU L, coming from E069, the 23-A09A1 PROM, which is indeed high.
+
+The address lines of the PROM show all lines 0, i.e. address 0. The listing for this ROM shows this:
+
+![Bit listing for the 23-A09A1 PROM from the 1973 sheets](23-a09a1-1.png)
+
+Which actually should have all at 1. This would mean that the address presented at the prom is incorrect (all zeroes). The address is formed by two parts:
+
+- Bit 0 is CONA TRAN IN L. Whether that is 0 or 1 does not matter because both addresses would leave bit 6 of the PROM at 1.
+- Bit 1..4 come from CONA INT 0..3 H, which come from another PROM: 23-A02A2 (E30, INTN ADDRS DECODE). This PROM uses the BA register bits (0..7) as input and provides 4 bit output.
+
+These PROMs (E030, E068, E069) handle the decoding of internal registers of the machine: 
+
+| Address | Registers |
+| ------- | --------- |
+| 177700 - 177717 | R0..R17 internal registers (SPAD rams) |
+| 177776 | The PSW |
+| 177570-177571 | The console switch register |
+| 17756X | The SCL serial console registers |
+| 177546 | The line clock status register |
+
+E030 is the main address decoder. 
+
+F-1 will have stored the PC in the BA register, and that will have been address 1000. This means that the lowest 7 bits of BA are all zeroes, which is the input for E030. At that address we have all zeroes as output.
