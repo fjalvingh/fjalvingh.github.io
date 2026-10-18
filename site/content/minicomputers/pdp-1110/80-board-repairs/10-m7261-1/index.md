@@ -50,13 +50,19 @@ Next test: see whether the CPU can do Unibus reads. Deposit the following:
 
 Running this shows that R3, after the run, holds 123456 which means that the CPU CAN read Unibus memory.
 
-## Microstepping the code
+## Microstepping the code, round 1
 
 I put a BR .-2 (000777) at address 1000, then microstep it using my [km11 replica](https://github.com/fjalvingh/km11).
 
 Step F-2 shows correctly: the lamps show 000001, which is in preparation for doing the PC = PC + 2. The ALU op should be A + B + Carry, bringing PC + 1 + 1.
 
-F3 should show the new PC value on the AMUX lines, i.e. 1002. Instead it shows 000777, the instruction at 1000. This sounds like the AMUX is not working correctly. As all values are coming from the bus this is not one of the 8266 multiplexers but probably the selection signal from pin 9 called CONA ENAB ALU H. This signal is L.
+F3 should show the new PC value on the AMUX lines, i.e. 1002. Instead it shows 000777, the instruction at 1000:
+
+![The km11 replica at F-3, showing the incorrect value from the AMUX](f3-amux.png)
+
+It should show 1002, the result of the PC's addition.
+
+This sounds like the AMUX is not working correctly. As all values are coming from the bus this is not one of the 8266 multiplexers but probably the selection signal from pin 9 called CONA ENAB ALU H. This signal is L.
 
 The signal comes from the M7261, this part:
 
@@ -64,14 +70,32 @@ The signal comes from the M7261, this part:
 
 E66, 7402 (NOR gate) shows pin 1 LOW, pin 2 HIGH, Pin 3 LOW. For pin 1 to be HIGH both pin 2 and 3 need to be low. Pin 2 is CONA ENAB ALU L, coming from E069, the 23-A09A1 PROM, which is indeed high.
 
-The address lines of the PROM show all lines 0, i.e. address 0. The listing for this ROM shows this:
+Looking at this PROM, its outputs are only enabled, through E039 (7430, 8 input NAND) when all high address lines are 1. The address in the BA register should be 1000, and that means this PROM is not enabled (see appendix A in this document for an explanation on what those PROMs do).
 
-![Bit listing for the 23-A09A1 PROM from the 1973 sheets](23-a09a1-1.png)
+This, in turn, means that the signal must come from something else: (E070, 74H01 OC NAND Gate) P3 open collector output, which is 1. Both P1 and P2 are 0, coming from P6 on the same chip. Its inputs: P4 = 1, P5 is 1.7V; that is clearly not right. That signal is called CONC ANV ENAB 1(H)
 
-Which actually should have all at 1. This would mean that the address presented at the prom is incorrect (all zeroes). The address is formed by two parts:
+That signal comes from E80 (7474, p8), 1.7V; p9 is 4V. Either the 7474 is dead - or one of the other trailing chips have an issue. Cutting P8 shows that the output by itself gets zero, and the PCB side is indeed at 1.7V. Forcing that PCB side to 0 and measuring current shows two things:
+- The current is 2.8mA
+- When applied the AMUX value changes from 000777 to 000000.
+This is a clear indication that the 7474 is defective, and they are notoriously bad around this time.
 
-- Bit 0 is CONA TRAN IN L. Whether that is 0 or 1 does not matter because both addresses would leave bit 6 of the PROM at 1.
-- Bit 1..4 come from CONA INT 0..3 H, which come from another PROM: 23-A02A2 (E30, INTN ADDRS DECODE). This PROM uses the BA register bits (0..7) as input and provides 4 bit output.
+Desoldering actually caused the chip to break into pieces 8-/ Replacing it with a 74LS74 (surprisingly I have a lot of 7400 series ICs but not the 7474) fixes the step:
+
+![The km11 shows the correct value of the PC's increment after replacing the 7474](after-7474-repl.png)
+
+The change made the machine run the M9312 boot for several seconds- before stopping again, so - another error to find.
+
+
+
+
+
+
+
+
+
+## Appendix A: The E30, E68, E69 PROMs.
+
+The E69 PROM is not enabled, so it was not part of the issue. But I did check how that part works.
 
 These PROMs (E030, E068, E069) handle the decoding of internal registers of the machine: 
 
@@ -83,6 +107,6 @@ These PROMs (E030, E068, E069) handle the decoding of internal registers of the 
 | 17756X | The SCL serial console registers |
 | 177546 | The line clock status register |
 
-E030 is the main address decoder. 
+E030 is the main address decoder. It decodes whether whether an internal register is addressed. Its address bits are scrambled a bit in the lower parts, but addresses 300..317 say "R0..R17", and return 0001 as their data.
 
-F-1 will have stored the PC in the BA register, and that will have been address 1000. This means that the lowest 7 bits of BA are all zeroes, which is the input for E030. At that address we have all zeroes as output.
+F-1 will have stored the PC in the BA register, and that will have been address 1000. This means that the lowest 7 bits of BA are all zeroes, which is the input for E030. At that address we have all zeroes as output. And that is what is present at F-3, and all outputs are clearly 0.
