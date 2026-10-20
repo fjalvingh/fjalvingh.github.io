@@ -85,8 +85,13 @@ Desoldering actually caused the chip to break into pieces 8-/ Replacing it with 
 
 The change made the machine run the M9312 boot for several seconds- before stopping again, so - another error to find.
 
+## Round 2: hanging during m9312 console
 
+The machine has trouble starting. It often hangs showing a 4 on the console lights, which is actually also the content of the PC. The logic analyzer trace shows it stops mid-instruction:
 
+![LA trace stopping at 4](2-la-trace-1.png)
+
+I did the same with the "br .-2" loop at 1000; this also aborts after a 25 seconds or so, this time with 1006 on the console - an address that should never be reached.
 
 
 
