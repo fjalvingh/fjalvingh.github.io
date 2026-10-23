@@ -93,6 +93,19 @@ The machine has trouble starting. It often hangs showing a 4 on the console ligh
 
 I did the same with the "br .-2" loop at 1000; this also aborts after a 25 seconds or so, this time with 1006 on the console - an address that should never be reached.
 
+For a simpler test (as the machine often hangs quickly) I just let it start the m9312 console. That one always sits in a tight loop very quickly:
+
+![The main input loop of the m9312. It wait for input on the UART.](m9312-input-loop-1.png)
+
+I set up the LA in timing mode, as follows:
+
+![The LA setup, tracing address, data, bus control, E80, and the MPC. The MPC comes from the output of the 74175 (E91, E102) so it is really MPC, not MPC + 1](la-setup-with-e80-and-mpc.png)
+
+I put a timeout trigger on MSYN, so that it triggers when the bus is no longer active:
+
+![Triggering on MSYN being idle for a long time](msyn-trigger.png)
+
+Running this should never see addresses outside 165524-165530, as no data arrives on the UART. But around the trigger point I see other addresses, like 165634 which reads 110776. At that address should be 110532.
 
 
 
