@@ -8,6 +8,13 @@ But when I needed it in 2026 I had a shitty surprise: one of the 16556A cards fa
 
 I decided to buy two other boards (HP 16717A) which were marked as "in working order". Pretty pricy, coming from America, but I really want this machine to work.. Alas, when they did arrive they also did not work. I decided to keep them, though (and I got quite some money back from the Ebay vendor, which I thought was quite great), because around 2025/2026 there appeared on the Internet two separate schematics and reverse engineered boards. There is a CuriousMarc video that also repaired a 16717A, so that seemed... possible..
 
+## Removing the gliders
+
+The gliders can be removed relatively easily as follows. First, get a hard plastic spudger so that you can get under the gliders without damaging traces or the board. I used a thing that came with a phone repair set. Then use a hot air machine to heat the glider. I set it to 190 degrees. Heat the slider for a few seconds, get the spudger under it, then slowly pull the slider upward. Do not go fast, if you take some time often a lot of the glue comes with it.
+Once the glider is off, reduce the heat to 160 degrees, and use the same spudger to carefully remove most of the remaining gunk. Once that is gone start with removing all glue using acetone, and finally use IPA 99% to clean the board.
+
+## Repairs
+
 The repairs of those boards (and the resources used) can be found below.
 
 * [The first 16717A](50-16717a-1/index.md)
